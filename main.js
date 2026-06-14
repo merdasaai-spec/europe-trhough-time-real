@@ -252,10 +252,9 @@ const modalImage = document.getElementById("modalImage");
 
 // --- Pollinations.ai image generation (free, no API key) ---
 function buildImageUrl(city, year) {
-  const prompt = `Historical depiction of ${city.name} in ${formatYear(year)}, ${getEraLabelForYear(year)} period, realistic painting, detailed architecture, cinematic lighting, no text`;
-  const encodedPrompt = encodeURIComponent(prompt);
+  const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
   const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + year);
-  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=800&height=600&nologo=true&seed=${seed}`;
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&nofeed=true&seed=${seed}`;
 }
 
 async function openModal(city) {
@@ -265,18 +264,41 @@ async function openModal(city) {
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
-  // Check cache first
+  const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
+  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + year);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&nofeed=true&seed=${seed}`;
+
   const cacheKey = `img_${city.name}_${year}`;
   const cached = localStorage.getItem(cacheKey);
-  const url = cached || buildImageUrl(city, year);
-  if (!cached) localStorage.setItem(cacheKey, url);
+  const url = cached || imageUrl;
 
-  modalImage.innerHTML = `<div class="spinner"></div>`;
+  modalImage.innerHTML = '<div class="spinner"></div>';
+
   const img = new Image();
-  img.onload = () => { modalImage.innerHTML = ''; modalImage.appendChild(img); };
-  img.onerror = () => { modalImage.innerHTML = '<span>Image could not be loaded</span>'; };
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    if (!cached) localStorage.setItem(cacheKey, url);
+    modalImage.innerHTML = '';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    modalImage.appendChild(img);
+  };
+  img.onerror = () => {
+    // Retry once after 5 seconds
+    setTimeout(() => {
+      const img2 = new Image();
+      img2.crossOrigin = 'anonymous';
+      img2.onload = () => {
+        modalImage.innerHTML = '';
+        img2.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+        modalImage.appendChild(img2);
+      };
+      img2.onerror = () => {
+        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;">Could not generate image — try again later</span>';
+      };
+      img2.src = url + '&t=' + Date.now();
+    }, 5000);
+  };
   img.src = url;
-  img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
 
   overlay.classList.add("open");
 
