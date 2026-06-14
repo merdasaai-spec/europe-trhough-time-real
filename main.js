@@ -174,7 +174,15 @@ const cityGroups = svg.selectAll("g.city-group")
     return `translate(${x}, ${y})`;
   })
   .style("cursor", "pointer")
-  .on("click", (event, d) => openModal(d));
+  .on("click", (event, d) => openModal(d))
+  .on("mouseover", (event, d) => {
+    const year = parseInt(slider.value);
+    const prompt = `Historical realistic painting of ${d.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
+    const randomSeed = Math.floor(Math.random() * 1000000);
+    d._preloadUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
+    d._preloadImg = new Image();
+    d._preloadImg.src = d._preloadUrl; // starts loading in background immediately
+  });
 
 cityGroups.append("circle")
   .attr("class", "city-dot")
@@ -265,36 +273,40 @@ async function openModal(city) {
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + Math.abs(year));
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${seed}`;
+  const randomSeed = Math.floor(Math.random() * 1000000);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
 
-  const cacheKey = `img_${city.name}_${year}`;
-  const url = localStorage.getItem(cacheKey) || imageUrl;
+  modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
-  modalImage.innerHTML = '<div class="spinner"></div>';
+  const url = (city._preloadImg && city._preloadUrl) ? city._preloadUrl : imageUrl;
+  const img = city._preloadImg || new Image();
 
-  const img = new Image();
-  img.onload = () => {
-    localStorage.setItem(cacheKey, url);
-    modalImage.innerHTML = '';
-    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-    modalImage.appendChild(img);
-  };
-  img.onerror = () => {
-    setTimeout(() => {
-      const img2 = new Image();
-      img2.onload = () => {
-        modalImage.innerHTML = '';
-        img2.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        modalImage.appendChild(img2);
-      };
-      img2.onerror = () => {
-        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Could not generate image — try again later</span>';
-      };
-      img2.src = imageUrl + '&t=' + Date.now();
-    }, 8000);
-  };
-  img.src = url;
+  let attempts = 0;
+  const maxAttempts = 12;
+
+  function tryLoad() {
+    if (attempts >= maxAttempts) {
+      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Generation timed out — click again to retry</span>';
+      return;
+    }
+    attempts++;
+    if (img.complete && img.naturalWidth > 0) {
+      // Already loaded from hover preload
+      modalImage.innerHTML = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      modalImage.appendChild(img);
+      return;
+    }
+    img.onload = () => {
+      modalImage.innerHTML = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      modalImage.appendChild(img);
+    };
+    img.onerror = () => setTimeout(tryLoad, 5000);
+    if (!img.src) img.src = url;
+  }
+
+  tryLoad();
 
   overlay.classList.add("open");
 
