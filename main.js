@@ -253,8 +253,8 @@ const modalImage = document.getElementById("modalImage");
 // --- Pollinations.ai image generation (free, no API key) ---
 function buildImageUrl(city, year) {
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + year);
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&nofeed=true&seed=${seed}`;
+  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + Math.abs(year));
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${seed}`;
 }
 
 async function openModal(city) {
@@ -265,38 +265,34 @@ async function openModal(city) {
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + year);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&nofeed=true&seed=${seed}`;
+  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + Math.abs(year));
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${seed}`;
 
   const cacheKey = `img_${city.name}_${year}`;
-  const cached = localStorage.getItem(cacheKey);
-  const url = cached || imageUrl;
+  const url = localStorage.getItem(cacheKey) || imageUrl;
 
   modalImage.innerHTML = '<div class="spinner"></div>';
 
   const img = new Image();
-  img.crossOrigin = 'anonymous';
   img.onload = () => {
-    if (!cached) localStorage.setItem(cacheKey, url);
+    localStorage.setItem(cacheKey, url);
     modalImage.innerHTML = '';
     img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
     modalImage.appendChild(img);
   };
   img.onerror = () => {
-    // Retry once after 5 seconds
     setTimeout(() => {
       const img2 = new Image();
-      img2.crossOrigin = 'anonymous';
       img2.onload = () => {
         modalImage.innerHTML = '';
         img2.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
         modalImage.appendChild(img2);
       };
       img2.onerror = () => {
-        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;">Could not generate image — try again later</span>';
+        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Could not generate image — try again later</span>';
       };
-      img2.src = url + '&t=' + Date.now();
-    }, 5000);
+      img2.src = imageUrl + '&t=' + Date.now();
+    }, 8000);
   };
   img.src = url;
 
