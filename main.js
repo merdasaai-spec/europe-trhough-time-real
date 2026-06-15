@@ -277,10 +277,10 @@ const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prom
 modalImage.innerHTML = '<div class="spinner"></div>';
 let attempts = 0;
 function tryLoad() {
-if (attempts++ >= 12) { modalImage.innerHTML = '<span style="color:#8A7457;padding:20px;display:block;text-align:center;">Timed out — click again</span>'; return; }
+if (attempts++ >= 30) { modalImage.innerHTML = '<span style="color:#8A7457;padding:20px;display:block;text-align:center;">Timed out — click again</span>'; return; }
 const img = new Image();
 img.onload = () => { modalImage.innerHTML = ''; img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;'; modalImage.appendChild(img); };
-img.onerror = () => setTimeout(tryLoad, 5000);
+img.onerror = () => setTimeout(tryLoad, 8000);
 img.src = imageUrl;
 }
 tryLoad();
