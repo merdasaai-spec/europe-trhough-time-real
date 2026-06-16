@@ -62,7 +62,7 @@ const cities = [
   // Hungary (1)
   { name: "Budapest", lon: 19.04, lat: 47.50 },
   // Ukraine (1)
-  { name: "Kiev", lon: 30.52, lat: 50.45 },
+  { name: "Kyiv", lon: 30.52, lat: 50.45 },
   // Serbia (1)
   { name: "Belgrade", lon: 20.46, lat: 44.79 },
   // Bosnia (1)
@@ -191,15 +191,7 @@ const cityGroups = svg.selectAll("g.city-group")
   })
   .style("cursor", "pointer")
   .on("click", (event, d) => openModal(d))
-  .on("mouseover", (event, d) => {
-    const year = parseInt(slider.value);
-    d._preloadYear = year; // store year so we can check it's still valid on click
-    const prompt = `Historical realistic painting of ${d.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-    const randomSeed = Math.floor(Math.random() * 1000000);
-    d._preloadUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
-    d._preloadImg = new Image();
-    d._preloadImg.src = d._preloadUrl;
-  });
+  .on("mouseover", () => {})
 
 cityGroups.append("circle")
   .attr("class", "city-dot")
@@ -284,41 +276,31 @@ async function openModal(city) {
 
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
 
-  modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
   try {
-    const response = await fetch(
+    const hfRes = await fetch(
       "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
       {
         method: "POST",
         headers: {
-          "Authorization": "Bearer YOUR_HF_TOKEN_HERE",
+          "Authorization": "Bearer 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",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ inputs: prompt })
       }
     );
-
-    if (!response.ok) {
-      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Image generation failed — click again to retry</span>';
-      return;
-    }
-
-    const blob = await response.blob();
-    const imgUrl = URL.createObjectURL(blob);
+    if (!hfRes.ok) throw new Error("HF error");
+    const blob = await hfRes.blob();
+    const imageUrl = URL.createObjectURL(blob);
     const img = new Image();
     img.onload = () => {
       modalImage.innerHTML = '';
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       modalImage.appendChild(img);
     };
-    img.onerror = () => {
-      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
-    };
-    img.src = imgUrl;
+    img.src = imageUrl;
   } catch (err) {
-    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Network error — check connection and try again</span>';
-    console.error('Image generation failed:', err);
+    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Could not load image — please try again</span>';
   }
 
   overlay.classList.add("open");
