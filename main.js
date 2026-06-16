@@ -259,6 +259,104 @@ function updateActiveEraButton(year) {
   }
 }
 
+// --- Era visual styles for historically accurate images ---
+const eraStyles = {
+  "Stone Age": {
+    architecture: "cave dwellings, stone huts, mammoth bone shelters, natural rock formations",
+    clothing: "animal fur clothing, leather wraps, bone jewelry, natural earth tones",
+    colors: "earth tones, ochre, burnt sienna, charcoal gray, natural stone colors",
+    atmosphere: "cave painting aesthetic, primal atmosphere, flickering firelight, misty dawn",
+    landscape: "Ice Age landscape, mammoth steppe, sparse tundra, glacial valleys",
+    style: "prehistoric cave painting style, petroglyph texture, raw natural pigments"
+  },
+  "Bronze Age": {
+    architecture: "megalithic stone monuments, bronze workshops, timber frame houses, fortified hilltop settlements",
+    clothing: "linen tunics, bronze belts, woven wool cloaks, Celtic knot patterns",
+    colors: "bronze green, warm gold, terracotta, deep blue, Mediterranean sunlight",
+    atmosphere: "ancient trade routes, coastal ports, golden hour light, scholarly atmosphere",
+    landscape: "fertile river valleys, coastal harbors, bronze smelting furnaces, stone circles",
+    style: "ancient bronze age illustration, detailed metalwork, archaeological accuracy"
+  },
+  "Iron Age": {
+    architecture: "hillforts, Celtic roundhouses, iron smelting furnaces, fortified oppida settlements",
+    clothing: "Celtic tartan patterns, wool cloaks, torcs, chainmail armor, druid robes",
+    colors: "iron gray, deep green forests, Celtic blue, earthy browns, muted natural tones",
+    atmosphere: "mystical Celtic druidic atmosphere, misty ancient forests, warrior culture",
+    landscape: "dense ancient European forests, hilltop forts, Celtic sacred sites, iron mines",
+    style: "Celtic art style, intricate knotwork patterns, ancient European tribal aesthetics"
+  },
+  "Antiquity": {
+    architecture: "Roman marble temples, aqueducts, Roman roads, forums, bathhouses, amphitheaters, villas",
+    clothing: "Roman togas, Greek chitons and himations, military armor, senatorial purple borders",
+    colors: "Roman white marble, Mediterranean azure, terracotta roofs, imperial purple accents",
+    atmosphere: "classical Roman grandeur, Mediterranean sunlight, scholarly Roman life, military discipline",
+    landscape: "Mediterranean coastal cities, Roman roads stretching to horizon, olive groves, vineyards",
+    style: "classical Roman painting style, accurate Roman architecture, marble textures, classical perspective"
+  },
+  "Middle Ages": {
+    architecture: "stone castles with towers, Gothic cathedrals with pointed arches, timber-framed houses, market squares",
+    clothing: "medieval tunics, chainmail armor, knight plate armor, monk robes, noble velvet",
+    colors: "stone gray, deep forest green, muted medieval palette, candlelit warm interior tones",
+    atmosphere: "medieval Gothic atmosphere, misty castle courtyards, monastic scholarship, feudal life",
+    landscape: "fortified hilltop castles, Gothic cathedral spires, medieval villages, misty European countryside",
+    style: "medieval manuscript illumination style, Gothic architectural accuracy, historical tapestry aesthetic"
+  },
+  "Renaissance": {
+    architecture: "Renaissance palaces with classical columns, frescoed buildings, ornate town halls, grand piazzas",
+    clothing: "Renaissance silks and velvets, merchant doublets, scholarly robes, ornate noble attire",
+    colors: "warm Renaissance palette, golden Mediterranean light, rich crimson, deep blue, marble white",
+    atmosphere: "Renaissance humanist enlightenment, scholarly workshops, artistic flourishing, merchant prosperity",
+    landscape: "Italianate hilltop towns, Renaissance gardens, classical architecture, Mediterranean coast",
+    style: "Renaissance oil painting style, accurate classical architecture, warm golden light, perspective mastery"
+  },
+  "Enlightenment": {
+    architecture: "Baroque and neoclassical buildings, grand boulevards, scientific academies, ornate theaters",
+    clothing: "Enlightenment era formal wear, powdered wigs, elegant coats, scholarly attire, refined dresses",
+    colors: "Enlightenment elegance, cream and gold, deep burgundy, sophisticated pastels, candlelight warmth",
+    atmosphere: "Enlightenment salons, scientific discovery, intellectual discourse, refined European society",
+    landscape: "grand European capitals, botanical gardens, scientific laboratories, elegant public squares",
+    style: "Enlightenment era painting style, precise architectural detail, sophisticated European aesthetic"
+  },
+  "Industrial Age": {
+    architecture: "brick factories with smokestacks, iron bridges, railway stations, Victorian townhouses, grand museums",
+    clothing: "Victorian era clothing, top hats, long dresses, worker overalls, industrial era uniforms",
+    colors: "industrial sepia tones, soot and brick red, gaslight amber, steam white, coal black",
+    atmosphere: "Industrial Revolution energy, steam-powered progress, bustling factories, urban transformation",
+    landscape: "smoky industrial cities, railway networks, factories with smoke, urban expansion, coal mines",
+    style: "Industrial era painting style, accurate Victorian architecture, atmospheric industrial scene, dramatic lighting"
+  },
+  "Modern era": {
+    architecture: "modernist buildings, Art Deco structures, post-war reconstruction, glass and steel skyscrapers",
+    clothing: "20th century fashion, post-war clothing, modern business attire, contemporary European styles",
+    colors: "modern color palette, urban grays, vibrant modern colors, photographic realism, contemporary lighting",
+    atmosphere: "modern European vitality, post-war reconstruction, technological progress, cultural renaissance",
+    landscape: "modern European cities, post-war rebuilding, emerging skylines, contemporary infrastructure",
+    style: "modern European photographic style, accurate 20th century architecture, realistic lighting, historical documentary feel"
+  },
+  "Present day": {
+    architecture: "contemporary European architecture, glass facades, sustainable buildings, modern urban design",
+    clothing: "contemporary European fashion, diverse modern clothing, business casual, street style",
+    colors: "contemporary digital photography colors, natural daylight, modern urban palette, vibrant city life",
+    atmosphere: "modern European energy, digital age connectivity, multicultural society, sustainable future",
+    landscape: "modern European cities, green urban spaces, digital infrastructure, contemporary European life",
+    style: "contemporary European photography style, accurate modern architecture, realistic digital photography"
+  }
+};
+
+function getPromptForEra(cityName, year, eraLabel) {
+  const style = eraStyles[eraLabel] || eraStyles["Modern era"];
+  
+  const basePrompt = `Historical realistic scene of ${cityName}`;
+  const architectureDetail = `featuring ${style.architecture}`;
+  const clothingDetail = `with people wearing ${style.clothing}`;
+  const colorDetail = `rendered in ${style.colors}`;
+  const atmosphereDetail = `atmosphere: ${style.atmosphere}`;
+  const landscapeDetail = `set against ${style.landscape}`;
+  const styleDetail = `in ${style.style}`;
+  
+  return `${basePrompt}, year ${formatYear(year)}, ${eraLabel} period, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, historically accurate, detailed, cinematic composition`;
+}
+
 // --- Modal ---
 const overlay = document.getElementById("overlay");
 const modalClose = document.getElementById("modalClose");
@@ -267,14 +365,14 @@ const modalYear = document.getElementById("modalYear");
 const modalDesc = document.getElementById("modalDesc");
 const modalImage = document.getElementById("modalImage");
 
-  async function openModal(city) {
+async function openModal(city) {
   const year = parseInt(slider.value);
   const eraLabelText = getEraLabelForYear(year);
   modalCity.textContent = city.name;
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
-  const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
+  const prompt = getPromptForEra(city.name, year, eraLabelText);
   const randomSeed = Math.floor(Math.random() * 1000000);
   const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
 
