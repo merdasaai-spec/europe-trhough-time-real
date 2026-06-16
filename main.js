@@ -368,11 +368,12 @@ const modalImage = document.getElementById("modalImage");
 async function openModal(city) {
   const year = parseInt(slider.value);
   const eraLabelText = getEraLabelForYear(year);
+  const eraKey = getEraLabel(year);
   modalCity.textContent = city.name;
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
-  const prompt = getPromptForEra(city.name, year, eraLabelText);
+  const prompt = getPromptForEra(city.name, year, eraKey);
   const randomSeed = Math.floor(Math.random() * 1000000);
   const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
 
