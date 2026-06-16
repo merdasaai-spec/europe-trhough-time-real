@@ -7,7 +7,7 @@ let europeData = null;
 
 const cities = [
   // Greece (3)
-  { name: "Athene", lon: 23.73, lat: 37.98 },
+  { name: "Athens", lon: 23.73, lat: 37.98 },
   { name: "Thessaloniki", lon: 22.94, lat: 40.64 },
   { name: "Sparta", lon: 22.43, lat: 37.08 },
   // Italy (3)
@@ -19,11 +19,11 @@ const cities = [
   { name: "Smyrna (Izmir)", lon: 27.14, lat: 38.42 },
   { name: "Ankara", lon: 32.85, lat: 39.93 },
   // France (3)
-  { name: "Parijs", lon: 2.35, lat: 48.86 },
+  { name: "Paris", lon: 2.35, lat: 48.86 },
   { name: "Avignon", lon: 4.81, lat: 43.95 },
   { name: "Marseille", lon: 5.37, lat: 43.30 },
   // United Kingdom (3)
-  { name: "Londen", lon: -0.13, lat: 51.51 },
+  { name: "London", lon: -0.13, lat: 51.51 },
   { name: "York", lon: -1.08, lat: 53.96 },
   { name: "Edinburgh", lon: -3.19, lat: 55.95 },
   // Spain (3)
@@ -37,14 +37,14 @@ const cities = [
   { name: "Amsterdam", lon: 4.90, lat: 52.37 },
   { name: "Rotterdam", lon: 4.48, lat: 51.92 },
   // Germany (3)
-  { name: "Berlijn", lon: 13.40, lat: 52.52 },
+  { name: "Berlin", lon: 13.40, lat: 52.52 },
   { name: "Cologne", lon: 6.96, lat: 50.94 },
   { name: "Aachen", lon: 6.08, lat: 50.78 },
   // Austria (1)
   { name: "Vienna", lon: 16.37, lat: 48.21 },
   // Russia (3)
-  { name: "Moskou", lon: 37.62, lat: 55.76 },
-  { name: "Sint-Petersburg", lon: 30.31, lat: 59.94 },
+  { name: "Moscow", lon: 37.62, lat: 55.76 },
+  { name: "St. Petersburg", lon: 30.31, lat: 59.94 },
   { name: "Novgorod", lon: 31.27, lat: 58.52 },
   // Czechia (1)
   { name: "Prague", lon: 14.42, lat: 50.09 },
@@ -53,18 +53,18 @@ const cities = [
   // Sweden (1)
   { name: "Stockholm", lon: 18.06, lat: 59.33 },
   // Denmark (1)
-  { name: "Kopenhagen", lon: 12.57, lat: 55.68 },
+  { name: "Copenhagen", lon: 12.57, lat: 55.68 },
   // Ireland (1)
   { name: "Dublin", lon: -6.27, lat: 53.35 },
   // Poland (2)
-  { name: "Warschau", lon: 21.01, lat: 52.23 },
+  { name: "Warsaw", lon: 21.01, lat: 52.23 },
   { name: "Krakow", lon: 19.94, lat: 50.06 },
   // Hungary (1)
   { name: "Budapest", lon: 19.04, lat: 47.50 },
   // Ukraine (1)
   { name: "Kiev", lon: 30.52, lat: 50.45 },
   // Serbia (1)
-  { name: "Belgrado", lon: 20.46, lat: 44.79 },
+  { name: "Belgrade", lon: 20.46, lat: 44.79 },
   // Bosnia (1)
   { name: "Sarajevo", lon: 18.41, lat: 43.86 },
   // Romania (1)
@@ -86,13 +86,16 @@ const cities = [
 ];
 
 const eras = [
-  { label: "Stone Age", year: -3000, range: [-3000, -1200] },
-  { label: "Antiquity", year: -50, range: [-1200, 500] },
-  { label: "Middle Ages", year: 1000, range: [500, 1450] },
-  { label: "Renaissance", year: 1500, range: [1450, 1650] },
-  { label: "Enlightenment", year: 1750, range: [1650, 1900] },
-  { label: "Modern era", year: 1950, range: [1900, 2010] },
-  { label: "Present day", year: 2024, range: [2010, 2026] }
+  { label: "Stone Age",      year: -3000, range: [-3000, -1200] },
+  { label: "Bronze Age",     year: -1500, range: [-1200, -800]  },
+  { label: "Iron Age",       year: -600,  range: [-800, -27]    },
+  { label: "Antiquity",      year: -27,   range: [-27, 476]     },
+  { label: "Middle Ages",    year: 900,   range: [476, 1450]    },
+  { label: "Renaissance",    year: 1500,  range: [1450, 1650]   },
+  { label: "Enlightenment",  year: 1750,  range: [1650, 1800]   },
+  { label: "Industrial Age", year: 1850,  range: [1800, 1914]   },
+  { label: "Modern era",     year: 1950,  range: [1914, 2010]   },
+  { label: "Present day",    year: 2026,  range: [2010, 2026]   }
 ];
 
 function getEraLabel(year) {
@@ -110,27 +113,40 @@ function formatYear(year) {
 
 // Special labeled years for context
 const milestones = {
-  "-3000": "Stone Age Europe",
-  "-2500": "Construction of Stonehenge",
-  "-1200": "Bronze Age collapse",
-  "-753": "Founding of Rome",
-  "-509": "Roman Republic",
-  "-50": "Height of the Roman Empire",
-  "0": "Start of the Common Era",
-  "476": "Fall of the Western Roman Empire",
-  "800": "Charlemagne crowned emperor",
-  "1066": "Battle of Hastings",
-  "1347": "Black Death reaches Europe",
-  "1453": "Fall of Constantinople",
-  "1492": "Discovery of the Americas",
-  "1517": "Start of the Reformation",
-  "1648": "Peace of Westphalia",
-  "1789": "French Revolution",
-  "1815": "Battle of Waterloo",
-  "1914": "Start of World War I",
-  "1939": "Start of World War II",
-  "1989": "Fall of the Berlin Wall",
-  "2024": "Present day"
+  "-3000": "Early Bronze Age — first farming settlements across Europe",
+  "-2500": "Megalithic culture — stone monuments built across Europe",
+  "-1200": "Late Bronze Age collapse — trade networks break down",
+  "-800":  "Early Iron Age — iron spreads across the continent",
+  "-500":  "Celtic cultures dominate Central and Western Europe",
+  "-27":   "Roman Empire established — Mediterranean world unified",
+  "100":   "Height of the Roman Empire — roads connect the continent",
+  "376":   "Great Migration — peoples move across Europe en masse",
+  "476":   "Fall of the Western Roman Empire",
+  "541":   "Plague of Justinian spreads across Europe",
+  "700":   "Early medieval kingdoms form across Europe",
+  "1000":  "Viking Age — Norse settlements from Iceland to Russia",
+  "1095":  "Crusades begin — Europe mobilizes toward the Holy Land",
+  "1347":  "Black Death — kills one third of Europe's population",
+  "1450":  "Gutenberg's printing press — knowledge spreads rapidly",
+  "1453":  "Fall of Constantinople — end of the Byzantine Empire",
+  "1517":  "Reformation — Christianity splits across Europe",
+  "1618":  "Thirty Years' War devastates Central Europe",
+  "1648":  "Peace of Westphalia — modern state system begins",
+  "1750":  "Enlightenment — reason and science reshape European thought",
+  "1789":  "French Revolution — old order collapses across the continent",
+  "1815":  "Congress of Vienna — Europe redrawn after Napoleon",
+  "1848":  "Revolutions sweep across Europe",
+  "1871":  "Industrial age — railways and factories transform the continent",
+  "1914":  "World War I begins — Europe tears itself apart",
+  "1918":  "World War I ends — empires collapse, borders redrawn",
+  "1939":  "World War II begins — Europe at war again",
+  "1945":  "World War II ends — continent in ruins, Cold War begins",
+  "1957":  "Treaty of Rome — European cooperation begins",
+  "1989":  "Fall of the Berlin Wall — Cold War ends",
+  "1993":  "European Union founded",
+  "2004":  "EU expands eastward",
+  "2024":  "AI age begins — technology reshapes European society",
+  "2026":  "Present day Europe"
 };
 
 function getEraLabelForYear(year) {
