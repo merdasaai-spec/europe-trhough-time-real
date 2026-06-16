@@ -278,25 +278,22 @@ async function openModal(city) {
 
 
   try {
-    const hfRes = await fetch(
-      "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": "Bearer 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",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ inputs: prompt })
-      }
-    );
-    if (!hfRes.ok) throw new Error("HF error");
-    const blob = await hfRes.blob();
+    const res = await fetch('/api/generate-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    if (!res.ok) throw new Error('Image generation failed');
+    const blob = await res.blob();
     const imageUrl = URL.createObjectURL(blob);
     const img = new Image();
     img.onload = () => {
       modalImage.innerHTML = '';
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       modalImage.appendChild(img);
+    };
+    img.onerror = () => {
+      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
     };
     img.src = imageUrl;
   } catch (err) {
