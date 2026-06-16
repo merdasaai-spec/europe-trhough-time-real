@@ -177,11 +177,12 @@ const cityGroups = svg.selectAll("g.city-group")
   .on("click", (event, d) => openModal(d))
   .on("mouseover", (event, d) => {
     const year = parseInt(slider.value);
+    d._preloadYear = year; // store year so we can check it's still valid on click
     const prompt = `Historical realistic painting of ${d.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
     const randomSeed = Math.floor(Math.random() * 1000000);
     d._preloadUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
     d._preloadImg = new Image();
-    d._preloadImg.src = d._preloadUrl; // starts loading in background immediately
+    d._preloadImg.src = d._preloadUrl;
   });
 
 cityGroups.append("circle")
@@ -258,13 +259,6 @@ const modalYear = document.getElementById("modalYear");
 const modalDesc = document.getElementById("modalDesc");
 const modalImage = document.getElementById("modalImage");
 
-// --- Pollinations.ai image generation (free, no API key) ---
-function buildImageUrl(city, year) {
-  const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-  const seed = Math.abs(city.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0) + Math.abs(year));
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${seed}`;
-}
-
 async function openModal(city) {
   const year = parseInt(slider.value);
   const eraLabelText = getEraLabelForYear(year);
@@ -272,18 +266,43 @@ async function openModal(city) {
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
-const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, oil painting style`;
-const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${Math.floor(Math.random()*1000000)}`;
-modalImage.innerHTML = '<div class="spinner"></div>';
-let attempts = 0;
-function tryLoad() {
-if (attempts++ >= 30) { modalImage.innerHTML = '<span style="color:#8A7457;padding:20px;display:block;text-align:center;">Timed out — click again</span>'; return; }
-const img = new Image();
-img.onload = () => { modalImage.innerHTML = ''; img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;'; modalImage.appendChild(img); };
-img.onerror = () => setTimeout(tryLoad, 8000);
-img.src = imageUrl;
-}
-tryLoad();
+  const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
+  const randomSeed = Math.floor(Math.random() * 1000000);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
+
+  modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
+
+  // Only use preloaded image if it was generated for the current year
+  const preloadValid = city._preloadImg && city._preloadUrl && city._preloadYear === year;
+  const url = preloadValid ? city._preloadUrl : imageUrl;
+  const img = preloadValid ? city._preloadImg : new Image();
+
+  let attempts = 0;
+  const maxAttempts = 12;
+
+  function tryLoad() {
+    if (attempts >= maxAttempts) {
+      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Generation timed out — click again to retry</span>';
+      return;
+    }
+    attempts++;
+    if (img.complete && img.naturalWidth > 0) {
+      // Already loaded from hover preload
+      modalImage.innerHTML = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      modalImage.appendChild(img);
+      return;
+    }
+    img.onload = () => {
+      modalImage.innerHTML = '';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      modalImage.appendChild(img);
+    };
+    img.onerror = () => setTimeout(tryLoad, 5000);
+    if (!img.src) img.src = url;
+  }
+
+  tryLoad();
 
   overlay.classList.add("open");
 
