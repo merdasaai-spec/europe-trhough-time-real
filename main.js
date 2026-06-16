@@ -267,7 +267,7 @@ const modalYear = document.getElementById("modalYear");
 const modalDesc = document.getElementById("modalDesc");
 const modalImage = document.getElementById("modalImage");
 
-async function openModal(city) {
+  async function openModal(city) {
   const year = parseInt(slider.value);
   const eraLabelText = getEraLabelForYear(year);
   modalCity.textContent = city.name;
@@ -275,30 +275,21 @@ async function openModal(city) {
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
+  const randomSeed = Math.floor(Math.random() * 1000000);
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
 
+  modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
-  try {
-    const res = await fetch('/api/generate-image', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
-    });
-    if (!res.ok) throw new Error('Image generation failed');
-    const blob = await res.blob();
-    const imageUrl = URL.createObjectURL(blob);
-    const img = new Image();
-    img.onload = () => {
-      modalImage.innerHTML = '';
-      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-      modalImage.appendChild(img);
-    };
-    img.onerror = () => {
-      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
-    };
-    img.src = imageUrl;
-  } catch (err) {
-    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Could not load image — please try again</span>';
-  }
+  const img = new Image();
+  img.onload = () => {
+    modalImage.innerHTML = '';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    modalImage.appendChild(img);
+  };
+  img.onerror = () => {
+    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
+  };
+  img.src = imageUrl;
 
   overlay.classList.add("open");
 
