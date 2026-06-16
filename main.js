@@ -283,42 +283,43 @@ async function openModal(city) {
   modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
 
   const prompt = `Historical realistic painting of ${city.name} in the year ${formatYear(year)}, ${getEraLabelForYear(year)} period, detailed architecture and people, cinematic lighting, oil painting style`;
-  const randomSeed = Math.floor(Math.random() * 1000000);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
 
   modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
-  // Only use preloaded image if it was generated for the current year
-  const preloadValid = city._preloadImg && city._preloadUrl && city._preloadYear === year;
-  const url = preloadValid ? city._preloadUrl : imageUrl;
-  const img = preloadValid ? city._preloadImg : new Image();
+  try {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer YOUR_HF_TOKEN_HERE",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ inputs: prompt })
+      }
+    );
 
-  let attempts = 0;
-  const maxAttempts = 12;
-
-  function tryLoad() {
-    if (attempts >= maxAttempts) {
-      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Generation timed out — click again to retry</span>';
+    if (!response.ok) {
+      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Image generation failed — click again to retry</span>';
       return;
     }
-    attempts++;
-    if (img.complete && img.naturalWidth > 0) {
-      // Already loaded from hover preload
-      modalImage.innerHTML = '';
-      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-      modalImage.appendChild(img);
-      return;
-    }
+
+    const blob = await response.blob();
+    const imgUrl = URL.createObjectURL(blob);
+    const img = new Image();
     img.onload = () => {
       modalImage.innerHTML = '';
       img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
       modalImage.appendChild(img);
     };
-    img.onerror = () => setTimeout(tryLoad, 5000);
-    if (!img.src) img.src = url;
+    img.onerror = () => {
+      modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
+    };
+    img.src = imgUrl;
+  } catch (err) {
+    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Network error — check connection and try again</span>';
+    console.error('Image generation failed:', err);
   }
-
-  tryLoad();
 
   overlay.classList.add("open");
 
