@@ -860,6 +860,9 @@ function getPromptForEra(cityName, year, eraLabel) {
   const modifier = yearModifiers[String(year)];
   const cityRef = cityArch[cityName] || "historically accurate European architecture";
   
+  // Check for city-specific era modifiers
+  const cityEraData = cityYearModifiers[cityName]?.[eraLabel];
+  
   // Build prompt components — year-specific modifiers override era defaults for key years
   let sceneDetail, architectureDetail, clothingDetail, colorDetail, atmosphereDetail, landscapeDetail, styleDetail;
   
@@ -871,6 +874,15 @@ function getPromptForEra(cityName, year, eraLabel) {
     atmosphereDetail = `atmosphere: ${modifier.atmosphere}`;
     landscapeDetail = `landscape: ${modifier.landscape}`;
     styleDetail = `in ${modifier.style}`;
+  } else if (cityEraData) {
+    // City-specific era data overrides generic era style
+    sceneDetail = `featuring ${cityRef}`;
+    architectureDetail = `architecture: ${cityEraData.architecture}`;
+    clothingDetail = `people wearing ${cityEraData.people_clothing}`;
+    colorDetail = `rendered in ${style.colors}`;
+    atmosphereDetail = `atmosphere: ${style.atmosphere}`;
+    landscapeDetail = `landscape: ${cityEraData.landscape}`;
+    styleDetail = `in ${style.style}`;
   } else {
     sceneDetail = `featuring ${cityRef}`;
     architectureDetail = `with ${style.architecture}`;
