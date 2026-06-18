@@ -564,40 +564,614 @@ const yearModifiers = {
     atmosphere: "elegant fin de siècle, imperial confidence, underlying tensions, cultural sophistication",
     landscape: "Parisian Belle Époque, Art Nouveau Brussels, imperial Vienna, Berlin Wilhelmstraße, European capitals at peak",
     style: "Belle Époque painting, Art Nouveau illustration, imperial era photography, fin de siècle elegance"
+  },
+  "1910": {
+    scene: "Pre-War Europe, Edwardian elegance, military buildup, Art Nouveau reaching its peak before WWI",
+    architecture: "Art Nouveau theaters and exhibition halls, Edwardian grand hotels, military barracks, early skyscrapers in Vienna and Budapest, ornate train stations",
+    clothing: "Edwardian high fashion with tall hats and corseted silhouettes, military uniforms with elaborate braiding, Art Nouveau dress reform, formal day and evening wear",
+    colors: "Edwardian cream and gold, Art Nouveau olive green and turquoise, military blues and reds, sepia-toned photography",
+    atmosphere: "pre-war elegance masking growing tensions, Art Nouveau cultural flowering, military parade culture, imperial grandeur",
+    landscape: "Art Nouveau Brussels and Paris, Edwardian London, Belle Époque Vienna, pre-war European capitals",
+    style: "Art Nouveau illustration, Edwardian photography, pre-war military illustration, Belle Époque painting"
+  },
+  "1920": {
+    scene: "Interwar Europe, roaring twenties, Treaty of Versailles aftermath, new nations emerging from collapsed empires",
+    architecture: "Art Deco buildings rising across Europe, war-damaged cities being rebuilt, new national capitals, modernist architecture experiments, League of Nations buildings",
+    clothing: "1920s flapper dresses with fringe, cloche hats, Art Deco menswear with sharp tailoring, military veterans in uniform, bobbed hair fashion",
+    colors: "Art Deco black and gold, jazz age brights, war memorial grays, 1920s neon, sepia and silver screen tones",
+    atmosphere: "roaring twenties energy, post-war trauma, cultural liberation, jazz age excess, political instability beneath glamour",
+    landscape: "1920s Parisian nightlife, Berlin cabaret scene, newly independent Eastern European capitals, Versailles peace conference",
+    style: "Art Deco poster art, 1920s photography, jazz age illustration, post-war reconstruction documentation"
+  },
+  "1930": {
+    scene: "Great Depression Europe, economic collapse, rise of totalitarian regimes, economic recovery efforts",
+    architecture: "Art Deco and Bauhaus buildings, Depression-era public works, fascist monumental architecture, economic recovery projects, fortified borders",
+    clothing: "1930s Depression-era fashion, Hollywood glamour influence, tailored suits with wide lapels, flapper-to-glamour transition, military uniforms with growing prominence",
+    colors: "1930s sepia and muted tones, Art Deco metallics, Depression grays, Hollywood gold, political propaganda reds and blacks",
+    atmosphere: "economic hardship masking glamour, political extremism rising, Depression-era resilience, pre-war tension building",
+    landscape: "1930s European capitals, Art Deco architecture, Depression-era bread lines, fascist architectural projects, fortified borders",
+    style: "1930s Art Deco photography, Bauhaus aesthetic, Depression-era documentary, pre-war political poster art"
+  },
+  "1940": {
+    scene: "World War II Europe, occupation and resistance, total war mobilization, European continent divided by Nazi control",
+    architecture: "wartime blackout-covered cities, Luftwaffe bomb-damaged buildings, resistance hideouts in historic cellars, military headquarters in occupied palaces, coastal Atlantic Wall fortifications, underground resistance networks in old catacombs and tunnels",
+    clothing: "wartime rationed clothing with patched hems, women in factory overalls and bandanas (Rosie the Riveter style), military uniforms (German Wehrmacht field gray, British khaki, Soviet olive drab), black market silk stockings, resistance fighter civilian clothes, occupation military uniforms with foreign insignia",
+    colors: "wartime desaturated palette, olive drab and field gray military tones, blackout black, rationed fabric grays, propaganda poster reds and golds, bomb-damaged stone rubble, winter grays and whites",
+    atmosphere: "wartime tension and blackout curtains, resistance hope amid occupation, total war mobilization, rationing and scarcity, air raid sirens and shelter life, European continent at war",
+    landscape: "bomb-damaged European cityscapes, coastal Atlantic Wall fortifications, occupied Paris with swastika flags, resistance countryside hideouts, military supply convoys on historic roads, rationed urban markets",
+    style: "wartime military photography, propaganda poster art, documentary photojournalism, desaturated wartime color palette, air raid shelter atmosphere"
+  },
+  "1945": {
+    scene: "End of World War II, European liberation, ruins and devastation, Allied victory, beginning of reconstruction",
+    architecture: "bomb-damaged Gothic cathedrals, rubble-strewn city centers, Allied military headquarters, temporary refugee camps in historic buildings, early reconstruction scaffolding, liberated concentration camp perimeter fences",
+    clothing: "Allied military liberation uniforms (American GIs, British soldiers, Soviet Red Army), civilian refugee clothing with patches, women in practical work clothes, liberated prisoners in striped camp uniforms, occupation military uniforms being removed",
+    colors: "wartime desaturated tones, liberation blue skies, rubble grays and browns, Allied military colors (American khaki, British red, Soviet red), victory red-white-blue, winter white",
+    atmosphere: "relief and exhaustion of liberation, devastation and loss, hope for peace, beginning of rebuilding, Allied victory celebrations mixed with grief",
+    landscape: "liberated European cities with Allied flags, bomb-damaged historic landmarks, refugee columns on country roads, Allied military supply lines, early reconstruction efforts",
+    style: "wartime photojournalism, liberation photography, documentary realism, desaturated wartime tones with victory color accents"
+  },
+  "1950": {
+    scene: "Post-war Europe, Marshall Plan reconstruction, early Cold War division, economic recovery beginning",
+    architecture: "Marshall Plan reconstruction sites, early modernist housing blocks, bomb ruins being cleared, Berlin Wall construction beginning, European coal and steel industry rebuilding, temporary wooden prefabricated housing",
+    clothing: "1950s Dior New Look fashion for women, men in post-war suits with narrow lapels, Soviet military occupation uniforms, European working-class practical clothing, early youth fashion rebellion",
+    colors: "1950s pastel revival, Marshall Plan optimism, Cold War grays and blues, European reconstruction browns, Soviet red, Dior black and white",
+    atmosphere: "post-war recovery, Cold War anxiety, European unity efforts, economic rebuilding, generational tension between wartime and peace",
+    landscape: "rebuilding European cities, Marshall Plan construction sites, early Berlin Wall, European coal mines, post-war refugee camps, emerging NATO borders",
+    style: "1950s European photography, Marshall Plan documentation, Cold War political art, post-war reconstruction imagery"
+  },
+  "1960": {
+    scene: "European economic boom, youth revolution, Space Age optimism, European integration deepening",
+    architecture: "Space Age modernist architecture, early European Parliament building, shopping centers with modern design, youth culture venues, European Economic Community headquarters, brutalist government buildings",
+    clothing: "1960s mod fashion with geometric patterns, youth rebellion mini skirts and go-go boots, European business suits with slim cut, Beatles-influenced hair and clothing, early hippie counterculture",
+    colors: "1960s mod brights (orange, pink, turquoise), Space Age silver and white, European Union blue, youth culture rainbow, mod geometric patterns",
+    atmosphere: "youth culture rebellion, European economic optimism, Space Age technological wonder, generation gap, European integration progress",
+    landscape: "1960s European capitals with modern architecture, youth culture streets, European Economic Community institutions, Space Age exhibitions, mod fashion districts",
+    style: "1960s mod illustration, Space Age design, European pop art, youth culture photography, mod fashion editorial"
+  },
+  "1970": {
+    scene: "European oil crisis, Eurocommunism, European cooperation strengthening, post-60s cultural shift",
+    architecture: "1970s brutalist architecture, European Council buildings, oil crisis impact on urban planning, Eurocommunist movement centers, social housing projects, early European highway networks",
+    clothing: "1970s disco fashion with wide collars, Eurocommunist worker clothing, European business casual, hippie counterculture clothing, oil crisis practical fashion, European punk emerging",
+    colors: "1970s earth tones (brown, orange, olive), disco metallics, Eurocommunist red, European Union blue, oil crisis grays, punk black and neon",
+    atmosphere: "oil crisis uncertainty, Eurocommunist political movement, disco culture, European integration progress, punk rebellion beginning",
+    landscape: "1970s European cities with brutalist architecture, oil crisis fuel queues, European Council meetings, disco venues, Eurocommunist demonstrations",
+    style: "1970s European photography, Eurocommunist political art, disco era fashion, brutalist architecture documentation"
+  },
+  "1980": {
+    scene: "Cold War peak, European nuclear tension, Thatcher-Reagan era, European cultural renaissance",
+    architecture: "1980s corporate architecture, NATO missile sites, European cultural centers, early shopping malls, Berlin Wall checkpoints, punk and new wave venues",
+    clothing: "1980s power suits with broad shoulders, punk fashion with leather and studs, new wave fashion with neon, European business attire, Cold War military uniforms, disco-to-new-wave transition",
+    colors: "1980s neon brights (pink, cyan, yellow), Cold War grays and military greens, punk black and safety pins, European Union blue, power suit navy and burgundy",
+    atmosphere: "Cold War nuclear anxiety, European cultural confidence, punk and new wave energy, Thatcher-era conservatism, European economic transformation",
+    landscape: "1980s European capitals with punk and new wave culture, NATO missile sites, Berlin Wall checkpoints, European shopping districts, Cold War military installations",
+    style: "1980s European photography, punk and new wave aesthetics, Cold War documentation, European pop culture imagery"
+  },
+  "1989": {
+    scene: "Fall of the Berlin Wall, European democratization, end of Cold War, European unity celebrations",
+    architecture: "Berlin Wall being torn down, historic European buildings with new democracy, European Parliament expansion, democratization monuments, border crossing points, European unity commemorative sites",
+    clothing: "1989 celebration fashion, European democratic movement clothing, East and West German unification fashion, European political leader attire, youth culture at democratic revolutions",
+    colors: "1989 celebration colors (German black-red-gold, European Union blue with stars), Cold War ending grays, democratic movement reds and whites, Berlin Wall graffiti rainbow, European unity gold",
+    atmosphere: "democratic euphoria, Cold War ending, European unity hope, fall of iron curtain, generational freedom, European renaissance",
+    landscape: "Berlin Wall falling, European democratization sites, European Parliament celebrations, border crossings opening, European unity monuments being built",
+    style: "1989 European photography, democratic revolution documentation, Cold War ending imagery, European unity celebration art"
+  },
+  "1995": {
+    scene: "European Union expansion, post-Cold War prosperity, Euro currency preparation, European cultural integration",
+    architecture: "Euro currency preparation facilities, European Union expansion monuments, post-Cold War reconstruction, European high-speed rail networks, EU institution buildings, European cultural heritage sites",
+    clothing: "1990s European fashion, EU official attire, post-Cold War business casual, European youth culture fashion, Euro currency celebration clothing, European integration symbolism in dress",
+    colors: "Euro blue and gold, European Union flag colors, 1990s European pastels, post-Cold War optimism brights, European cultural heritage earth tones",
+    atmosphere: "European integration optimism, Euro currency excitement, post-Cold War prosperity, cultural renaissance, European unity celebration",
+    landscape: "European Union expansion sites, Euro currency preparation, European cultural heritage sites, post-Cold War European capitals, European high-speed rail networks",
+    style: "1990s European photography, Euro currency documentation, European integration celebration art, post-Cold War European imagery"
+  },
+  "2000": {
+    scene: "Millennium Europe, Euro currency launch, European digital transformation, EU enlargement preparation",
+    architecture: "Euro currency facilities, European digital infrastructure, EU enlargement monument sites, modern European architecture, Millennium celebration venues, European tech hubs",
+    clothing: "Y2K fashion with metallic and futuristic elements, European business attire, EU official clothing, European youth digital culture fashion, Millennium celebration attire",
+    colors: "Euro blue and gold, Y2K silver and white, European Union brights, Millennium celebration colors, digital age blues and greens",
+    atmosphere: "Millennium celebration, Euro currency launch, European digital optimism, EU enlargement hope, technological transformation",
+    landscape: "Euro currency launch sites, European digital infrastructure, EU enlargement preparation sites, Millennium celebration venues, European tech hubs",
+    style: "Y2K European photography, Euro currency documentation, European digital transformation imagery, Millennium celebration art"
+  },
+  "2010": {
+    scene: "European debt crisis, digital Europe, migration debates, European resilience and adaptation",
+    architecture: "European debt crisis austerity measures, digital innovation hubs, migration reception centers, European recovery architecture, tech startup spaces, European cultural revival sites",
+    clothing: "2010s European fashion, tech industry casual wear, European business attire, migration-influenced clothing, European youth digital culture fashion, sustainable fashion emerging",
+    colors: "2010s European muted tones, tech industry grays and blues, European Union blue, sustainable fashion greens, digital age silver and white",
+    atmosphere: "European debt crisis uncertainty, digital transformation, migration challenges, European resilience, sustainable future hope",
+    landscape: "European debt crisis sites, digital innovation hubs, migration routes, European recovery efforts, tech startup districts, European cultural revival sites",
+    style: "2010s European photography, digital transformation documentation, European resilience imagery, sustainable future art"
+  },
+  "2020": {
+    scene: "Pandemic Europe, digital acceleration, climate crisis awareness, European solidarity and recovery",
+    architecture: "Pandemic-era temporary medical facilities, digital transformation architecture, climate crisis adaptation buildings, European solidarity monuments, remote work spaces, European recovery construction",
+    clothing: "Pandemic-era practical clothing, digital age fashion, climate-conscious sustainable fashion, European solidarity symbols in dress, remote work attire, European recovery fashion",
+    colors: "Pandemic blues and whites, digital age silver and black, climate crisis greens and earth tones, European Union solidarity colors, recovery brights",
+    atmosphere: "Pandemic isolation and solidarity, digital acceleration, climate crisis urgency, European unity in crisis, recovery and hope",
+    landscape: "Pandemic European cities, digital transformation sites, climate crisis adaptation, European solidarity monuments, recovery construction, sustainable European architecture",
+    style: "Pandemic-era European photography, digital transformation documentation, climate crisis imagery, European solidarity art"
+  },
+  "2025": {
+    scene: "Modern Europe, AI transformation, climate action leadership, European strategic autonomy, digital single market",
+    architecture: "AI innovation centers, climate-neutral buildings, European digital infrastructure, strategic autonomy facilities, smart city developments, European green architecture",
+    clothing: "Modern European fashion, sustainable tech wear, AI-influenced design, climate-conscious materials, European business innovation attire, smart fabric clothing",
+    colors: "Modern European blues and greens, AI silver and white, climate action earth tones, European Union colors, sustainable fashion palette",
+    atmosphere: "European technological leadership, climate action urgency, AI transformation, European strategic vision, sustainable future optimism",
+    landscape: "Modern European AI hubs, climate-neutral cities, European digital infrastructure, strategic autonomy sites, smart European cities, green architecture",
+    style: "Modern European photography, AI transformation documentation, climate action imagery, European strategic future art"
   }
 };
 
 // City-specific historical architecture references for more accurate prompts
 const countryArch = {
-  "Greece": "ancient Greek marble temples, Acropolis rock, Mediterranean stone houses, Byzantine churches, Ottoman mosques",
-  "Italy": "Roman Colosseum, ancient forums, marble temples, aqueducts, Vatican basilicas, Renaissance palaces, Tuscan countryside",
-  "Spain": "Moorish Alhambra palace, Gothic cathedrals, Spanish Baroque architecture, Mediterranean coastline, whitewashed villages",
-  "Portugal": "Manueline Jerónimos Monastery, medieval Alfama quarter, Tagus riverfront, yellow tiled buildings, Atlantic coast",
-  "Turkey": "Hagia Sophia massive dome, Ottoman mosques with minarets, Byzantine walls, Bosphorus strait, Anatolian plateau",
-  "France": "Gothic Notre-Dame cathedral, Haussmannian boulevards, Louvre palace, Loire châteaux, Provençal countryside",
-  "United Kingdom": "Tower of London, medieval Westminster, Thames riverfront, Gothic churches, Roman wall remnants, Scottish highlands",
-  "Netherlands": "canal ring with gabled houses, Dutch Renaissance architecture, medieval churches, wooden bridges, flat polder landscape",
-  "Belgium": "medieval Grand-Place Gothic guildhalls, Atomium modern structure, Belgian Gothic architecture, cobblestone streets",
-  "Switzerland": "medieval Old Town Fraumünster church, Limmat river, Swiss Gothic architecture, Lake Zurich, Alpine backdrop",
-  "Germany": "Brandenburg Gate, Berlin Wall remnants, Gothic brick churches, Prussian palaces, Spree river, Rhine castles",
-  "Austria": "Baroque Habsburg palaces, Gothic St. Stephen's Cathedral, Ringstraße boulevards, Danube river, Alpine mountains",
-  "Czechia": "Gothic Prague Castle, Charles Bridge, Old Town Square, Astronomical Clock, Czech Baroque churches, Vltava river",
-  "Poland": "medieval Old Town market square, Royal Castle, Gothic brick churches, Vistula riverfront, Wawel Castle Krakow",
-  "Hungary": "Danube riverfront, Buda Castle Hill, Gothic Matthias Church, Hungarian Parliament Building, thermal baths, Puszta",
-  "Russia": "Kremlin onion-domed cathedrals, Red Square, Russian Orthodox churches, Moscow River, vast taiga landscape",
-  "Ukraine": "Byzantine St. Sophia Cathedral golden domes, Kyiv Pechersk Lavra, Ukrainian Orthodox churches, Dnieper river, steppe",
-  "Romania": "Romanian Orthodox churches colorful frescoes, Ottoman architecture, Carol I Neoclassical buildings, Carpathian mountains",
-  "Bulgaria": "Byzantine Boyana Church medieval frescoes, Roman Serdica ruins, Bulgarian Orthodox architecture, Vitosha mountain",
-  "Serbia": "Belgrade Fortress confluence Sava Danube, Ottoman Kalemegdan, Serbian medieval churches, Balkan mountains",
-  "Bosnia": "Ottoman mosques minarets, Latin Bridge, Austro-Hungarian buildings, narrow cobblestone streets Baščaršija, Dinaric Alps",
-  "Sweden": "medieval Gamla Stan Old Town, Viking-age sites, Baltic Sea archipelago, Swedish wooden architecture, Scandinavian forests",
-  "Norway": "medieval wooden stave churches, Viking ship ruins, Norwegian fjord architecture, Harald Hardrada fortress sites, Arctic landscape",
-  "Denmark": "medieval Old Town Gamle By, Viking harbor sites, Danish Renaissance castles, Nyhavn canal, Jutland peninsula",
-  "Finland": "neoclassical Senate Square, white stone Lutheran cathedrals, Finnish National Romantic architecture, Baltic Sea coast, lakeland",
-  "Latvia": "medieval Old Town Gothic brick churches, Art Nouveau architecture district, Daugava river, Hanseatic League buildings",
-  "Ireland": "medieval Dublin Castle, Viking longphort ruins, Georgian architecture, Liffey river, Irish stone churches, Emerald countryside",
-  "Georgia": "medieval Old Town stone houses, Sioni Cathedral, Narikala fortress, Mtkvari river, Georgian Orthodox architecture, Caucasus mountains",
-  "Armenia": "ancient Armenian churches tuff stone, Etchmiadzin Cathedral, medieval fortress ruins, Armenian khachkar cross-stones, Armenian highlands",
+  "Greece": {
+    architecture: "Byzantine churches with golden mosaics, Ottoman-era mosques, neoclassical Athens buildings, whitewashed Cycladic houses, mountain stone villages",
+    colors: "Mediterranean blues, white stucco, golden stone, azure sea, terracotta roofs",
+    atmosphere: "Aegean sunlight, maritime trade, ancient ruins amid modern life, Mediterranean climate",
+    landscape: "Aegean islands, mountainous terrain, coastal villages, olive groves, ancient Acropolis hill",
+    visualStyle: "Greek island aesthetic, Byzantine golden mosaics, neoclassical architecture, Mediterranean light"
+  },
+  "Italy": {
+    architecture: "Renaissance palazzos with frescoed facades, Baroque churches with gilded interiors, Roman aqueducts, Tuscan hill towns, Venetian Gothic palaces",
+    colors: "warm ochre and sienna, terracotta reds, golden limestone, Mediterranean azure, Renaissance gold leaf",
+    atmosphere: "Renaissance artistic heritage, papal grandeur, Mediterranean coastal life, Italian piazza culture",
+    landscape: "Tuscan rolling hills, Roman countryside, Venetian lagoons, Amalfi coastline, Po valley",
+    visualStyle: "Italian Renaissance painting tradition, Baroque theatricality, Mediterranean warmth, fresco textures"
+  },
+  "Spain": {
+    architecture: "Moorish horseshoe arches, Mudéjar tilework, Gothic cathedrals with pointed spires, whitewashed Andalusian houses, Alcázar fortresses",
+    colors: "vibrant azulejo blues and yellows, white stucco, terracotta, deep crimson, golden Mediterranean light",
+    atmosphere: "Moorish-Christian cultural fusion, flamenco passion, Iberian heat, Inquisition shadows",
+    landscape: "arid Meseta plateau, Andalusian white villages, Pyrenees mountains, Mediterranean coast",
+    visualStyle: "Spanish Golden Age painting, Moorish geometric patterns, Iberian warmth, dramatic chiaroscuro"
+  },
+  "Portugal": {
+    architecture: "Manueline maritime Gothic with rope carvings, azulejo-tiled facades, medieval Alfama narrow streets, Belém Tower, Baroque gold-leaf churches",
+    colors: "azulejo cobalt blue and white, golden limestone, terracotta, Atlantic gray, Tagus river gold",
+    atmosphere: "Age of Discovery legacy, maritime adventure, fado melancholy, Atlantic coastal life",
+    landscape: "Atlantic coastline, Tagus river estuary, Sintra misty hills, Algarve cliffs, cork oak forests",
+    visualStyle: "Portuguese azulejo tile art, Manueline maritime Gothic, Atlantic maritime painting, golden hour light"
+  },
+  "Turkey": {
+    architecture: "Ottoman imperial mosques with slender minarets, Byzantine domed churches, grand bazaar vaulted ceilings, Bosphorus waterfront yalı houses, ancient Roman forums",
+    colors: "Ottoman turquoise and cobalt, golden domes, Bosphorus blue, stone beige, garden pomegranate red",
+    atmosphere: "East-meets-West crossroads, Ottoman imperial grandeur, Bosphorus strait breezes, minaret call to prayer",
+    landscape: "Bosphorus strait dividing continents, Anatolian plateau, Istanbul hills, Aegean coastline",
+    visualStyle: "Ottoman miniature painting, Byzantine mosaic art, Turkish Iznik tile patterns, Bosphorus maritime scene"
+  },
+  "France": {
+    architecture: "Haussmannian limestone boulevards with mansard roofs, Gothic ribbed vaults, Baroque palace gardens, neoclassical columns, Parisian ironwork balconies",
+    colors: "Parisian limestone gray-blue, Seine river silver, Haussmann cream, Baroque gold, Provençal lavender purple",
+    atmosphere: "Belle Époque elegance, Enlightenment intellectualism, Parisian café culture, royal court grandeur",
+    landscape: "Seine river winding through Paris, Loire Valley châteaux, Provençal lavender fields, Normandy cliffs",
+    visualStyle: "French Impressionist painting, Haussmannian urbanism, Baroque theatricality, Parisian golden light"
+  },
+  "United Kingdom": {
+    architecture: "Gothic pointed arches and flying buttresses, Georgian red-brick townhouses, Roman wall remnants, Scottish baronial towers, Thames stone bridges",
+    colors: "London fog gray, Georgian red brick, Gothic stone, Scottish heather purple, Thames silver, British Museum white marble",
+    atmosphere: "Industrial Revolution smoke, British Empire power, foggy London streets, parliamentary tradition",
+    landscape: "Thames riverfront, Scottish Highlands mist, English countryside hedgerows, White Cliffs of Dover",
+    visualStyle: "British watercolor painting tradition, Gothic Revival architecture, Victorian industrial realism, foggy atmospheric perspective"
+  },
+  "Netherlands": {
+    architecture: "canal gabled houses with stepped and neck gables, Dutch Renaissance symmetry, brick Gothic churches, wooden windmill towers, polder dikes",
+    colors: "Dutch canal water gray-green, brick red, windmill wood brown, overcast sky silver, tulip field rainbow",
+    atmosphere: "Dutch Golden Age merchant wealth, canal ring urbanism, windmill landscape, polder water management",
+    landscape: "Amsterdam canal ring, flat polder fields, windmill-dotted countryside, North Sea dykes",
+    visualStyle: "Dutch Golden Age painting, Vermeer interior light, canal perspective, flat landscape realism"
+  },
+  "Belgium": {
+    architecture: "Gothic flamboyant guildhalls with ornate facades, Art Nouveau ironwork staircases, medieval stone walls, Baroque church interiors, cobblestone market squares",
+    colors: "Brugse Zotte brick red, Gothic stone gray, Art Nouveau wrought iron green, Belgian chocolate brown, Flemish tapestry gold",
+    atmosphere: "Flemish medieval merchant wealth, Art Nouveau innovation, cobblestone charm, European capital bureaucracy",
+    landscape: "Brussels Grand-Place, Brugse canals, Flemish countryside, Ardennes forest, Belgian coal mining regions",
+    visualStyle: "Flemish Primitives painting, Art Nouveau organic forms, Gothic detail, medieval urban atmosphere"
+  },
+  "Switzerland": {
+    architecture: "Alpine chalet wooden architecture, medieval fortified churches, neoclassical federal buildings, stone bridges over mountain streams, timber balconies",
+    colors: "Swiss white stone, Alpine green meadows, timber brown, sky blue, snow white, church gold crosses",
+    atmosphere: "Alpine serenity, Swiss neutrality, mountain pastoral life, confederate independence, precision craftsmanship",
+    landscape: "Alpine peaks and valleys, glacial lakes, mountain meadows, Swiss Plateau, Rhine Gorge",
+    visualStyle: "Alpine landscape painting, Swiss folk art, mountain realism, pastoral tranquility, crisp mountain light"
+  },
+  "Germany": {
+    architecture: "Gothic brick churches with pointed spires, Baroque palace gardens, Prussian neoclassical colonnades, half-timbered Fachwerk houses, Rhine castle ruins",
+    colors: "Prussian blue, brick red, Baroque gold, forest green, Rhine stone gray, timber brown",
+    atmosphere: "Prussian military discipline, German Enlightenment philosophy, Romantic movement, industrial progress",
+    landscape: "Rhine river valley, Black Forest, Bavarian Alps, Brandenburg plains, Berlin urban sprawl",
+    visualStyle: "German Romantic painting, Caspar David Friedrich atmospheric mood, Gothic brick architecture, Baroque grandeur"
+  },
+  "Austria": {
+    architecture: "Habsburg Baroque palaces with golden interiors, Gothic St. Stephen's spire, Ringstraße neoclassical boulevards, Vienna coffee house architecture, Alpine fortress churches",
+    colors: "Habsburg imperial gold, Baroque cream, Gothic stone, Alpine green, Danube blue, coffee house mahogany",
+    atmosphere: "Imperial Habsburg grandeur, Viennese musical culture, coffee house intellectualism, Alpine serenity",
+    landscape: "Vienna Ringstraße, Danube river, Alpine mountains, Bohemian forest, Austrian lakes",
+    visualStyle: "Vienna Secession art, Baroque theatricality, Imperial court painting, Alpine landscape tradition"
+  },
+  "Czechia": {
+    architecture: "Gothic Prague Castle spires, Charles Bridge stone towers, Baroque church domes, Art Nouveau Secession building, Old Town astronomical clock, medieval narrow streets",
+    colors: "Prague golden stone, Charles Bridge gray, Baroque white, Vltava river blue, Bohemian garnet red, golden sunset",
+    atmosphere: "Bohemian Gothic majesty, Habsburg imperial presence, Golden Prague legend, beer culture, intellectual tradition",
+    landscape: "Vltava river winding, Prague Castle hill, Bohemian Switzerland sandstone, Czech karst, Šumava forest",
+    visualStyle: "Bohemian Gothic art, Prague Golden Age painting, Art Nouveau elegance, Central European atmospheric mood"
+  },
+  "Poland": {
+    architecture: "Gothic brick churches with terracotta ornament, medieval market squares with Renaissance arcades, Baroque royal palaces, wooden Tatar architecture, Wawel Castle Gothic towers",
+    colors: "Polish brick red, Baroque gold, Vistula silver, Warsaw stone gray, golden wheat fields, forest green",
+    atmosphere: "Polish noble tradition, Catholic devotion, medieval merchant wealth, wartime resilience, Royal route grandeur",
+    landscape: "Vistula river valley, Warsaw Old Town, Kraków Wawel Hill, Baltic coast, Tatra mountain foothills",
+    visualStyle: "Polish Romantic painting, Gothic brick tradition, Baroque Polish magnificence, Central European solemnity"
+  },
+  "Hungary": {
+    architecture: "Gothic Matthias Church with colorful roof tiles, Art Nouveau Parliament Building with spires, Ottoman-era mosques with minarets, thermal bath domes, Buda Castle terraces",
+    colors: "Hungarian red-green-white, thermal bath stone beige, Ottoman turquoise, Parliament golden stone, Danube blue, paprika red",
+    atmosphere: "Hungarian Parliament grandeur, Ottoman architectural legacy, thermal bath culture, Hungarian national revival",
+    landscape: "Danube bend at Buda, Hungarian Puszta plains, thermal springs, Lake Balaton, Mátra mountains",
+    visualStyle: "Hungarian Art Nouveau, Ottoman-Hungarian fusion, Parliament Gothic revival, Central European romanticism"
+  },
+  "Russia": {
+    architecture: "onion-domed Orthodox cathedrals with colorful patterns, Kremlin fortress walls, neoclassical St. Petersburg palaces, wooden peasant izbas, Orthodox cross-topped churches",
+    colors: "Russian Orthodox gold domes, Kremlin red brick, St. Petersburg blue-green domes, white stone, winter snow, Orthodox blue",
+    atmosphere: "Russian Orthodox spirituality, Imperial grandeur, vast northern landscape, tsarist power, winter harshness",
+    landscape: "Moscow Kremlin hill, Volga river, Siberian taiga, St. Petersburg canals, Ural mountains",
+    visualStyle: "Russian Orthodox icon painting tradition, Imperial court painting, vast northern landscape, golden dome luminosity"
+  },
+  "Ukraine": {
+    architecture: "Byzantine golden-domed Orthodox churches, Ukrainian Baroque spires, Kyiv Pechersk Lavra caves, wooden Tatar architecture, Cossack church fortifications",
+    colors: "Ukrainian blue and yellow, Orthodox gold domes, Kyiv stone beige, steppe wheat gold, Dnieper blue, wooden brown",
+    atmosphere: "Cossack warrior tradition, Orthodox spiritual depth, Ukrainian Baroque exuberance, steppe vastness, Kyiv ancient heritage",
+    landscape: "Dnieper river gorge, Ukrainian steppe, Carpathian foothills, Kyiv hilltops, Black Sea coast",
+    visualStyle: "Ukrainian Baroque painting, Byzantine Orthodox icon tradition, Cossack folk art, steppe landscape realism"
+  },
+  "Romania": {
+    architecture: "Romanian Orthodox churches with colorful exterior frescoes, Ottoman-influenced boyar houses, Carol I neoclassical buildings, Bran Castle Gothic towers, wooden peasant churches",
+    colors: "Romanian blue and yellow, Orthodox fresco reds and blues, Carpathian green, Bucharest stone beige, Dâmbovița river blue",
+    atmosphere: "Carpathian mountain mystique, Orthodox spiritual tradition, Wallachian boyar culture, Dracula legend shadows",
+    landscape: "Carpathian mountain curves, Transylvanian hills, Bucharest boulevards, Danube Delta, Prahova valley",
+    visualStyle: "Romanian Orthodox icon painting, Carpathian folk art, Byzantine-Romanian fusion, Transylvanian Gothic"
+  },
+  "Bulgaria": {
+    architecture: "Byzantine Boyana Church medieval frescoes, Roman Serdica amphitheater ruins, Bulgarian Orthodox round churches, Ottoman mosques with tiled domes, Rila Monastery fortresses",
+    colors: "Bulgarian Orthodox gold, Byzantine fresco reds, Ottoman turquoise, Rila mountain green, Balkan stone gray",
+    atmosphere: "First Bulgarian Empire heritage, Orthodox spiritual depth, Ottoman architectural legacy, Rila mountain monasticism",
+    landscape: "Rila mountain peaks, Balkan ridge, Danube plain, Black Sea coast, Thracian valley",
+    visualStyle: "Bulgarian medieval fresco painting, Byzantine mosaic tradition, Ottoman-Bulgarian fusion, Balkan mountain realism"
+  },
+  "Serbia": {
+    architecture: "Serbian medieval monastery frescoes, Belgrade Fortress stone walls, Ottoman Kalemegdan towers, Orthodox church golden domes, traditional wooden houses",
+    colors: "Serbian red-blue-white, Belgrade stone beige, Orthodox gold domes, Sava river gray, Kalemegdan brick red",
+    atmosphere: "Serbian medieval spiritual heritage, Ottoman military architecture, Belgrade confluence power, Orthodox faith endurance",
+    landscape: "Sava-Danube confluence, Belgrade hilltop fortress, Serbian mountain ranges, Morava valley, Fruška Gora",
+    visualStyle: "Serbian medieval fresco tradition, Orthodox icon painting, Ottoman military architecture, Balkan fortress realism"
+  },
+  "Bosnia": {
+    architecture: "Ottoman sebilj fountains with tiled domes, Latin Bridge stone arches, Gazi Husrev-beg Mosque with minaret, Austro-Hungarian buildings with ornate facades, narrow Baščaršija cobblestone streets",
+    colors: "Ottoman turquoise domes, Austro-Hungarian cream, Bosnian stone gray, Dinaric green, Baščaršija copper orange",
+    atmosphere: "Ottoman-Islamic cultural fusion, Austro-Hungarian European influence, Bosnian mountain heritage, Sarajevo crossroads",
+    landscape: "Vratnik gorge, Dinaric Alps, Miljacka river, Sarajevo valley, Bosnian highlands",
+    visualStyle: "Bosnian Ottoman miniature, Austro-Hungarian academic architecture, Balkan cultural fusion, Sarajevo urban atmosphere"
+  },
+  "Sweden": {
+    architecture: "medieval Gamla Stan narrow streets with cobblestones, Swedish wooden architecture with red paint, Baltic Sea harbor fortifications, Gothic brick churches, Nordic Baroque palaces",
+    colors: "Swedish red Falu red, Baltic Sea gray-blue, church gold crosses, Gamla Stan stone beige, forest green, winter white",
+    atmosphere: "Swedish medieval merchant tradition, Baltic naval power, Nordic simplicity, Lutheran austerity, Golden Age cultural flowering",
+    landscape: "Stockholm archipelago, Swedish forest lakes, Baltic Sea coast, Gamla Stan island, Swedish highland plateau",
+    visualStyle: "Swedish Golden Age painting, Nordic medieval art, Baltic maritime tradition, Swedish folk art simplicity"
+  },
+  "Norway": {
+    architecture: "medieval wooden stave churches with dragon-head roof ornaments, Norwegian longhouse timber architecture, fjord-side wooden houses, Viking-age boat building sites, Norwegian Romantic architecture",
+    colors: "Norwegian fjord blue, stave church wood brown, Norse red, mountain green, snow white, Norwegian gold crosses",
+    atmosphere: "Viking heritage, Norwegian fjord majesty, Norse pagan spirituality, maritime seafaring, mountain isolation",
+    landscape: "Norwegian fjord cliffs, Arctic landscape, mountain passes, coastal archipelago, glacial valleys",
+    visualStyle: "Norwegian Romantic painting, Norse art motifs, fjord landscape realism, Viking Age reconstruction, Nordic melancholy"
+  },
+  "Denmark": {
+    architecture: "medieval brick Gothic churches with pointed spires, Nyhavn colorful gabled waterfront houses, Danish Renaissance castles with manicured gardens, Viking longship harbor sites, Baroque royal palaces",
+    colors: "Nyhavn reds and yellows, Danish brick red, Baltic blue, castle white, church gold crosses, Danish green meadows",
+    atmosphere: "Danish Viking maritime heritage, Nyhavn merchant prosperity, Danish Golden Age painting, royal court elegance",
+    landscape: "Copenhagen harbor and canals, Danish island archipelago, Jutland peninsula, Baltic Sea coast, Danish flat countryside",
+    visualStyle: "Danish Golden Age painting, Nyhavn harbor scene, Danish coastal realism, Viking Age maritime art"
+  },
+  "Finland": {
+    architecture: "neoclassical white stone Senate Square buildings, Helsinki Cathedral with green copper domes, Finnish National Romantic architecture with stone facades, white wooden Orthodox churches, Baltic Sea harbor fortifications",
+    colors: "Helsinki white stone, cathedral green copper, Baltic Sea blue, forest pine green, winter snow white, Orthodox gold domes",
+    atmosphere: "Finnish national awakening, Nordic neoclassical elegance, Baltic maritime tradition, Orthodox cultural heritage, winter landscape mystique",
+    landscape: "Helsinki harbor, Finnish lakeland archipelago, Baltic Sea coast, Finnish forest, archipelago islands",
+    visualStyle: "Finnish National Romantic painting, Nordic neoclassical architecture, Baltic maritime tradition, Finnish winter landscape"
+  },
+  "Latvia": {
+    architecture: "medieval Riga Old Town Gothic brick churches, Art Nouveau architecture district with ornate facades, Daugava river port fortifications, Hanseatic League merchant houses, Latvian wooden architecture",
+    colors: "Riga brick red, Art Nouveau wrought iron green, Daugava river blue, Old Town stone gray, Latvian amber gold, church gold crosses",
+    atmosphere: "Hanseatic League merchant heritage, Art Nouveau architectural innovation, Latvian national revival, Baltic maritime trade",
+    landscape: "Riga Old Town canals, Daugava river, Latvian coastal plain, Baltic Sea shore, Riga湾",
+    visualStyle: "Latvian Art Nouveau painting, Hanseatic medieval art, Baltic maritime tradition, Riga urban atmosphere"
+  },
+  "Ireland": {
+    architecture: "medieval Dublin Castle Norman towers, Viking longphort stone ruins, Georgian red-brick townhouses with fanlights, Liffey stone bridges, Irish round tower churches, Celtic stone crosses",
+    colors: "Irish emerald green, Georgian red brick, Dublin stone gray, Liffey river silver, Celtic gold, Atlantic blue",
+    atmosphere: "Irish Celtic heritage, Georgian elegance, Viking maritime history, Irish literary tradition, Atlantic coastal mist",
+    landscape: "Dublin Bay, Liffey river, Irish green countryside, Cliffs of Moher, Irish lake districts",
+    visualStyle: "Irish Celtic art tradition, Georgian architectural painting, Irish landscape realism, Celtic illuminated manuscript influence"
+  },
+  "Georgia": {
+    architecture: "medieval Tbilisi Old Town stone houses with wooden balconies, Sioni Cathedral domes, Narikala fortress stone walls, Georgian Orthodox churches with cross-topped domes, Mtkvari river bridges",
+    colors: "Georgian stone beige, Orthodox gold domes, Mtkvari river blue, Tbilisi sunset orange, Caucasian green, church red",
+    atmosphere: "Georgian Orthodox spiritual heritage, Caucasus mountain culture, ancient Silk Road crossroads, Georgian wine culture",
+    landscape: "Tbilisi Old Town hillside, Mtkvari river gorge, Caucasus mountain backdrop, Georgian wine country, Abkhazian coast",
+    visualStyle: "Georgian Orthodox icon painting, Caucasus mountain realism, Silk Road cultural fusion, Georgian medieval art"
+  },
+  "Armenia": {
+    architecture: "ancient Armenian churches carved from tuff stone, Etchmiadzin Cathedral with conical dome, medieval fortress ruins with khachkar cross-stones, Armenian monastic complexes on mountains, ancient Garni temple columns",
+    colors: "Armenian pink tuff stone, Orthodox gold domes, Armenian red, Caucasian mountain green, ancient stone beige, church blue",
+    atmosphere: "Ancient Armenian Christian heritage, Caucasus mountain spirituality, medieval monastic scholarship, Armenian genocide memory, ancient civilization",
+    landscape: "Armenian highlands, Mount Ararat backdrop, Yerevan valley, ancient monastic mountain sites, Lake Sevan",
+    visualStyle: "Armenian medieval manuscript illumination, Orthodox icon tradition, Caucasus mountain realism, ancient Armenian architectural reconstruction"
+  },
+};
+
+// Country-specific year modifiers for distinctive AI image generation
+const countryYearModifiers = {
+  "France": {
+    "Modern era": {
+      architecture: "Haussmannian Parisian boulevards with mansard roofs, blackout-covered buildings, fortified military headquarters in historic palaces, Parisian metro entrances, resistance hideouts in Montmartre cellars, fortified coastal bunkers along Normandy",
+      people: "French Resistance fighters in civilian clothes with armbands, French Army blue-horizon uniforms, German Wehrmacht occupation uniforms, Parisian women in practical wartime clothing, French women factory workers with headscarves",
+      landscape: "occupied Paris with German military patrols, blackout-covered Haussmannian boulevards, French Resistance countryside hideouts, Normandy coastal fortifications, Vichy France provincial towns",
+      colors: "French wartime desaturated tones, Haussmannian stone grays, military blue-horizon, blackout black, French tricolor red-white-blue hidden in resistance symbols",
+      atmosphere: "German occupation of Paris, French Resistance underground activity, Vichy regime collaboration, Parisian blackout life, resistance hope amid oppression"
+    }
+  },
+  "Germany": {
+    "Modern era": {
+      architecture: "Prussian neoclassical government buildings, Berlin military headquarters in historic palaces, Nazi party rally grounds with monumental architecture, Luftwaffe airfield installations, fortified coastal batteries along North Sea, German military barracks with swastika banners",
+      people: "German Wehrmacht field gray uniforms, Nazi party functionary brown shirts, German women in practical wartime clothing, Hitler Youth members, German military officers with Iron Cross medals, Blitzschutz wardens",
+      landscape: "Berlin with Nazi monumental architecture, German military parades on wide boulevards, Luftwaffe airfields, fortified Atlantic Wall coastlines, German military supply depots, Berlin government district",
+      colors: "German military field gray, Nazi brown and red, Prussian blue, Berlin stone beige, wartime desaturated tones, Iron Cross black and silver",
+      atmosphere: "Nazi military power, German wartime mobilization, Berlin government district, Luftwaffe presence, German home front rationing, military parade culture"
+    }
+  },
+  "United Kingdom": {
+    "Modern era": {
+      architecture: "London Underground bomb shelters, Churchill War Rooms underground headquarters, blackout-covered Georgian townhouses, British military headquarters in historic manors, coastal anti-invasion fortifications along southern England, St Paul's Cathedral amid Luftwaffe bomb damage",
+      people: "British Army khaki uniforms, Women's Auxiliary Corps female soldiers, London Blitz civilians with gas masks, British resistance Home Guard in civilian clothes with makeshift weapons, Winston Churchill in dark suit and bow tie, British women factory workers",
+      landscape: "blackout-covered London with St Paul's silhouetted, British coastal anti-invasion defenses, Churchill War Rooms entrance, British countryside with anti-invasion obstacles, London Underground shelter crowds",
+      colors: "British wartime khaki and olive drab, London blackout grays and blacks, St Paul's stone beige, British red-white-blue resistance symbols, Churchillian dark tones",
+      atmosphere: "Blitz protection and resilience, Churchillian wartime leadership, British home front determination, anti-invasion preparation, London Underground shelter life, British defiance under bombardment"
+    }
+  },
+  "Italy": {
+    "Modern era": {
+      architecture: "Mussolini-era fascist monumental architecture, Roman fascist regime buildings with imperial columns, Italian coastal fortifications along Mediterranean, Italian military barracks in historic palazzos, Italian resistance hideouts in Tuscan hill villages, bombed Italian city centers",
+      people: "Italian Royal Army olive drab uniforms, Fascist Black Shirt party members, Italian women in practical wartime dress, Italian partisans in civilian clothes with red armbands, Mussoli-era military officers with medals, Italian resistance fighters with makeshift weapons",
+      landscape: "fascist Rome with Mussolini-era monuments, Italian coastal fortifications, Tuscan hill village resistance hideouts, bombed Italian city centers, Italian military supply routes through Alps",
+      colors: "Italian fascist brown and black, Italian military olive drab, Tuscan hill stone beige, Mediterranean blue, Italian resistance red, wartime desaturated tones",
+      atmosphere: "Italian fascist regime, Italian military collapse, Italian resistance movement, Mediterranean coastal defense, Tuscan countryside resistance, Italian home front hardship"
+    }
+  },
+  "Spain": {
+    "Modern era": {
+      architecture: "Franco-era authoritarian architecture, Madrid government buildings with nationalist symbolism, Spanish coastal fortifications, Spanish military barracks in historic buildings, Spanish resistance hideouts in Pyrenean mountain villages, Spanish Civil War memorial architecture",
+      people: "Spanish Nationalist army uniforms in dark blue, Franco government officials in formal attire, Spanish women in practical wartime clothing, Spanish resistance fighters in Pyrenean mountain villages, Spanish civilians in traditional regional dress, Spanish military officers with Franco-era medals",
+      landscape: "Franco-era Madrid with authoritarian architecture, Spanish Pyrenean mountain resistance hideouts, Spanish coastal fortifications along Mediterranean, Spanish Civil War memorial sites, Spanish military supply routes through Iberian peninsula",
+      colors: "Spanish Nationalist dark blue and red, Franco-era black and gold, Pyrenean mountain green, Mediterranean blue, Spanish regional colors, wartime desaturated tones",
+      atmosphere: "Franco authoritarian rule, Spanish neutrality in WWII, Spanish Civil War legacy, Pyrenean resistance networks, Spanish home front isolation, Spanish military presence"
+    }
+  },
+  "Netherlands": {
+    "Modern era": {
+      architecture: "Amsterdam canal houses under German occupation, Dutch resistance hideouts in historic brownstone buildings, German military headquarters in Dutch palaces, Dutch coastal anti-invasion fortifications along North Sea, Dutch resistance radio transmission sites in hidden rooms, bombed Dutch city centers",
+      people: "Dutch civilians in practical wartime clothing, German occupation forces in field gray uniforms, Dutch resistance fighters in civilian clothes with orange armbands, Dutch women in traditional Dutch dress, Dutch military officers in exile, Dutch Jewish citizens in hiding",
+      landscape: "occupied Amsterdam with German patrols, Dutch canal ring under blackout, Dutch coastal anti-invasion fortifications, Dutch countryside resistance hideouts, Dutch resistance radio sites in hidden rooms, Dutch military supply depots",
+      colors: "Dutch wartime desaturated tones, Amsterdam canal stone grays, German military field gray, Dutch orange resistance symbols, Dutch brick red, blackout black",
+      atmosphere: "German occupation of Netherlands, Dutch resistance underground, Dutch canal life under blackout, Dutch coastal defense, Dutch Jewish persecution, Dutch home front resilience"
+    }
+  },
+  "Belgium": {
+    "Modern era": {
+      architecture: "Brussels government buildings under German occupation, Belgian resistance hideouts in Art Nouveau buildings, German military headquarters in Belgian châteaux, Belgian coastal fortifications along Channel, Belgian resistance radio sites in hidden rooms, bombed Belgian city centers",
+      people: "Belgian civilians in practical wartime clothing, German occupation forces in field gray uniforms, Belgian resistance fighters in civilian clothes with red-yellow armbands, Belgian royal family in exile, Belgian women in traditional dress, Belgian military officers in hiding",
+      landscape: "occupied Brussels with German military presence, Belgian Art Nouveau resistance hideouts, Belgian Channel coast fortifications, Belgian countryside resistance networks, Belgian resistance radio transmission sites, Belgian military supply routes",
+      colors: "Belgian wartime desaturated tones, Brussels stone gray, German military field gray, Belgian red-yellow resistance symbols, Belgian brick red, blackout black",
+      atmosphere: "German occupation of Belgium, Belgian resistance underground, Brussels government district under control, Belgian coastal defense, Belgian home front hardship, Belgian royal exile"
+    }
+  },
+  "Greece": {
+    "Modern era": {
+      architecture: "Greek mountain monastery fortifications, German-Italian military headquarters in neoclassical buildings, Greek coastal defense batteries along Aegean, Greek resistance hideouts in mountain monasteries, bombed Greek city centers, Greek partisan communication towers on mountain peaks",
+      people: "Greek EAM resistance fighters in mountain clothing, Italian occupation forces in white uniforms, German Wehrmacht in field gray, Greek civilians in traditional regional dress, Greek women in practical wartime clothing, Greek mountain resistance fighters with homemade weapons",
+      landscape: "Greek mountain monastery resistance hideouts, Aegean coastal defense batteries, Greek partisan mountain communication networks, bombed Greek city centers, Greek mountain resistance supply routes, Greek coastal fortifications",
+      colors: "Greek mountain stone gray, Greek military olive drab, Italian white uniforms, Greek blue and white resistance symbols, Greek monastery gold domes, wartime desaturated tones",
+      atmosphere: "Greek mountain resistance movement, Italian-German occupation, Greek monastery resistance networks, Aegean coastal defense, Greek home front starvation, Greek partisan mountain warfare"
+    }
+  },
+  "Turkey": {
+    "Modern era": {
+      architecture: "Turkish government buildings in Ankara, Turkish coastal fortifications along Bosphorus, Turkish military barracks in historic Ottoman buildings, Turkish resistance supply routes through Anatolian highlands, Turkish diplomatic buildings in neutral status, Turkish military observation posts along straits",
+      people: "Turkish military in olive drab uniforms, Turkish diplomats in formal attire, Turkish civilians in traditional Anatolian dress, Turkish women in practical wartime clothing, Turkish resistance supply network participants, Turkish military officers at Bosphorus fortifications",
+      landscape: "Ankara government district, Bosphorus strait fortifications, Turkish Anatolian highland resistance routes, Turkish coastal defense positions, Turkish diplomatic neutral zone, Turkish military supply depots in Anatolia",
+      colors: "Turkish military olive drab, Ankara stone beige, Bosphorus blue, Turkish red and white, Anatolian earth tones, Turkish diplomatic white",
+      atmosphere: "Turkish neutrality in WWII, Bosphorus strategic importance, Turkish military preparedness, Anatolian resistance supply routes, Turkish diplomatic balancing, Turkish coastal defense"
+    }
+  },
+  "Russia": {
+    "Modern era": {
+      architecture: "Soviet Red Army military headquarters in Moscow Kremlin, Soviet partisan hideouts in Belarusian forests, Soviet coastal defense fortifications along Baltic, Soviet military supply depots in Urals, Soviet resistance radio towers in hidden forests, Soviet military hospitals in converted monasteries",
+      people: "Soviet Red Army soldiers in olive drab uniforms with red star insignia, Soviet partisans in civilian clothes with red armbands, Soviet women in practical wartime clothing, Soviet military officers with medals, Soviet civilians in traditional Russian dress, Soviet resistance fighters with homemade weapons",
+      landscape: "Moscow Kremlin military headquarters, Soviet partisan Belarusian forest networks, Soviet Baltic coast fortifications, Soviet Urals military supply depots, Soviet resistance communication towers, Soviet military hospital conversions",
+      colors: "Soviet military olive drab, Red Army red, Moscow Kremlin red brick, Soviet gold stars, Belarusian forest green, wartime desaturated tones",
+      atmosphere: "Soviet Red Army mobilization, Soviet partisan resistance networks, Moscow military command, Soviet Baltic coastal defense, Soviet home front hardship, Soviet military industrial mobilization"
+    }
+  },
+  "Ukraine": {
+    "Modern era": {
+      architecture: "Soviet Ukrainian military barracks in Kyiv, Ukrainian Insurgent Army hideouts in Carpathian mountain villages, Ukrainian coastal fortifications along Black Sea, Ukrainian resistance radio sites in hidden forests, Ukrainian military supply depots in Carpathian foothills, Ukrainian partisan communication towers",
+      people: "Ukrainian Insurgent Army fighters in mountain clothing, Soviet Red Army soldiers in olive drab, Ukrainian civilians in traditional Ukrainian dress, Ukrainian women in practical wartime clothing, Ukrainian resistance fighters with red armbands, Ukrainian military officers in hiding",
+      landscape: "Carpathian mountain Ukrainian resistance hideouts, Ukrainian coastal Black Sea fortifications, Ukrainian forest partisan networks, Ukrainian military supply routes through Carpathians, Ukrainian resistance radio sites, Ukrainian partisan communication towers",
+      colors: "Ukrainian blue and yellow resistance symbols, Soviet military olive drab, Carpathian mountain green, Ukrainian stone beige, Ukrainian red resistance symbols, wartime desaturated tones",
+      atmosphere: "Ukrainian Insurgent Army resistance, Carpathian mountain partisan warfare, Soviet Ukrainian military presence, Black Sea coastal defense, Ukrainian home front hardship, Ukrainian resistance communication networks"
+    }
+  },
+  "Poland": {
+    "Modern era": {
+      architecture: "Warsaw Uprising barricades in historic city center, Polish Home Army resistance hideouts in Warsaw cellars, German military headquarters in Polish palaces, Polish coastal fortifications along Baltic, Polish resistance communication towers in hidden forests, Polish military supply depots in Carpathian foothills",
+      people: "Polish Home Army (Armia Krajowa) resistance fighters in civilian clothes with red-white armbands, German occupation forces in field gray, Polish civilians in traditional regional dress, Polish women in practical wartime clothing, Polish military officers in exile, Polish resistance fighters with homemade weapons",
+      landscape: "Warsaw Uprising barricades in historic city center, Polish Home Army resistance hideouts in Warsaw cellars, Polish Baltic coast fortifications, Polish Carpathian mountain resistance networks, Polish resistance communication towers, Polish military supply depots",
+      colors: "Polish red-white resistance symbols, German military field gray, Warsaw stone beige, Polish military olive drab, Carpathian mountain green, wartime desaturated tones",
+      atmosphere: "Polish Home Army resistance, Warsaw Uprising barricades, German occupation of Poland, Polish Baltic coastal defense, Polish home front hardship, Polish resistance communication networks"
+    }
+  },
+  "Hungary": {
+    "Modern era": {
+      architecture: "Hungarian Parliament Building under military control, Hungarian military headquarters in historic buildings, Hungarian coastal fortifications along Danube, Hungarian resistance hideouts in Budapest cellars, Hungarian military supply depots in Carpathian foothills, Hungarian resistance radio sites in hidden rooms",
+      people: "Hungarian military in green uniforms, German occupation forces in field gray, Hungarian resistance fighters in civilian clothes with red-white armbands, Hungarian civilians in traditional regional dress, Hungarian women in practical wartime clothing, Hungarian military officers in hiding",
+      landscape: "Hungarian Parliament Building under military control, Hungarian Danube fortifications, Hungarian Carpathian resistance hideouts, Hungarian resistance communication networks, Hungarian military supply depots, Hungarian resistance radio sites",
+      colors: "Hungarian red-white-green resistance symbols, German military field gray, Hungarian Parliament golden stone, Hungarian military green, Danube blue, wartime desaturated tones",
+      atmosphere: "Hungarian military presence, German occupation influence, Hungarian resistance networks, Danube fortifications, Hungarian home front hardship, Hungarian resistance communication"
+    }
+  },
+  "Romania": {
+    "Modern era": {
+      architecture: "Romanian military headquarters in Bucharest palaces, Romanian coastal fortifications along Black Sea, Romanian resistance hideouts in Carpathian mountain villages, Romanian military supply depots in Transylvanian foothills, Romanian resistance communication towers in Carpathian peaks, Romanian military hospitals in converted buildings",
+      people: "Romanian military in olive drab uniforms, Romanian resistance fighters in mountain clothing, Romanian civilians in traditional regional dress, Romanian women in practical wartime clothing, Romanian military officers with medals, Romanian resistance fighters with red-white armbands",
+      landscape: "Bucharest military headquarters, Romanian Black Sea coastal fortifications, Carpathian mountain resistance hideouts, Romanian Transylvanian military supply depots, Romanian resistance communication towers, Romanian military hospital conversions",
+      colors: "Romanian blue-yellow-red resistance symbols, Romanian military olive drab, Carpathian mountain green, Romanian stone beige, Black Sea blue, wartime desaturated tones",
+      atmosphere: "Romanian military mobilization, Black Sea coastal defense, Carpathian resistance networks, Romanian Transylvanian military presence, Romanian home front hardship, Romanian resistance communication"
+    }
+  },
+  "Bulgaria": {
+    "Modern era": {
+      architecture: "Bulgarian military headquarters in Sofia buildings, Bulgarian coastal fortifications along Black Sea, Bulgarian resistance hideouts in Rila mountain monasteries, Bulgarian military supply depots in Balkan foothills, Bulgarian resistance communication towers in Rila peaks, Bulgarian military hospitals in converted monasteries",
+      people: "Bulgarian military in olive drab uniforms, Bulgarian resistance fighters in mountain clothing, Bulgarian civilians in traditional regional dress, Bulgarian women in practical wartime clothing, Bulgarian military officers with medals, Bulgarian resistance fighters with red-white armbands",
+      landscape: "Sofia military headquarters, Bulgarian Black Sea coastal fortifications, Rila mountain resistance hideouts, Bulgarian Balkan foothill military depots, Bulgarian resistance communication towers, Bulgarian monastery hospital conversions",
+      colors: "Bulgarian white-green-red resistance symbols, Bulgarian military olive drab, Rila mountain green, Bulgarian stone beige, Black Sea blue, wartime desaturated tones",
+      atmosphere: "Bulgarian military mobilization, Black Sea coastal defense, Rila mountain resistance networks, Bulgarian Balkan foothill military presence, Bulgarian home front hardship, Bulgarian resistance communication"
+    }
+  },
+  "Serbia": {
+    "Modern era": {
+      architecture: "Serbian military headquarters in Belgrade Fortress, Serbian resistance hideouts in Serbian mountain villages, Serbian coastal fortifications along Danube, Serbian resistance communication towers in mountain peaks, Serbian military supply depots in Serbian foothills, Serbian resistance radio sites in hidden rooms",
+      people: "Serbian Chetnik resistance fighters in mountain clothing, Serbian military in olive drab uniforms, Serbian civilians in traditional regional dress, Serbian women in practical wartime clothing, Serbian resistance fighters with red-white armbands, Serbian military officers in hiding",
+      landscape: "Belgrade Fortress military headquarters, Serbian mountain resistance hideouts, Serbian Danube fortifications, Serbian mountain resistance communication networks, Serbian military supply depots, Serbian resistance radio sites",
+      colors: "Serbian red-blue-white resistance symbols, Serbian military olive drab, Belgrade stone beige, Serbian mountain green, Danube blue, wartime desaturated tones",
+      atmosphere: "Serbian Chetnik resistance, Belgrade Fortress military presence, Serbian mountain resistance networks, Serbian Danube fortifications, Serbian home front hardship, Serbian resistance communication"
+    }
+  },
+  "Bosnia": {
+    "Modern era": {
+      architecture: "Bosnian mountain monastery fortifications, Bosnian resistance hideouts in Dinaric Alps villages, Bosnian military supply depots in mountain foothills, Bosnian resistance communication towers in Dinaric peaks, Bosnian military hospitals in converted buildings, Bosnian resistance radio sites in hidden rooms",
+      people: "Bosnian Partisan resistance fighters in mountain clothing, Bosnian military in olive drab uniforms, Bosnian civilians in traditional Ottoman and Austro-Hungarian dress, Bosnian women in practical wartime clothing, Bosnian resistance fighters with red armbands, Bosnian military officers in hiding",
+      landscape: "Dinaric Alps Bosnian mountain resistance hideouts, Bosnian military supply depots in foothills, Bosnian resistance communication towers, Bosnian monastery hospital conversions, Bosnian resistance radio sites, Bosnian military headquarters",
+      colors: "Bosnian red-white-green resistance symbols, Bosnian military olive drab, Dinaric mountain green, Bosnian stone beige, Ottoman turquoise domes, wartime desaturated tones",
+      atmosphere: "Bosnian Partisan resistance, Dinaric mountain warfare, Bosnian military presence, Bosnian home front hardship, Bosnian resistance networks, Bosnian monastery resistance"
+    }
+  },
+  "Sweden": {
+    "Modern era": {
+      architecture: "Swedish military headquarters in Stockholm palaces, Swedish coastal fortifications along Baltic Sea, Swedish military supply depots in Swedish forest regions, Swedish resistance communication towers in hidden forests, Swedish military hospitals in converted manor houses, Swedish neutral zone diplomatic buildings",
+      people: "Swedish military in dark blue uniforms, Swedish civilians in traditional regional dress, Swedish women in practical wartime clothing, Swedish military officers with medals, Swedish diplomatic personnel in formal attire, Swedish resistance sympathizers with red-white armbands",
+      landscape: "Stockholm military headquarters, Swedish Baltic coastal fortifications, Swedish forest military supply depots, Swedish resistance communication networks, Swedish manor hospital conversions, Swedish neutral diplomatic zone",
+      colors: "Swedish dark blue military, Swedish red-white resistance symbols, Stockholm stone beige, Swedish forest green, Baltic Sea blue, Swedish diplomatic white",
+      atmosphere: "Swedish neutrality in WWII, Swedish Baltic coastal defense, Swedish military preparedness, Swedish diplomatic balancing, Swedish home front resilience, Swedish resistance sympathies"
+    }
+  },
+  "Norway": {
+    "Modern era": {
+      architecture: "Norwegian coastal fortifications along Atlantic coast, Norwegian resistance hideouts in fjord-side mountain villages, Norwegian military supply depots in Norwegian foothills, Norwegian resistance communication towers in fjord peaks, Norwegian military hospitals in converted mountain lodges, Norwegian resistance radio sites in hidden fjord caves",
+      people: "Norwegian Milorg resistance fighters in mountain clothing, Norwegian military in olive drab uniforms, Norwegian civilians in traditional bunad dress, Norwegian women in practical wartime clothing, Norwegian resistance fighters with red-white armbands, Norwegian military officers in exile",
+      landscape: "Norwegian Atlantic coastal fortifications, Norwegian fjord-side resistance hideouts, Norwegian mountain military supply depots, Norwegian resistance communication towers, Norwegian fjord cave radio sites, Norwegian military headquarters",
+      colors: "Norwegian red-white resistance symbols, Norwegian military olive drab, Norwegian fjord blue, Norwegian mountain green, Norwegian stone beige, wartime desaturated tones",
+      atmosphere: "Norwegian Milorg resistance, Norwegian coastal fortifications, Norwegian fjord resistance networks, Norwegian home front hardship, Norwegian resistance communication, Norwegian military exile"
+    }
+  },
+  "Denmark": {
+    "Modern era": {
+      architecture: "Danish coastal fortifications along Kattegat, Danish resistance hideouts in Danish countryside farms, Danish military supply depots in Jutland foothills, Danish resistance communication towers in hidden forests, Danish military hospitals in converted manor houses, Danish resistance radio sites in hidden rooms",
+      people: "Danish resistance fighters in civilian clothes with red-white armbands, Danish military in dark blue uniforms, Danish civilians in traditional regional dress, Danish women in practical wartime clothing, Danish military officers in hiding, Danish resistance sympathizers with homemade weapons",
+      landscape: "Danish Kattegat coastal fortifications, Danish countryside resistance hideouts, Danish Jutland military supply depots, Danish resistance communication networks, Danish manor hospital conversions, Danish resistance radio sites",
+      colors: "Danish red-white resistance symbols, Danish military dark blue, Danish stone beige, Danish forest green, Kattegat blue, wartime desaturated tones",
+      atmosphere: "Danish resistance movement, Danish coastal fortifications, Danish countryside resistance networks, Danish home front hardship, Danish resistance communication, Danish military preparedness"
+    }
+  },
+  "Finland": {
+    "Modern era": {
+      architecture: "Finnish military headquarters in Helsinki buildings, Finnish coastal fortifications along Gulf of Finland, Finnish resistance hideouts in Finnish forest villages, Finnish military supply depots in Finnish foothills, Finnish resistance communication towers in hidden forests, Finnish military hospitals in converted wooden churches",
+      people: "Finnish military in gray-green uniforms, Finnish resistance fighters in forest clothing, Finnish civilians in traditional regional dress, Finnish women in practical wartime clothing, Finnish military officers with medals, Finnish resistance fighters with red-white armbands",
+      landscape: "Helsinki military headquarters, Finnish Gulf of Finland coastal fortifications, Finnish forest resistance hideouts, Finnish foothill military supply depots, Finnish resistance communication networks, Finnish wooden church hospital conversions",
+      colors: "Finnish gray-green military, Finnish red-white resistance symbols, Finnish stone beige, Finnish forest green, Gulf of Finland blue, wartime desaturated tones",
+      atmosphere: "Finnish military mobilization, Finnish Gulf of Finland coastal defense, Finnish forest resistance networks, Finnish home front hardship, Finnish resistance communication, Finnish military preparedness"
+    }
+  },
+  "Ireland": {
+    "Modern era": {
+      architecture: "Irish military headquarters in Dublin buildings, Irish coastal fortifications along Atlantic, Irish resistance hideouts in Irish countryside farms, Irish military supply depots in Irish foothills, Irish resistance communication towers in hidden hills, Irish military hospitals in converted Georgian buildings",
+      people: "Irish military in green uniforms, Irish resistance fighters in civilian clothes, Irish civilians in traditional regional dress, Irish women in practical wartime clothing, Irish military officers with medals, Irish resistance sympathizers with red-white armbands",
+      landscape: "Dublin military headquarters, Irish Atlantic coastal fortifications, Irish countryside resistance hideouts, Irish foothill military supply depots, Irish resistance communication networks, Irish Georgian hospital conversions",
+      colors: "Irish green military, Irish red-white resistance symbols, Irish stone beige, Irish forest green, Atlantic blue, wartime desaturated tones",
+      atmosphere: "Irish neutrality in WWII, Irish Atlantic coastal defense, Irish countryside resistance networks, Irish home front resilience, Irish resistance sympathies, Irish military preparedness"
+    }
+  },
+  "Switzerland": {
+    "Modern era": {
+      architecture: "Swiss military headquarters in Alpine fortress buildings, Swiss coastal fortifications along Alpine passes, Swiss resistance hideouts in Swiss mountain villages, Swiss military supply depots in Alpine foothills, Swiss resistance communication towers in Alpine peaks, Swiss military hospitals in converted Alpine lodges",
+      people: "Swiss military in gray-green uniforms, Swiss resistance fighters in mountain clothing, Swiss civilians in traditional regional dress, Swiss women in practical wartime clothing, Swiss military officers with medals, Swiss resistance sympathizers with red-white armbands",
+      landscape: "Alpine fortress military headquarters, Swiss Alpine pass fortifications, Swiss mountain resistance hideouts, Swiss Alpine foothill military depots, Swiss resistance communication networks, Swiss Alpine lodge hospital conversions",
+      colors: "Swiss red-white resistance symbols, Swiss military gray-green, Swiss stone beige, Swiss Alpine green, Swiss mountain white, wartime desaturated tones",
+      atmosphere: "Swiss neutrality in WWII, Swiss Alpine fortifications, Swiss mountain resistance networks, Swiss home front resilience, Swiss resistance communication, Swiss military preparedness"
+    }
+  },
+  "Austria": {
+    "Modern era": {
+      architecture: "Austrian military headquarters in Vienna buildings, Austrian coastal fortifications along Danube, Austrian resistance hideouts in Austrian mountain villages, Austrian military supply depots in Austrian foothills, Austrian resistance communication towers in Alpine peaks, Austrian military hospitals in converted buildings",
+      people: "Austrian military in olive drab uniforms, Austrian resistance fighters in mountain clothing, Austrian civilians in traditional regional dress, Austrian women in practical wartime clothing, Austrian military officers with medals, Austrian resistance sympathizers with red-white armbands",
+      landscape: "Vienna military headquarters, Austrian Danube fortifications, Austrian mountain resistance hideouts, Austrian foothill military supply depots, Austrian resistance communication networks, Austrian hospital conversions",
+      colors: "Austrian red-white resistance symbols, Austrian military olive drab, Austrian stone beige, Austrian Alpine green, Danube blue, wartime desaturated tones",
+      atmosphere: "Austrian military presence, Austrian Danube fortifications, Austrian mountain resistance networks, Austrian home front hardship, Austrian resistance communication, Austrian military preparedness"
+    }
+  },
+  "Czechia": {
+    "Modern era": {
+      architecture: "Czech military headquarters in Prague buildings, Czech resistance hideouts in Bohemian mountain villages, Czech military supply depots in Czech foothills, Czech resistance communication towers in Bohemian peaks, Czech military hospitals in converted buildings, Czech resistance radio sites in hidden rooms",
+      people: "Czech resistance fighters in civilian clothes with red-white armbands, Czech military in olive drab uniforms, Czech civilians in traditional regional dress, Czech women in practical wartime clothing, Czech military officers in hiding, Czech resistance sympathizers with homemade weapons",
+      landscape: "Prague military headquarters, Czech Bohemian mountain resistance hideouts, Czech foothill military supply depots, Czech resistance communication networks, Czech hospital conversions, Czech resistance radio sites",
+      colors: "Czech red-white resistance symbols, Czech military olive drab, Czech stone beige, Czech Bohemian green, Czech mountain white, wartime desaturated tones",
+      atmosphere: "Czech resistance movement, Czech Bohemian mountain resistance networks, Czech home front hardship, Czech resistance communication, Czech military preparedness, Czech resistance networks"
+    }
+  },
+  "Latvia": {
+    "Modern era": {
+      architecture: "Latvian military headquarters in Riga buildings, Latvian coastal fortifications along Baltic Sea, Latvian resistance hideouts in Latvian forest villages, Latvian military supply depots in Latvian foothills, Latvian resistance communication towers in hidden forests, Latvian military hospitals in converted buildings",
+      people: "Latvian resistance fighters in civilian clothes with red-white armbands, Latvian military in olive drab uniforms, Latvian civilians in traditional regional dress, Latvian women in practical wartime clothing, Latvian military officers in hiding, Latvian resistance sympathizers with homemade weapons",
+      landscape: "Riga military headquarters, Latvian Baltic coastal fortifications, Latvian forest resistance hideouts, Latvian foothill military supply depots, Latvian resistance communication networks, Latvian hospital conversions",
+      colors: "Latvian red-white resistance symbols, Latvian military olive drab, Latvian stone beige, Latvian forest green, Baltic blue, wartime desaturated tones",
+      atmosphere: "Latvian resistance movement, Latvian Baltic coastal defense, Latvian forest resistance networks, Latvian home front hardship, Latvian resistance communication, Latvian military preparedness"
+    }
+  },
+  "Portugal": {
+    "Modern era": {
+      architecture: "Portuguese military headquarters in Lisbon buildings, Portuguese coastal fortifications along Atlantic, Portuguese resistance hideouts in Portuguese countryside farms, Portuguese military supply depots in Portuguese foothills, Portuguese resistance communication towers in hidden hills, Portuguese military hospitals in converted buildings",
+      people: "Portuguese military in olive drab uniforms, Portuguese resistance fighters in civilian clothes, Portuguese civilians in traditional regional dress, Portuguese women in practical wartime clothing, Portuguese military officers with medals, Portuguese resistance sympathizers with red-white armbands",
+      landscape: "Lisbon military headquarters, Portuguese Atlantic coastal fortifications, Portuguese countryside resistance hideouts, Portuguese foothill military supply depots, Portuguese resistance communication networks, Portuguese hospital conversions",
+      colors: "Portuguese green-red military, Portuguese resistance symbols, Portuguese stone beige, Portuguese forest green, Atlantic blue, wartime desaturated tones",
+      atmosphere: "Portuguese neutrality in WWII, Portuguese Atlantic coastal defense, Portuguese countryside resistance networks, Portuguese home front resilience, Portuguese resistance sympathies, Portuguese military preparedness"
+    }
+  },
+  "Georgia": {
+    "Modern era": {
+      architecture: "Georgian military headquarters in Tbilisi buildings, Georgian coastal fortifications along Black Sea, Georgian resistance hideouts in Caucasus mountain villages, Georgian military supply depots in Georgian foothills, Georgian resistance communication towers in Caucasus peaks, Georgian military hospitals in converted buildings",
+      people: "Georgian military in olive drab uniforms, Georgian resistance fighters in mountain clothing, Georgian civilians in traditional regional dress, Georgian women in practical wartime clothing, Georgian military officers with medals, Georgian resistance fighters with red-white armbands",
+      landscape: "Tbilisi military headquarters, Georgian Black Sea coastal fortifications, Caucasus mountain resistance hideouts, Georgian foothill military supply depots, Georgian resistance communication networks, Georgian hospital conversions",
+      colors: "Georgian red-white military, Georgian resistance symbols, Georgian stone beige, Caucasus mountain green, Black Sea blue, wartime desaturated tones",
+      atmosphere: "Georgian military mobilization, Black Sea coastal defense, Caucasus mountain resistance networks, Georgian home front hardship, Georgian resistance communication, Georgian military preparedness"
+    }
+  },
+  "Armenia": {
+    "Modern era": {
+      architecture: "Armenian military headquarters in Yerevan buildings, Armenian coastal fortifications along Caucasus, Armenian resistance hideouts in Armenian mountain villages, Armenian military supply depots in Armenian foothills, Armenian resistance communication towers in Armenian peaks, Armenian military hospitals in converted buildings",
+      people: "Armenian military in olive drab uniforms, Armenian resistance fighters in mountain clothing, Armenian civilians in traditional regional dress, Armenian women in practical wartime clothing, Armenian military officers with medals, Armenian resistance fighters with red-white armbands",
+      landscape: "Yerevan military headquarters, Armenian Caucasus coastal fortifications, Armenian mountain resistance hideouts, Armenian foothill military supply depots, Armenian resistance communication networks, Armenian hospital conversions",
+      colors: "Armenian red-blue-orange military, Armenian resistance symbols, Armenian stone beige, Armenian mountain green, Caucasus blue, wartime desaturated tones",
+      atmosphere: "Armenian military mobilization, Caucasus coastal defense, Armenian mountain resistance networks, Armenian home front hardship, Armenian resistance communication, Armenian military preparedness"
+    }
+  }
 };
 
 function getEraLabelForYear(year) {
@@ -797,15 +1371,55 @@ const eraStyles = {
 function getPromptForEra(countryName, year, eraLabel) {
   const style = eraStyles[eraLabel] || eraStyles["Modern era"];
   const modifier = yearModifiers[String(year)];
-  const countryRef = countryArch[countryName] || "historically accurate European architecture";
+  const countryRef = countryArch[countryName];
   
-  // Check for country-specific era modifiers
+  // Check for country-specific year modifiers (highest priority)
+  const countryYearData = countryYearModifiers?.[countryName]?.[String(year)];
+  // Check for country-specific era modifiers (second priority)
   const countryEraData = countryYearModifiers?.[countryName]?.[eraLabel];
   
-  // Build prompt components — year-specific modifiers override era defaults for key years
+  // Priority: country+year > country+era > year > country > era
   let sceneDetail, architectureDetail, clothingDetail, colorDetail, atmosphereDetail, landscapeDetail, styleDetail;
   
-  if (modifier) {
+  if (countryYearData) {
+    // Country-specific year data — most specific, use entirely
+    sceneDetail = `scene: ${countryYearData.scene}`;
+    architectureDetail = `architecture: ${countryYearData.architecture}`;
+    clothingDetail = `people wearing ${countryYearData.people}`;
+    colorDetail = `rendered in ${countryYearData.colors}`;
+    atmosphereDetail = `atmosphere: ${countryYearData.atmosphere}`;
+    landscapeDetail = `landscape: ${countryYearData.landscape}`;
+    styleDetail = `in ${countryYearData.style || 'historically accurate photography'}`;
+  } else if (countryEraData) {
+    // Country-specific era data overrides generic era style
+    sceneDetail = `featuring ${countryRef?.architecture || 'historically accurate European architecture'}`;
+    architectureDetail = `architecture: ${countryEraData.architecture}`;
+    clothingDetail = `people wearing ${countryEraData.people}`;
+    colorDetail = `rendered in ${countryEraData.colors || style.colors}`;
+    atmosphereDetail = `atmosphere: ${countryEraData.atmosphere || style.atmosphere}`;
+    landscapeDetail = `landscape: ${countryEraData.landscape}`;
+    styleDetail = `in ${countryEraData.style || style.style}`;
+  } else if (modifier && countryRef && typeof countryRef === 'object') {
+    // Year modifier exists but enhance with country-specific details
+    const arch = countryRef.architecture || "";
+    const colors = countryRef.colors || "";
+    const atmos = countryRef.atmosphere || "";
+    const land = countryRef.landscape || "";
+    const vstyle = countryRef.visualStyle || "";
+    
+    // Blend year scene with country landscape
+    const blendedScene = modifier.scene.includes(',') 
+      ? `${modifier.scene}, ${land}` 
+      : `${modifier.scene}, featuring ${land}`;
+    
+    sceneDetail = `scene: ${blendedScene}`;
+    architectureDetail = `architecture: ${modifier.architecture}, ${arch.split(',').slice(0, 2).join(',').trim()}`;
+    clothingDetail = `people wearing ${modifier.clothing}`;
+    colorDetail = `rendered in ${modifier.colors}, ${colors}`;
+    atmosphereDetail = `atmosphere: ${modifier.atmosphere}, ${atmos}`;
+    landscapeDetail = `landscape: ${land}, ${modifier.landscape}`;
+    styleDetail = `in ${vstyle}, ${modifier.style}`;
+  } else if (modifier) {
     sceneDetail = `scene: ${modifier.scene}`;
     architectureDetail = `architecture: ${modifier.architecture}`;
     clothingDetail = `people wearing ${modifier.clothing}`;
@@ -813,17 +1427,23 @@ function getPromptForEra(countryName, year, eraLabel) {
     atmosphereDetail = `atmosphere: ${modifier.atmosphere}`;
     landscapeDetail = `landscape: ${modifier.landscape}`;
     styleDetail = `in ${modifier.style}`;
-  } else if (countryEraData) {
-    // Country-specific era data overrides generic era style
-    sceneDetail = `featuring ${countryRef}`;
-    architectureDetail = `architecture: ${countryEraData.architecture}`;
-    clothingDetail = `people wearing ${countryEraData.people}`;
-    colorDetail = `rendered in ${style.colors}`;
-    atmosphereDetail = `atmosphere: ${style.atmosphere}`;
-    landscapeDetail = `landscape: ${countryEraData.landscape}`;
-    styleDetail = `in ${style.style}`;
+  } else if (countryRef && typeof countryRef === 'object') {
+    // Use country-specific visual data for distinctive prompts
+    const arch = countryRef.architecture || "";
+    const colors = countryRef.colors || "";
+    const atmos = countryRef.atmosphere || "";
+    const land = countryRef.landscape || "";
+    const vstyle = countryRef.visualStyle || "";
+    
+    sceneDetail = `featuring ${arch}`;
+    architectureDetail = `with ${arch.split(',').slice(0, 3).join(',').trim()}`;
+    clothingDetail = `people in period-appropriate attire`;
+    colorDetail = `rendered in ${colors}`;
+    atmosphereDetail = `atmosphere: ${atmos}`;
+    landscapeDetail = `set against ${land}`;
+    styleDetail = `in ${vstyle}`;
   } else {
-    sceneDetail = `featuring ${countryRef}`;
+    sceneDetail = `featuring historically accurate European architecture`;
     architectureDetail = `with ${style.architecture}`;
     clothingDetail = `people wearing ${style.clothing}`;
     colorDetail = `rendered in ${style.colors}`;
