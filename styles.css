@@ -156,18 +156,18 @@
   .land:hover {
     fill: #E5D6B5;
   }
-  .city-dot {
+  .country-dot {
     fill: var(--accent);
     stroke: var(--panel);
     stroke-width: 1.5;
     cursor: pointer;
     transition: r 0.15s, fill 0.15s;
   }
-  .city-dot:hover, .city-dot.active {
+  .country-dot:hover, .country-dot.active {
     fill: #8C5E2C;
     r: 7;
   }
-  .city-label {
+  .country-label {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 9px;
     fill: var(--text-soft);
@@ -175,8 +175,8 @@
     opacity: 0;
     transition: opacity 0.15s;
   }
-  .city-group:hover .city-label,
-  .city-group.active .city-label {
+  .country-group:hover .country-label,
+  .country-group.active .country-label {
     opacity: 1;
   }
   .hint {

@@ -5,84 +5,42 @@ fetch('/europe.geojson')
 
 let europeData = null;
 
-const cities = [
-  // Greece (3)
-  { name: "Athens", lon: 23.73, lat: 37.98 },
-  { name: "Thessaloniki", lon: 22.94, lat: 40.64 },
-  { name: "Sparta", lon: 22.43, lat: 37.08 },
-  // Italy (3)
-  { name: "Rome", lon: 12.50, lat: 41.90 },
-  { name: "Venice", lon: 12.32, lat: 45.44 },
-  { name: "Florence", lon: 11.26, lat: 43.77 },
-  // Turkey (3)
-  { name: "Constantinople (Istanbul)", lon: 28.98, lat: 41.01 },
-  { name: "Smyrna (Izmir)", lon: 27.14, lat: 38.42 },
-  { name: "Ankara", lon: 32.85, lat: 39.93 },
-  // France (3)
-  { name: "Paris", lon: 2.35, lat: 48.86 },
-  { name: "Avignon", lon: 4.81, lat: 43.95 },
-  { name: "Marseille", lon: 5.37, lat: 43.30 },
-  // United Kingdom (3)
-  { name: "London", lon: -0.13, lat: 51.51 },
-  { name: "York", lon: -1.08, lat: 53.96 },
-  { name: "Edinburgh", lon: -3.19, lat: 55.95 },
-  // Spain (3)
-  { name: "Madrid", lon: -3.70, lat: 40.42 },
-  { name: "Cordoba", lon: -4.78, lat: 37.89 },
-  { name: "Barcelona", lon: 2.17, lat: 41.39 },
-  // Portugal (2)
-  { name: "Lisbon", lon: -9.14, lat: 38.72 },
-  { name: "Porto", lon: -8.61, lat: 41.15 },
-  // Netherlands (2)
-  { name: "Amsterdam", lon: 4.90, lat: 52.37 },
-  { name: "Rotterdam", lon: 4.48, lat: 51.92 },
-  // Germany (3)
-  { name: "Berlin", lon: 13.40, lat: 52.52 },
-  { name: "Cologne", lon: 6.96, lat: 50.94 },
-  { name: "Aachen", lon: 6.08, lat: 50.78 },
-  // Austria (1)
-  { name: "Vienna", lon: 16.37, lat: 48.21 },
-  // Russia (3)
-  { name: "Moscow", lon: 37.62, lat: 55.76 },
-  { name: "St. Petersburg", lon: 30.31, lat: 59.94 },
-  { name: "Novgorod", lon: 31.27, lat: 58.52 },
-  // Czechia (1)
-  { name: "Prague", lon: 14.42, lat: 50.09 },
-  // Belgium (1)
-  { name: "Brussels", lon: 4.35, lat: 50.85 },
-  // Sweden (1)
-  { name: "Stockholm", lon: 18.06, lat: 59.33 },
-  // Denmark (1)
-  { name: "Copenhagen", lon: 12.57, lat: 55.68 },
-  // Ireland (1)
-  { name: "Dublin", lon: -6.27, lat: 53.35 },
-  // Poland (2)
-  { name: "Warsaw", lon: 21.01, lat: 52.23 },
-  { name: "Krakow", lon: 19.94, lat: 50.06 },
-  // Hungary (1)
-  { name: "Budapest", lon: 19.04, lat: 47.50 },
-  // Ukraine (1)
-  { name: "Kyiv", lon: 30.52, lat: 50.45 },
-  // Serbia (1)
-  { name: "Belgrade", lon: 20.46, lat: 44.79 },
-  // Bosnia (1)
-  { name: "Sarajevo", lon: 18.41, lat: 43.86 },
-  // Romania (1)
-  { name: "Bucharest", lon: 26.10, lat: 44.43 },
-  // Bulgaria (1)
-  { name: "Sofia", lon: 23.32, lat: 42.70 },
-  // Latvia (1)
-  { name: "Riga", lon: 24.10, lat: 56.95 },
-  // Switzerland (1)
-  { name: "Zurich", lon: 8.54, lat: 47.38 },
-  // Georgia (1)
-  { name: "Tbilisi", lon: 44.79, lat: 41.72 },
-  // Armenia (1)
-  { name: "Yerevan", lon: 44.51, lat: 40.18 },
-  // Finland (1)
-  { name: "Helsinki", lon: 24.94, lat: 60.17 },
-  // Norway (1)
-  { name: "Oslo", lon: 10.75, lat: 59.91 }
+const countries = [
+  // Southern Europe
+  { name: "Greece", lon: 23.73, lat: 39.0 },
+  { name: "Italy", lon: 12.50, lat: 42.5 },
+  { name: "Spain", lon: -3.70, lat: 40.0 },
+  { name: "Portugal", lon: -8.61, lat: 39.5 },
+  { name: "Turkey", lon: 32.85, lat: 39.0 },
+  // Western Europe
+  { name: "France", lon: 2.35, lat: 47.0 },
+  { name: "United Kingdom", lon: -1.08, lat: 53.0 },
+  { name: "Netherlands", lon: 5.29, lat: 52.1 },
+  { name: "Belgium", lon: 4.35, lat: 50.5 },
+  { name: "Switzerland", lon: 8.54, lat: 46.8 },
+  // Central Europe
+  { name: "Germany", lon: 10.0, lat: 51.0 },
+  { name: "Austria", lon: 14.5, lat: 47.5 },
+  { name: "Czechia", lon: 15.0, lat: 50.0 },
+  { name: "Poland", lon: 19.0, lat: 52.0 },
+  { name: "Hungary", lon: 19.04, lat: 47.0 },
+  // Eastern Europe
+  { name: "Russia", lon: 37.62, lat: 55.0 },
+  { name: "Ukraine", lon: 30.52, lat: 49.0 },
+  { name: "Romania", lon: 25.0, lat: 45.0 },
+  { name: "Bulgaria", lon: 25.0, lat: 42.5 },
+  { name: "Serbia", lon: 20.46, lat: 44.0 },
+  { name: "Bosnia", lon: 18.0, lat: 44.0 },
+  // Scandinavia & Baltics
+  { name: "Sweden", lon: 16.0, lat: 60.0 },
+  { name: "Norway", lon: 10.75, lat: 60.0 },
+  { name: "Denmark", lon: 10.0, lat: 56.0 },
+  { name: "Finland", lon: 25.0, lat: 61.0 },
+  { name: "Latvia", lon: 24.10, lat: 57.0 },
+  // Other
+  { name: "Ireland", lon: -8.0, lat: 53.0 },
+  { name: "Georgia", lon: 44.79, lat: 42.0 },
+  { name: "Armenia", lon: 45.0, lat: 40.0 }
 ];
 
 const eras = [
@@ -610,55 +568,36 @@ const yearModifiers = {
 };
 
 // City-specific historical architecture references for more accurate prompts
-const cityArch = {
-  "Athens": "ancient Greek marble temples (Parthenon), Acropolis rock, Mediterranean stone houses, Byzantine churches",
-  "Thessaloniki": "Byzantine churches with golden mosaics, Roman agora ruins, Ottoman mosques, Mediterranean port",
-  "Sparta": "ancient Greek ruins, Temple of Artemis Orthia, Spartan fortifications, Peloponnese countryside",
-  "Rome": "Roman Colosseum, ancient Roman forums, marble temples, aqueducts, Vatican basilicas, Renaissance palaces",
-  "Venice": "Gothic Venetian palaces along canals, St. Mark's Basilica with golden mosaics, Rialto Bridge, lagoon setting",
-  "Florence": "Renaissance architecture (Duomo cathedral), Uffizi Gallery, Ponte Vecchio, Tuscan hilltop villas",
-  "Constantinople (Istanbul)": "Hagia Sophia with massive dome, Ottoman mosques with minarets, Byzantine walls, Bosphorus strait",
-  "Smyrna (Izmir)": "ancient Greek harbor, Aegean coastal architecture, Ottoman-era buildings, Izmir castle",
-  "Ankara": "ancient Phrygian ruins, Anatolian fortress, Turkish administrative buildings, central Anatolian plateau",
-  "Paris": "Gothic Notre-Dame cathedral, Haussmannian boulevards, Louvre palace, Seine riverbanks, Montmartre hill",
-  "Avignon": "Papal Palace (Palais des Papes), medieval fortified city walls, Rhône river, Provençal stone architecture",
-  "Marseille": "ancient Greek port (Massilia), Old Port (Vieux-Port), medieval fort Saint-Nicolas, Mediterranean fishing boats",
-  "London": "Tower of London, medieval Westminster, Thames riverfront, Gothic churches, Roman wall remnants",
-  "York": "medieval York Minster cathedral, Norman castle ruins, medieval city walls, Shambles narrow street",
-  "Edinburgh": "Gothic Edinburgh Castle on volcanic rock, medieval Old Town, Royal Mile, Scottish stone architecture",
-  "Madrid": "Royal Palace, Habsburg-era architecture, Plaza Mayor, Spanish Baroque churches, Mediterranean stone",
-  "Cordoba": "Great Mosque-Cathedral with Moorish arches, Jewish quarter (Juderia), Roman bridge, Andalusian whitewashed houses",
-  "Barcelona": "Gothic Quarter, Mediterranean harbor, Roman walls, Catalan modernist architecture, Eixample grid",
-  "Lisbon": "medieval Alfama quarter, Manueline Jerónimos Monastery, Tagus riverfront, yellow tiled buildings, trams",
-  "Porto": "Gothic Sé Cathedral, Douro river port, medieval Ribeira district, Portuguese azulejo tiles",
-  "Amsterdam": "canal ring with gabled houses, Dutch Renaissance architecture, medieval Oude Kerk, wooden bridges",
-  "Rotterdam": "medieval Delfshaven canal district, Dutch harbor architecture, Maas river, Dutch brick buildings",
-  "Berlin": "Brandenburg Gate, Berlin Wall remnants, Gothic brick churches, Prussian palaces, Spree river",
-  "Cologne": "Gothic Cologne Cathedral (Kölner Dom), medieval Old Town, Romanesque churches, Rhine riverfront",
-  "Aachen": "Charlemagne's Palatine Chapel, medieval market square, Gothic town hall, Holy Roman Empire coronation site",
-  "Vienna": "Baroque Habsburg palaces, Gothic St. Stephen's Cathedral, Ringstraße boulevards, Danube river",
-  "Moscow": "Kremlin with onion-domed cathedrals, Red Square, Russian Orthodox churches, Moscow River",
-  "St. Petersburg": "Peter and Paul Fortress, Baroque Winter Palace, Neva river, Orthodox cathedrals with golden domes",
-  "Novgorod": "medieval Novgorod Kremlin (Kremlin), St. Sophia Cathedral, wooden Russian architecture, Volkhov river",
-  "Prague": "Gothic Prague Castle, Charles Bridge, Old Town Square, Astronomical Clock, Czech Baroque churches",
-  "Brussels": "medieval Grand-Place with Gothic guildhalls, Atomium modern structure, Belgian Gothic architecture, cobblestone streets",
-  "Stockholm": "medieval Gamla Stan (Old Town), Viking-age sites, Baltic Sea archipelago, Swedish wooden architecture",
-  "Copenhagen": "medieval Old Town (Gamle By), Viking harbor sites, Danish Renaissance castles, Nyhavn canal",
-  "Dublin": "medieval Dublin Castle, Viking longphort ruins, Georgian architecture, Liffey river, Irish stone churches",
-  "Warsaw": "medieval Old Town market square, Royal Castle, Gothic brick churches, Vistula riverfront",
-  "Krakow": "medieval Main Market Square, Gothic Wawel Castle, Cloth Hall, Polish Baroque churches",
-  "Budapest": "Danube riverfront, Buda Castle Hill, Gothic Matthias Church, Hungarian Parliament Building, thermal baths",
-  "Kyiv": "Byzantine St. Sophia Cathedral with golden domes, Kyiv Pechersk Lavra, Ukrainian Orthodox churches, Dnieper river",
-  "Belgrade": "Belgrade Fortress on confluence of Sava and Danube, Ottoman-era Kalemegdan, Serbian medieval churches",
-  "Sarajevo": "Ottoman-era mosques with minarets, Latin Bridge, Austro-Hungarian buildings, narrow cobblestone streets (Baščaršija)",
-  "Bucharest": "Romanian Orthodox churches with colorful frescoes, Ottoman-era architecture, Carol I Neoclassical buildings, Danube proximity",
-  "Sofia": "Byzantine Boyana Church with medieval frescoes, Roman Serdica ruins, Bulgarian Orthodox architecture, Vitosha mountain backdrop",
-  "Riga": "medieval Old Town with Gothic brick churches, Art Nouveau architecture district, Daugava river, Hanseatic League buildings",
-  "Zurich": "medieval Old Town with Fraumünster church, Limmat river, Swiss Gothic architecture, Lake Zurich",
-  "Tbilisi": "medieval Old Town with stone houses, Sioni Cathedral, Narikala fortress, Mtkvari river, Georgian Orthodox architecture",
-  "Yerevan": "ancient Armenian churches with tuff stone, Etchmiadzin Cathedral, medieval fortress ruins, Armenian cross-stone (khachkar)",
-  "Helsinki": "neoclassical Senate Square, white stone Lutheran cathedrals, Finnish National Romantic architecture, Baltic Sea coast",
-  "Oslo": "medieval wooden stave churches, Viking ship ruins, Norwegian fjord architecture, Harald Hardrada's fortress sites"
+const countryArch = {
+  "Greece": "ancient Greek marble temples, Acropolis rock, Mediterranean stone houses, Byzantine churches, Ottoman mosques",
+  "Italy": "Roman Colosseum, ancient forums, marble temples, aqueducts, Vatican basilicas, Renaissance palaces, Tuscan countryside",
+  "Spain": "Moorish Alhambra palace, Gothic cathedrals, Spanish Baroque architecture, Mediterranean coastline, whitewashed villages",
+  "Portugal": "Manueline Jerónimos Monastery, medieval Alfama quarter, Tagus riverfront, yellow tiled buildings, Atlantic coast",
+  "Turkey": "Hagia Sophia massive dome, Ottoman mosques with minarets, Byzantine walls, Bosphorus strait, Anatolian plateau",
+  "France": "Gothic Notre-Dame cathedral, Haussmannian boulevards, Louvre palace, Loire châteaux, Provençal countryside",
+  "United Kingdom": "Tower of London, medieval Westminster, Thames riverfront, Gothic churches, Roman wall remnants, Scottish highlands",
+  "Netherlands": "canal ring with gabled houses, Dutch Renaissance architecture, medieval churches, wooden bridges, flat polder landscape",
+  "Belgium": "medieval Grand-Place Gothic guildhalls, Atomium modern structure, Belgian Gothic architecture, cobblestone streets",
+  "Switzerland": "medieval Old Town Fraumünster church, Limmat river, Swiss Gothic architecture, Lake Zurich, Alpine backdrop",
+  "Germany": "Brandenburg Gate, Berlin Wall remnants, Gothic brick churches, Prussian palaces, Spree river, Rhine castles",
+  "Austria": "Baroque Habsburg palaces, Gothic St. Stephen's Cathedral, Ringstraße boulevards, Danube river, Alpine mountains",
+  "Czechia": "Gothic Prague Castle, Charles Bridge, Old Town Square, Astronomical Clock, Czech Baroque churches, Vltava river",
+  "Poland": "medieval Old Town market square, Royal Castle, Gothic brick churches, Vistula riverfront, Wawel Castle Krakow",
+  "Hungary": "Danube riverfront, Buda Castle Hill, Gothic Matthias Church, Hungarian Parliament Building, thermal baths, Puszta",
+  "Russia": "Kremlin onion-domed cathedrals, Red Square, Russian Orthodox churches, Moscow River, vast taiga landscape",
+  "Ukraine": "Byzantine St. Sophia Cathedral golden domes, Kyiv Pechersk Lavra, Ukrainian Orthodox churches, Dnieper river, steppe",
+  "Romania": "Romanian Orthodox churches colorful frescoes, Ottoman architecture, Carol I Neoclassical buildings, Carpathian mountains",
+  "Bulgaria": "Byzantine Boyana Church medieval frescoes, Roman Serdica ruins, Bulgarian Orthodox architecture, Vitosha mountain",
+  "Serbia": "Belgrade Fortress confluence Sava Danube, Ottoman Kalemegdan, Serbian medieval churches, Balkan mountains",
+  "Bosnia": "Ottoman mosques minarets, Latin Bridge, Austro-Hungarian buildings, narrow cobblestone streets Baščaršija, Dinaric Alps",
+  "Sweden": "medieval Gamla Stan Old Town, Viking-age sites, Baltic Sea archipelago, Swedish wooden architecture, Scandinavian forests",
+  "Norway": "medieval wooden stave churches, Viking ship ruins, Norwegian fjord architecture, Harald Hardrada fortress sites, Arctic landscape",
+  "Denmark": "medieval Old Town Gamle By, Viking harbor sites, Danish Renaissance castles, Nyhavn canal, Jutland peninsula",
+  "Finland": "neoclassical Senate Square, white stone Lutheran cathedrals, Finnish National Romantic architecture, Baltic Sea coast, lakeland",
+  "Latvia": "medieval Old Town Gothic brick churches, Art Nouveau architecture district, Daugava river, Hanseatic League buildings",
+  "Ireland": "medieval Dublin Castle, Viking longphort ruins, Georgian architecture, Liffey river, Irish stone churches, Emerald countryside",
+  "Georgia": "medieval Old Town stone houses, Sioni Cathedral, Narikala fortress, Mtkvari river, Georgian Orthodox architecture, Caucasus mountains",
+  "Armenia": "ancient Armenian churches tuff stone, Etchmiadzin Cathedral, medieval fortress ruins, Armenian khachkar cross-stones, Armenian highlands",
 };
 
 function getEraLabelForYear(year) {
@@ -693,10 +632,10 @@ svg.selectAll("path.land")
   .attr("class", "land")
   .attr("d", path);
 
-const cityGroups = svg.selectAll("g.city-group")
-  .data(cities)
+const countryGroups = svg.selectAll("g.country-group")
+  .data(countries)
   .join("g")
-  .attr("class", "city-group")
+  .attr("class", "country-group")
   .attr("transform", d => {
     const [x, y] = projection([d.lon, d.lat]);
     return `translate(${x}, ${y})`;
@@ -705,12 +644,12 @@ const cityGroups = svg.selectAll("g.city-group")
   .on("click", (event, d) => openModal(d))
   .on("mouseover", () => {})
 
-cityGroups.append("circle")
-  .attr("class", "city-dot")
+countryGroups.append("circle")
+  .attr("class", "country-dot")
   .attr("r", 5);
 
-cityGroups.append("text")
-  .attr("class", "city-label")
+countryGroups.append("text")
+  .attr("class", "country-label")
   .attr("x", 9)
   .attr("y", 4)
   .text(d => d.name);
@@ -855,13 +794,13 @@ const eraStyles = {
   }
 };
 
-function getPromptForEra(cityName, year, eraLabel) {
+function getPromptForEra(countryName, year, eraLabel) {
   const style = eraStyles[eraLabel] || eraStyles["Modern era"];
   const modifier = yearModifiers[String(year)];
-  const cityRef = cityArch[cityName] || "historically accurate European architecture";
+  const countryRef = countryArch[countryName] || "historically accurate European architecture";
   
-  // Check for city-specific era modifiers
-  const cityEraData = cityYearModifiers[cityName]?.[eraLabel];
+  // Check for country-specific era modifiers
+  const countryEraData = countryYearModifiers?.[countryName]?.[eraLabel];
   
   // Build prompt components — year-specific modifiers override era defaults for key years
   let sceneDetail, architectureDetail, clothingDetail, colorDetail, atmosphereDetail, landscapeDetail, styleDetail;
@@ -874,17 +813,17 @@ function getPromptForEra(cityName, year, eraLabel) {
     atmosphereDetail = `atmosphere: ${modifier.atmosphere}`;
     landscapeDetail = `landscape: ${modifier.landscape}`;
     styleDetail = `in ${modifier.style}`;
-  } else if (cityEraData) {
-    // City-specific era data overrides generic era style
-    sceneDetail = `featuring ${cityRef}`;
-    architectureDetail = `architecture: ${cityEraData.architecture}`;
-    clothingDetail = `people wearing ${cityEraData.people_clothing}`;
+  } else if (countryEraData) {
+    // Country-specific era data overrides generic era style
+    sceneDetail = `featuring ${countryRef}`;
+    architectureDetail = `architecture: ${countryEraData.architecture}`;
+    clothingDetail = `people wearing ${countryEraData.people}`;
     colorDetail = `rendered in ${style.colors}`;
     atmosphereDetail = `atmosphere: ${style.atmosphere}`;
-    landscapeDetail = `landscape: ${cityEraData.landscape}`;
+    landscapeDetail = `landscape: ${countryEraData.landscape}`;
     styleDetail = `in ${style.style}`;
   } else {
-    sceneDetail = `featuring ${cityRef}`;
+    sceneDetail = `featuring ${countryRef}`;
     architectureDetail = `with ${style.architecture}`;
     clothingDetail = `people wearing ${style.clothing}`;
     colorDetail = `rendered in ${style.colors}`;
@@ -894,7 +833,7 @@ function getPromptForEra(cityName, year, eraLabel) {
   }
   
   const yearStr = formatYear(year);
-  const basePrompt = `Historical realistic scene of ${cityName}`;
+  const basePrompt = `Historical realistic scene of ${countryName}`;
   
   return `${basePrompt}, year ${yearStr}, ${eraLabel} period, ${sceneDetail}, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, historically accurate, detailed, cinematic composition`;
 }
@@ -907,17 +846,20 @@ const modalYear = document.getElementById("modalYear");
 const modalDesc = document.getElementById("modalDesc");
 const modalImage = document.getElementById("modalImage");
 
-async function openModal(city) {
+async function openModal(country) {
   const year = parseInt(slider.value);
   const eraLabelText = getEraLabelForYear(year);
   const eraKey = getEraLabel(year);
-  modalCity.textContent = city.name;
+  modalCity.textContent = country.name;
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
-  modalDesc.textContent = `This is where an AI-generated image would show what ${city.name} looked like around ${formatYear(year)}.`;
+  modalDesc.textContent = `This is where an AI-generated image would show what ${country.name} looked like around ${formatYear(year)}.`;
 
-  const prompt = getPromptForEra(city.name, year, eraKey);
-  const randomSeed = Math.floor(Math.random() * 1000000);
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${randomSeed}`;
+  const prompt = getPromptForEra(country.name, year, eraKey);
+  // Fixed seed per location+year for browser cache reuse
+  let seed = 0;
+  for (let i = 0; i < country.name.length; i++) seed = ((seed << 5) - seed) + country.name.charCodeAt(i);
+  seed = (seed + year * 31) & 0x7fffffff;
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&nologo=true&seed=${seed}`;
 
   modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
@@ -935,12 +877,12 @@ async function openModal(city) {
   overlay.classList.add("open");
 
   // mark active dot
-  d3.selectAll(".city-group").classed("active", d => d.name === city.name);
+  d3.selectAll(".country-group").classed("active", d => d.name === country.name);
 }
 
 function closeModal() {
   overlay.classList.remove("open");
-  d3.selectAll(".city-group").classed("active", false);
+  d3.selectAll(".country-group").classed("active", false);
 }
 
 modalClose.addEventListener("click", closeModal);
