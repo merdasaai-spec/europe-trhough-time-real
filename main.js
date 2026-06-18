@@ -395,76 +395,76 @@ const yearModifiers = {
   },
   // Ancient period
   "-3000": {
-    scene: "Stone Age hunter-gatherer camps, early farming settlements, megalithic construction",
-    architecture: "cave dwellings, mammoth bone shelters, early stone huts, natural rock formations",
-    clothing: "animal fur clothing, leather wraps, bone and stone jewelry, natural earth tones",
-    colors: "earth tones, ochre red, burnt sienna, charcoal gray, natural stone colors, cave painting pigments",
-    atmosphere: "Ice Age landscape, primal survival, flickering firelight, dawn of civilization",
-    landscape: "mammoth steppe, sparse tundra, glacial valleys, early European farming settlements",
-    style: "prehistoric cave painting aesthetic, petroglyph texture, raw natural pigments, Stone Age realism"
+    scene: "Neolithic farming settlement with timber longhouses, megalithic tomb construction, early pottery production",
+    architecture: "Linear Pottery Culture (LBK) longhouses with timber frames and wattle-and-daub walls, causewayed enclosures, passage tombs (Newgrange-style), pit-houses, granaries",
+    clothing: "Neolithic woven linen tunics, woolen cloaks fastened with antler pins, shell necklaces, bone thimbles, leather aprons",
+    colors: "ochre red, burnt sienna, charcoal black, limestone white, clay brown, flint gray, natural undyed wool",
+    atmosphere: "communal farming life, ritual megalithic gatherings, dawn of settled agriculture, seasonal harvest festivals",
+    landscape: "broadleaf forest clearing for fields, river valley villages, chalk downlands with causewayed enclosures, glacial moraines",
+    style: "archaeological reconstruction painting, Neolithic pottery patterns, realistic prehistoric scene, earthy pigment palette"
   },
   "-2000": {
-    scene: "Bronze Age trade networks, megalithic monument construction, fortified hilltop settlements",
-    architecture: "megalithic stone circles (Stonehenge), timber-frame houses, bronze workshops, fortified hilltop settlements",
-    clothing: "linen tunics, bronze belts, woven wool cloaks, Celtic knot patterns, bronze torcs",
-    colors: "bronze green patina, warm gold, terracotta, deep Mediterranean blue, golden hour sunlight",
-    atmosphere: "ancient trade routes, coastal ports, golden hour light, scholarly Bronze Age craftsmanship",
-    landscape: "fertile river valleys, coastal harbors, bronze smelting furnaces, stone circles on hills",
-    style: "Bronze Age illustration, detailed metalwork accuracy, archaeological reconstruction"
+    scene: "Mediterranean Bronze Age trade network, Minoan palace economy, Nordic Bronze Age burial rituals",
+    architecture: "Minoan palace at Knossos with frescoes and storage magazines, Mycenaean citadel foundations, Nordic Bronze Age timber halls with bronze fittings, Aegean fortified harbors, megalithic stone circles",
+    clothing: "Minoan flounced skirts and kilts with elaborate belts, Mycenaean bronze-fitted cuirasses, Nordic woolen tunics with bronze fibulae, Minoan men's loincloths, Aegean linen robes with dyed borders, gold torcs",
+    colors: "Minoan fresco blues and reds, bronze patina green, Aegean deep azure, Nordic amber gold, Mycenaean crimson dyes, terracotta",
+    atmosphere: "Mediterranean trade networks flourishing, palace economies, bronze metallurgy workshops, Aegean maritime power, ritual bronze votive offerings",
+    landscape: "Aegean archipelago with fortified harbors, Cretan palace courtyards, Nordic Bronze Age burial mounds, Mycenaean citadel hilltops, fertile Thessalian plains",
+    style: "Minoan-Mycenaean fresco style blended with archaeological realism, Bronze Age metalwork detail, Aegean maritime painting"
   },
   "-1000": {
-    scene: "Iron Age Celtic cultures, hillfort construction, iron smelting, tribal warfare",
-    architecture: "Celtic hillforts (oppida), roundhouses, iron smelting furnaces, fortified settlements",
-    clothing: "Celtic tartan patterns, wool cloaks, bronze torcs, chainmail armor, druid robes",
-    colors: "iron gray, deep forest green, Celtic blue, earthy browns, muted natural tones",
-    atmosphere: "mystical Celtic druidic atmosphere, misty ancient forests, warrior culture",
-    landscape: "dense ancient European forests, hilltop forts, Celtic sacred sites, iron mines",
-    style: "Celtic art style, intricate knotwork patterns, ancient European tribal aesthetics"
+    scene: "Late Bronze Age collapse aftermath, early Iron Age Celtic hillfort construction, Greek Dark Ages, Phoenician maritime trade",
+    architecture: "Celtic hillforts (oppida) with timber gateways, Hallstatt salt mine complexes, Greek Dark Age settlements, Phoenician colonial harbors (Carthage founding), Mycenaean citadel ruins being repurposed, early iron smelting furnaces",
+    clothing: "Celtic tartan and striped wool cloaks with bronze fibulae, La Tène torcs and arm rings, Greek Dark Age simple wool garments, Phoenian Tyrian purple-dyed robes, early iron tools and weapons",
+    colors: "Celtic forest greens and woad blues, La Tène bronze gold, Phoenician Tyrian purple, iron gray, Greek geometric pottery blacks and whites",
+    atmosphere: "post-collapse recovery, Celtic tribal confederations rising, Phoenician maritime expansion, early iron technology spreading",
+    landscape: "Celtic oppida on hilltops overlooking river valleys, Hallstatt salt mining operations, Phoenician colonial harbors, Mycenaean citadel ruins, Greek Dark Age settlements",
+    style: "archaeological reconstruction of post-Bronze Age transition, Celtic tribal aesthetics, Phoenician maritime art"
   },
   "-500": {
-    scene: "Celtic Europe at its height, Roman expansion, Greek colonial cities in Mediterranean",
-    architecture: "Celtic oppida hillforts, Roman military camps, Greek colonial temples, Roman roads under construction",
-    clothing: "Celtic warriors in tartan, Roman legionary armor, Greek hoplite armor, merchant clothing",
-    colors: "Celtic forest greens, Roman military red, Mediterranean azure, bronze and iron tones",
-    atmosphere: "clash of civilizations, Celtic warrior culture vs Roman discipline, Mediterranean trade prosperity",
-    landscape: "Celtic hillforts, Roman military roads, Greek colonial harbors, Mediterranean coastal cities",
-    style: "Classical era painting style, Celtic and Roman art fusion, archaeological accuracy"
+    scene: "Celtic La Tène culture peak, Roman Republic expansion, Greek polis civilization, Etruscan golden age",
+    architecture: "Celtic oppida hillforts with elaborate timber gateways, La Tène metalworking sites, Roman Republican temples with terracotta decorations, Etruscan temple complexes, Greek colonial fortified harbors (Massalia, Emporion), Roman Forum development",
+    clothing: "Celtic tartan and striped wool cloaks with bronze fibulae, La Tène torcs and arm rings, Greek hoplite linen cuirasses and bronze helmets, Etruscan silk-bordered togas, Roman Republican tunics with purple stripes for magistrates, Greek chiton and himation",
+    colors: "Celtic forest greens and woad blues, La Tène bronze gold, Etruscan terracotta reds, Roman military crimson, Greek marble whites, iron gray",
+    atmosphere: "clash between Celtic tribal confederations and expanding Roman Republic, Greek colonial prosperity, Etruscan cultural flourishing, Iron Age warfare and trade",
+    landscape: "Celtic oppida on hilltops overlooking river valleys, Etruscan temple sanctuaries, Greek colonial harbors with triremes, Roman military camps along frontier, Hallstatt salt mining operations",
+    style: "Classical Greek and Roman painting traditions, Celtic La Tène knotwork influences, archaeological reconstruction of Iron Age warfare and daily life"
   },
   "0": {
-    scene: "Roman Empire at its dawn, Pax Romana, Mediterranean world unified under Roman rule",
-    architecture: "Roman marble temples, aqueducts, forums, bathhouses, amphitheaters, Roman roads, villas",
-    clothing: "Roman togas, Greek chitons and himations, legionary armor, senatorial purple borders",
-    colors: "Roman white marble, Mediterranean azure, terracotta roofs, imperial purple accents, golden sunlight",
-    atmosphere: "classical Roman grandeur, Mediterranean sunlight, scholarly Roman life, military discipline",
-    landscape: "Mediterranean coastal cities, Roman roads stretching to horizon, olive groves, vineyards",
-    style: "classical Roman painting style, accurate Roman architecture, marble textures, classical perspective"
+    scene: "Augustan Rome at the dawn of the Pax Romana, Mediterranean world unified under Roman rule, Greek scholarly culture flourishing",
+    architecture: "Augustan rebuilding of Rome: marble temples with Corinthian columns (Temple of Mars Ultor), triumphal arches (Arch of Augustus), imperial forums with basilicas, Roman aqueducts (Aquae Marcia), thermae bath complexes, Roman villas with mosaic floors, Greek Hellenistic temples in Asia Minor, Egyptian-style sanctuaries",
+    clothing: "Roman senatorial togas with wide purple latus clavus stripes, equestrian narrow purple stripes, imperial purple-dyed togas, Greek himations and chitons, Roman military lorica segmentata armor, Roman women's stola and palla with jewelry, freedman dress conventions",
+    colors: "Roman marble whites and creams, imperial Tyrian purple, Mediterranean azure and cerulean, terracotta roof reds, gold leaf highlights, Punic crimson, Egyptian gold",
+    atmosphere: "Pax Romana prosperity, Mediterranean trade dominance, Roman civic grandeur, Hellenistic scholarly culture, imperial religious syncretism, gladiatorial spectacles",
+    landscape: "Roman road networks stretching between provinces, Mediterranean harbors with grain ships, Roman provincial cities with forums and baths, Greek island sanctuaries, Egyptian Nile delta trade routes, Alpine passes connecting provinces",
+    style: "Roman imperial painting tradition, Hellenistic realism, archaeological accuracy of Roman architecture and urban planning, classical perspective, marble and gold textures"
   },
   "200": {
-    scene: "Height of the Roman Empire, Roman cities at their peak, Mediterranean trade at maximum",
-    architecture: "Roman Colosseum, Pantheon, massive aqueducts, forum complexes, triumphal arches, thermae bathhouses",
-    clothing: "Roman elite togas with purple stripes, legionary lorica segmentata armor, merchant silk and linen",
-    colors: "Roman white marble, imperial gold, Mediterranean azure, terracotta red, purple imperial accents",
-    atmosphere: "Pax Romana prosperity, Mediterranean trade dominance, Roman civic pride, imperial grandeur",
-    landscape: "Roman cities with marble forums, coastal harbors full of grain ships, Roman roads, vineyards",
-    style: "Roman imperial painting style, accurate classical architecture, marble and gold textures"
+    scene: "Height of the Roman Empire under Antonine dynasty, Mediterranean trade at maximum, Roman urbanization peak",
+    architecture: "Roman imperial architecture at peak: marble temples with Corinthian columns (Pantheon), triumphal arches (Arch of Marcus Aurelius), imperial forums with basilicas, Roman aqueducts (Aquae Claudia, Anio Novus), thermae of Caracalla, amphitheaters (Colosseum), Roman villas with elaborate mosaic floors, provincial city forums across Europe",
+    clothing: "Roman senatorial togas with wide purple latus clavus stripes, imperial purple-dyed togas, Greek himations and chitons, Roman military lorica segmentata and lorica hamata armor, Roman women's stola and palla with gold jewelry, provincial dress conventions",
+    colors: "Roman marble whites and creams, imperial Tyrian purple, Mediterranean azure and cerulean, terracotta roof reds, gold leaf highlights, Punic crimson, Egyptian gold",
+    atmosphere: "Pax Romana prosperity at its zenith, Mediterranean trade dominance, Roman civic grandeur, Hellenistic scholarly culture, imperial religious syncretism, gladiatorial spectacles",
+    landscape: "Roman road networks stretching between provinces, Mediterranean harbors full of grain ships, Roman provincial cities with forums and baths, Greek island sanctuaries, Egyptian Nile delta trade routes, Alpine passes connecting provinces",
+    style: "Roman imperial painting tradition, Hellenistic realism, archaeological accuracy of Roman architecture and urban planning at peak, classical perspective, marble and gold textures"
   },
   "400": {
-    scene: "Fall of Rome, barbarian invasions, Christianization of Europe, Roman Empire crumbling",
-    architecture: "damaged Roman infrastructure, early Christian basilicas, fortified city walls, burning Roman temples",
-    clothing: "late Roman military uniforms, barbarian warrior clothing, early Christian monk robes, fleeing Roman nobility",
-    colors: "declining Roman palette, Christian gold and white, barbarian earth tones, fire and smoke grays",
-    atmosphere: "end of an era, Christianization replacing paganism, barbarian pressure, Roman decline",
-    landscape: "damaged Roman cities, early Christian churches, fortified settlements, barbarian migration routes",
-    style: "late Roman to early Christian transition art, classical architecture in decay, religious transformation"
+    scene: "Late Roman Empire in crisis, barbarian incursions, Christianization transforming Europe, Roman infrastructure declining",
+    architecture: "damaged Roman marble temples being converted to churches, early Christian basilicas with mosaics, fortified city walls (Walls of Constantinople), Roman aqueducts in partial ruin, imperial palaces at Ravenna, Christian catacombs, Germanic longhouses on imperial territory",
+    clothing: "Late Roman military uniforms with barbarian influences, Christian bishop vestments with gold embroidery, Roman senatorial dress with reduced purple trim, Germanic warrior clothing, early Christian monk robes, Eastern Roman court dress with silk and pearls",
+    colors: "declining Roman palette, Christian gold and white mosaics, barbarian earth tones, fire and smoke grays, Late Roman imperial purple, marble whites fading",
+    atmosphere: "end of an era, Christianization replacing paganism, barbarian pressure, Roman decline, cultural transformation",
+    landscape: "damaged Roman cities, early Christian churches, fortified settlements, barbarian migration routes, Constantinople with Theodosian Walls, Roman provincial frontiers",
+    style: "late Roman to early Christian transition art, classical architecture in decay, religious transformation, Byzantine mosaic influences"
   },
   "500": {
-    scene: "Early Middle Ages, Frankish kingdom rising, Byzantine Constantinople flourishing, monastic scholarship",
-    architecture: "Frankish timber fortifications, early Byzantine churches, monastic scriptoria, Roman ruins being repurposed",
-    clothing: "Frankish warrior clothing, Byzantine imperial purple, monastic robes, Merovingian noble attire",
-    colors: "early medieval palette, Byzantine gold mosaics, Frankish earth tones, monastic browns and whites",
-    atmosphere: "post-Roman fragmentation, Byzantine cultural preservation, monastic learning, Frankish expansion",
-    landscape: "Frankish kingdoms, Byzantine Constantinople with Hagia Sophia, monastic communities, Roman ruins",
-    style: "early medieval illumination style, Byzantine mosaic art, Frankish tribal aesthetics"
+    scene: "Early Middle Ages, Frankish kingdom rising under Clovis, Byzantine Constantinople flourishing under Justinian, monastic scholarship preserving knowledge",
+    architecture: "Frankish timber fortifications (motte-and-bailey), early Byzantine churches with golden mosaics (Hagia Sophia construction), monastic scriptoria in Ireland and Gaul, repurposed Roman basilicas, Merovingian burial churches, Roman ruins being quarried for building stone",
+    clothing: "Frankish warrior clothing with bronze fibulae, Byzantine imperial purple robes with gold embroidery, monastic brown and white robes, Merovingian noble attire with gold torcs, early Christian bishop vestments, Celtic druid-inspired garments",
+    colors: "early medieval palette, Byzantine gold mosaics, Frankish earth tones, monastic browns and whites, Celtic knotwork greens and reds, Merovingian gold",
+    atmosphere: "post-Roman fragmentation, Byzantine cultural preservation, monastic learning, Frankish expansion, Christianization of Europe",
+    landscape: "Frankish kingdoms, Byzantine Constantinople with Hagia Sophia, monastic communities in Ireland and Gaul, Roman ruins across Europe, Merovingian burial sites",
+    style: "early medieval illumination style, Byzantine mosaic art, Frankish tribal aesthetics, Celtic knotwork influences"
   },
   "800": {
     scene: "Charlemagne crowned Emperor, Carolingian Renaissance, Viking raids beginning across Europe",
@@ -713,36 +713,36 @@ function updateActiveEraButton(year) {
 // --- Era visual styles for historically accurate images ---
 const eraStyles = {
   "Stone Age": {
-    architecture: "cave dwellings, stone huts, mammoth bone shelters, natural rock formations",
-    clothing: "animal fur clothing, leather wraps, bone jewelry, natural earth tones",
-    colors: "earth tones, ochre, burnt sienna, charcoal gray, natural stone colors",
-    atmosphere: "cave painting aesthetic, primal atmosphere, flickering firelight, misty dawn",
-    landscape: "Ice Age landscape, mammoth steppe, sparse tundra, glacial valleys",
-    style: "prehistoric cave painting style, petroglyph texture, raw natural pigments"
+    architecture: "Neolithic longhouses with timber frames and wattle-and-daub walls, megalithic tombs (cromlechs, passage graves), cave dwellings, pit-houses, early granaries",
+    clothing: "Neolithic woven linen and wool garments, animal hide cloaks, bone needles and thimbles, shell necklaces, antler pins",
+    colors: "earthy ochre reds, burnt sienna, charcoal black, pale limestone whites, natural clay browns, flint gray",
+    atmosphere: "dawn of settled farming life, communal labor, ritual gatherings at megalithic sites, fire-lit interiors",
+    landscape: "broadleaf forests clearing for fields, river valleys with early villages, chalk downlands with causewayed enclosures, glacial moraines",
+    style: "archaeological reconstruction painting, Neolithic pottery patterns, realistic prehistoric scene, earthy pigment palette"
   },
   "Bronze Age": {
-    architecture: "megalithic stone monuments, bronze workshops, timber frame houses, fortified hilltop settlements",
-    clothing: "linen tunics, bronze belts, woven wool cloaks, Celtic knot patterns",
-    colors: "bronze green, warm gold, terracotta, deep blue, Mediterranean sunlight",
-    atmosphere: "ancient trade routes, coastal ports, golden hour light, scholarly atmosphere",
-    landscape: "fertile river valleys, coastal harbors, bronze smelting furnaces, stone circles",
-    style: "ancient bronze age illustration, detailed metalwork, archaeological accuracy"
+    architecture: "Minoan palace complexes with frescoes and storage magazines, Mycenaean citadels with cyclopean walls, Nordic Bronze Age timber halls, fortified hillforts, bronze smelting furnaces, Aegean harbor settlements",
+    clothing: "Minoan flounced skirts and kilts with elaborate belts, Mycenaean bronze-fitted armor, Nordic woolen tunics with bronze fibulae, Minoan men's loincloths, Aegean linen robes with dyed borders",
+    colors: "Minoan fresco blues and reds, bronze patina green, Aegean deep azure, Nordic amber gold, Mycenaean crimson dyes, terracotta",
+    atmosphere: "Mediterranean trade networks flourishing, palace economies, bronze metallurgy workshops, Aegean maritime power, ritual bronze votive offerings",
+    landscape: "Aegean archipelago with fortified harbors, Cretan palace courtyards, Nordic Bronze Age burial mounds, Mycenaean citadel hilltops, fertile Thessalian plains",
+    style: "Minoan-Mycenaean fresco style blended with archaeological realism, Bronze Age metalwork detail, Aegean maritime painting"
   },
   "Iron Age": {
-    architecture: "hillforts, Celtic roundhouses, iron smelting furnaces, fortified oppida settlements",
-    clothing: "Celtic tartan patterns, wool cloaks, torcs, chainmail armor, druid robes",
-    colors: "iron gray, deep green forests, Celtic blue, earthy browns, muted natural tones",
-    atmosphere: "mystical Celtic druidic atmosphere, misty ancient forests, warrior culture",
-    landscape: "dense ancient European forests, hilltop forts, Celtic sacred sites, iron mines",
-    style: "Celtic art style, intricate knotwork patterns, ancient European tribal aesthetics"
+    architecture: "Celtic oppida hillforts with timber gateways and palisades, Hallstatt salt mines, La Tène metalworking sites, Greek colonial fortified harbors (Massalia, Emporion), Etruscan temple complexes with terracotta decorations, Roman Republican fortifications",
+    clothing: "Celtic tartan and striped wool cloaks with bronze fibulae, La Tène torcs and arm rings, Greek hoplite linen cuirasses and bronze helmets, Etruscan silk-bordered togas, Roman Republican tunics with purple stripes for magistrates",
+    colors: "Celtic forest greens and woad blues, La Tène bronze gold, Etruscan terracotta reds, Roman military crimson, Greek marble whites, iron gray",
+    atmosphere: "clash between Celtic tribal confederations and expanding Roman Republic, Greek colonial prosperity, Etruscan cultural flourishing, Iron Age warfare and trade",
+    landscape: "Celtic oppida on hilltops overlooking river valleys, Etruscan temple sanctuaries, Greek colonial harbors with triremes, Roman military camps along frontier, Hallstatt salt mining operations",
+    style: "Classical Greek and Roman painting traditions, Celtic La Tène knotwork influences, archaeological reconstruction of Iron Age warfare and daily life"
   },
   "Antiquity": {
-    architecture: "Roman marble temples, aqueducts, Roman roads, forums, bathhouses, amphitheaters, villas",
-    clothing: "Roman togas, Greek chitons and himations, military armor, senatorial purple borders",
-    colors: "Roman white marble, Mediterranean azure, terracotta roofs, imperial purple accents",
-    atmosphere: "classical Roman grandeur, Mediterranean sunlight, scholarly Roman life, military discipline",
-    landscape: "Mediterranean coastal cities, Roman roads stretching to horizon, olive groves, vineyards",
-    style: "classical Roman painting style, accurate Roman architecture, marble textures, classical perspective"
+    architecture: "Roman imperial architecture: marble temples with Corinthian columns, triumphal arches, imperial forums with basilicas, Roman aqueducts, thermae bath complexes, amphitheaters, Roman villas with mosaic floors, Greek Hellenistic temples, Egyptian-style sanctuaries in Mediterranean",
+    clothing: "Roman senatorial togas with wide purple latus clavus stripes, equestrian narrow purple stripes, imperial purple-dyed togas, Greek himations and chitons, Roman military lorica segmentata armor, Roman women's stola and palla with jewelry, freedman dress conventions",
+    colors: "Roman marble whites and creams, imperial Tyrian purple, Mediterranean azure and cerulean, terracotta roof reds, gold leaf highlights, Punic crimson, Egyptian gold",
+    atmosphere: "Pax Romana prosperity, Mediterranean trade dominance, Roman civic grandeur, Hellenistic scholarly culture, imperial religious syncretism, gladiatorial spectacles",
+    landscape: "Roman road networks stretching between provinces, Mediterranean harbors with grain ships, Roman provincial cities with forums and baths, Greek island sanctuaries, Egyptian Nile delta trade routes, Alpine passes connecting provinces",
+    style: "Roman imperial painting tradition, Hellenistic realism, archaeological accuracy of Roman architecture and urban planning, classical perspective, marble and gold textures"
   },
   "Middle Ages": {
     architecture: "stone castles with towers, Gothic cathedrals with pointed arches, timber-framed houses, market squares",
@@ -891,4 +891,33 @@ overlay.addEventListener("click", (e) => {
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
+});
+
+// --- Image zoom / fullscreen ---
+const zoomBtn = document.getElementById("zoomBtn");
+const imageFullscreen = document.getElementById("imageFullscreen");
+const fullscreenImg = document.getElementById("fullscreenImg");
+
+function zoomImage() {
+  const img = modalImage.querySelector("img");
+  if (img) {
+    fullscreenImg.src = img.src;
+    imageFullscreen.classList.add("open");
+  }
+}
+
+function closeFullscreen() {
+  imageFullscreen.classList.remove("open");
+}
+
+zoomBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  zoomImage();
+});
+
+imageFullscreen.addEventListener("click", closeFullscreen);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && imageFullscreen.classList.contains("open")) {
+    closeFullscreen();
+  }
 });
