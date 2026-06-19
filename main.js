@@ -1517,17 +1517,34 @@ document.addEventListener("keydown", (e) => {
 const zoomBtn = document.getElementById("zoomBtn");
 const imageFullscreen = document.getElementById("imageFullscreen");
 const fullscreenImg = document.getElementById("fullscreenImg");
+const zoomInBtn = document.getElementById("zoomInBtn");
+const zoomOutBtn = document.getElementById("zoomOutBtn");
+const zoomResetBtn = document.getElementById("zoomResetBtn");
+const zoomLevel = document.getElementById("zoomLevel");
+
+let currentZoom = 1;
+const ZOOM_STEP = 0.25;
+const ZOOM_MIN = 0.5;
+const ZOOM_MAX = 8;
+
+function updateZoom(newZoom) {
+  currentZoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, newZoom));
+  fullscreenImg.style.transform = `scale(${currentZoom})`;
+  zoomLevel.textContent = `${Math.round(currentZoom * 100)}%`;
+}
 
 function zoomImage() {
   const img = modalImage.querySelector("img");
   if (img) {
     fullscreenImg.src = img.src;
     imageFullscreen.classList.add("open");
+    updateZoom(1);
   }
 }
 
 function closeFullscreen() {
   imageFullscreen.classList.remove("open");
+  updateZoom(1);
 }
 
 zoomBtn.addEventListener("click", (e) => {
@@ -1535,9 +1552,39 @@ zoomBtn.addEventListener("click", (e) => {
   zoomImage();
 });
 
-imageFullscreen.addEventListener("click", closeFullscreen);
+imageFullscreen.addEventListener("click", (e) => {
+  if (!e.target.closest(".zoom-controls")) {
+    closeFullscreen();
+  }
+});
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && imageFullscreen.classList.contains("open")) {
     closeFullscreen();
+  }
+});
+
+zoomInBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  updateZoom(currentZoom + ZOOM_STEP);
+});
+
+zoomOutBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  updateZoom(currentZoom - ZOOM_STEP);
+});
+
+zoomResetBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  updateZoom(1);
+});
+
+// Scroll-wheel zoom
+imageFullscreen.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  if (e.deltaY < 0) {
+    updateZoom(currentZoom + ZOOM_STEP);
+  } else {
+    updateZoom(currentZoom - ZOOM_STEP);
   }
 });
