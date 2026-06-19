@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none';">
 <title>Europe through time</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <link rel="stylesheet" href="styles.css">
@@ -38,17 +39,17 @@
   </div>
 </div>
 
-<div class="image-fullscreen" id="imageFullscreen">
-  <img id="fullscreenImg" src="" alt="Fullscreen historical image">
-  <div class="zoom-controls">
-    <button id="zoomOutBtn" aria-label="Zoom uit">−</button>
-    <button id="zoomInBtn" aria-label="Zoom in">+</button>
-    <button id="zoomResetBtn" aria-label="Reset zoom">⟲</button>
+<div class="image-fullscreen" id="imageFullscreen" role="dialog" aria-label="Fullscreen image viewer" aria-hidden="true">
+  <img id="fullscreenImg" src="" alt="Fullscreen historical image" loading="lazy">
+  <div class="zoom-controls" role="toolbar" aria-label="Image zoom controls">
+    <button id="zoomOutBtn" aria-label="Zoom uit" type="button">−</button>
+    <button id="zoomInBtn" aria-label="Zoom in" type="button">+</button>
+    <button id="zoomResetBtn" aria-label="Reset zoom" type="button">⟲</button>
   </div>
-  <div class="zoom-level" id="zoomLevel">100%</div>
+  <div class="zoom-level" id="zoomLevel" aria-live="polite">100%</div>
 </div>
 
-<div class="overlay" id="overlay">
+<div class="overlay" id="overlay" role="dialog" aria-label="Country information" aria-hidden="true">
   <div class="modal">
     <div class="modal-image-container">
       <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>

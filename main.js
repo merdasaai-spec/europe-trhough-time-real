@@ -1,9 +1,40 @@
-fetch('/europe.geojson')
-  .then(r => r.json())
-  .then(data => { europeData = data; initMap(); })
-  .catch(err => console.error('Failed to load map data:', err));
-
+// Load map data with proper error handling
 let europeData = null;
+let mapInitialized = false;
+
+function loadMapData() {
+  return fetch('/europe.geojson', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (!data || !data.features) {
+      throw new Error('Invalid GeoJSON data: missing features array');
+    }
+    europeData = data;
+    mapInitialized = true;
+    initMap();
+  })
+  .catch(err => {
+    console.error('Failed to load map data:', err);
+    // Show error state to user
+    const mapWrap = document.querySelector('.map-wrap');
+    if (mapWrap) {
+      mapWrap.innerHTML = '<p style="text-align:center;padding:40px;color:#8A7457;font-family:sans-serif;">Failed to load map data. Please refresh the page.</p>';
+    }
+  });
+}
+
+// Start loading immediately
+loadMapData();
 
 const countries = [
   // Southern Europe
@@ -393,51 +424,51 @@ const yearModifiers = {
     landscape: "Ukrainian war zones, European refugee routes, energy infrastructure, EU border support",
     style: "2022 European crisis photography, Ukraine invasion documentation, European solidarity imagery"
   },
-  // Ancient period
+  // Ancient period — raw, unvarnished, dark, gritty realism
   "-3000": {
-    scene: "Neolithic farming settlement with timber longhouses, megalithic tomb construction, early pottery production",
-    architecture: "Linear Pottery Culture (LBK) longhouses with timber frames and wattle-and-daub walls, causewayed enclosures, passage tombs (Newgrange-style), pit-houses, granaries",
-    clothing: "Neolithic woven linen tunics, woolen cloaks fastened with antler pins, shell necklaces, bone thimbles, leather aprons",
-    colors: "ochre red, burnt sienna, charcoal black, limestone white, clay brown, flint gray, natural undyed wool",
-    atmosphere: "communal farming life, ritual megalithic gatherings, dawn of settled agriculture, seasonal harvest festivals",
-    landscape: "broadleaf forest clearing for fields, river valley villages, chalk downlands with causewayed enclosures, glacial moraines",
-    style: "archaeological reconstruction painting, Neolithic pottery patterns, realistic prehistoric scene, earthy pigment palette"
+    scene: "Neolithic farming settlement in winter — muddy huts, smoke-choked air, starving livestock, people huddled around fire pits in the rain",
+    architecture: "Linear Pottery Culture longhouses with sagging thatch roofs, mud-plastered walls cracking from damp, dark smoke-blackened interiors, crude wooden carts sunk in mud, bone hooks hanging from rafters",
+    clothing: "rough-spun wool tunics stained with mud and grease, animal skins caked with dried blood and dirt, bone hairpins holding greasy hair, leather sandals worn through at the soles",
+    colors: "mud brown, soot black, wet earth gray, dried blood rust, ash gray, dull ochre, rotten wood brown, foggy white",
+    atmosphere: "constant damp and cold, smoke-filled air, exhaustion from daily survival, primitive fear of the surrounding dark forests, people huddled together for warmth",
+    landscape: "mist-shrouded forest clearings, muddy floodplains, overcast skies, marshy ground, bare winter trees, gray river water",
+    style: "gritty historical documentary photography, dark atmospheric lighting, raw unpolished realism, muted earth tones, weathered textures, no romanticization"
   },
   "-2000": {
-    scene: "Mediterranean Bronze Age trade network, Minoan palace economy, Nordic Bronze Age burial rituals",
-    architecture: "Minoan palace at Knossos with frescoes and storage magazines, Mycenaean citadel foundations, Nordic Bronze Age timber halls with bronze fittings, Aegean fortified harbors, megalithic stone circles",
-    clothing: "Minoan flounced skirts and kilts with elaborate belts, Mycenaean bronze-fitted cuirasses, Nordic woolen tunics with bronze fibulae, Minoan men's loincloths, Aegean linen robes with dyed borders, gold torcs",
-    colors: "Minoan fresco blues and reds, bronze patina green, Aegean deep azure, Nordic amber gold, Mycenaean crimson dyes, terracotta",
-    atmosphere: "Mediterranean trade networks flourishing, palace economies, bronze metallurgy workshops, Aegean maritime power, ritual bronze votive offerings",
-    landscape: "Aegean archipelago with fortified harbors, Cretan palace courtyards, Nordic Bronze Age burial mounds, Mycenaean citadel hilltops, fertile Thessalian plains",
-    style: "Minoan-Mycenaean fresco style blended with archaeological realism, Bronze Age metalwork detail, Aegean maritime painting"
+    scene: "Bronze Age coastal settlement — salt-crusted fishing boats pulled up on muddy shore, people sorting fish by dim firelight, bronze tools half-buried in dirt",
+    architecture: "timber-framed houses with thatch roofs sagging under years of rain, mud-brick storage pits half-collapsed, bronze-smithing hearth with soot-blackened walls, crude wooden granaries raised on posts",
+    clothing: "coarse woolen garments stiff with salt and dirt, bronze belt buckles tarnished green, animal skins with fur still attached, hair greased with animal fat, rough leather sandals",
+    colors: "salt-bleached wood gray, bronze patina green, dried fish brown, mud black, soot gray, dull gold, weathered bone white, foggy blue-gray",
+    atmosphere: "brutal coastal life, constant wind and spray, scarcity of fresh water, bronze being precious and rare, people worn down by hard labor, dim firelight",
+    landscape: "storm-battered coastline, muddy tidal flats, dark forest edge, overcast sky, rough seas, salt-crusted rocks, sparse vegetation",
+    style: "dark documentary photography, muted desaturated palette, raw unvarnished realism, weathered textures, atmospheric fog and rain, no idealization"
   },
   "-1000": {
-    scene: "Late Bronze Age collapse aftermath, early Iron Age Celtic hillfort construction, Greek Dark Ages, Phoenician maritime trade",
-    architecture: "Celtic hillforts (oppida) with timber gateways, Hallstatt salt mine complexes, Greek Dark Age settlements, Phoenician colonial harbors (Carthage founding), Mycenaean citadel ruins being repurposed, early iron smelting furnaces",
-    clothing: "Celtic tartan and striped wool cloaks with bronze fibulae, La Tène torcs and arm rings, Greek Dark Age simple wool garments, Phoenian Tyrian purple-dyed robes, early iron tools and weapons",
-    colors: "Celtic forest greens and woad blues, La Tène bronze gold, Phoenician Tyrian purple, iron gray, Greek geometric pottery blacks and whites",
-    atmosphere: "post-collapse recovery, Celtic tribal confederations rising, Phoenician maritime expansion, early iron technology spreading",
-    landscape: "Celtic oppida on hilltops overlooking river valleys, Hallstatt salt mining operations, Phoenician colonial harbors, Mycenaean citadel ruins, Greek Dark Age settlements",
-    style: "archaeological reconstruction of post-Bronze Age transition, Celtic tribal aesthetics, Phoenician maritime art"
+    scene: "Iron Age hillfort at dusk — iron weapons being forged in smoky furnaces, people huddled in dark timber halls, guards watching over the edge of the cliff in the fading light",
+    architecture: "timber hillfort walls with sharpened stakes, dark iron-smelting furnaces belching smoke, longhouses with smoke-blackened interiors, crude stone foundations half-built, defensive ditches filled with rainwater",
+    clothing: "rough wool cloaks heavy with rain and mud, iron belts and bronze torcs tarnished dark, animal skins stiff with dried mud, hair matted with dirt and grease, leather armor pieces",
+    colors: "iron gray, mud brown, smoke black, tarnished bronze green, wet wool gray, dried blood rust, forest green dark, twilight blue-gray",
+    atmosphere: "constant threat of attack, damp and cold, iron technology new and feared, dark forests surrounding settlements, people tense and watchful, smoke-filled air",
+    landscape: "hilltop fortifications overlooking dark forests, rain-soaked earth, storm clouds gathering, muddy paths, twilight shadows, iron-smelting fires glowing in the dusk",
+    style: "dark historical photography, desaturated earth tones, gritty unvarnished realism, atmospheric smoke and rain, weathered textures, no romanticization, raw documentary style"
   },
   "-500": {
-    scene: "Celtic La Tène culture peak, Roman Republic expansion, Greek polis civilization, Etruscan golden age",
-    architecture: "Celtic oppida hillforts with elaborate timber gateways, La Tène metalworking sites, Roman Republican temples with terracotta decorations, Etruscan temple complexes, Greek colonial fortified harbors (Massalia, Emporion), Roman Forum development",
-    clothing: "Celtic tartan and striped wool cloaks with bronze fibulae, La Tène torcs and arm rings, Greek hoplite linen cuirasses and bronze helmets, Etruscan silk-bordered togas, Roman Republican tunics with purple stripes for magistrates, Greek chiton and himation",
-    colors: "Celtic forest greens and woad blues, La Tène bronze gold, Etruscan terracotta reds, Roman military crimson, Greek marble whites, iron gray",
-    atmosphere: "clash between Celtic tribal confederations and expanding Roman Republic, Greek colonial prosperity, Etruscan cultural flourishing, Iron Age warfare and trade",
-    landscape: "Celtic oppida on hilltops overlooking river valleys, Etruscan temple sanctuaries, Greek colonial harbors with triremes, Roman military camps along frontier, Hallstatt salt mining operations",
-    style: "Classical Greek and Roman painting traditions, Celtic La Tène knotwork influences, archaeological reconstruction of Iron Age warfare and daily life"
+    scene: "Late Iron Age European village — muddy streets, people working by firelight, iron tools and weapons scattered in the dirt, smoke rising from thatched roofs into gray sky",
+    architecture: "timber-framed houses with sagging thatch roofs, mud walls stained with soot and rain, iron-smelting furnaces glowing in the twilight, crude defensive walls of packed earth and timber, granaries raised on wooden posts",
+    clothing: "rough wool garments stiff with dirt and grease, iron brooches and bronze torcs tarnished dark, animal skins heavy with rain, hair matted with mud, leather sandals worn through",
+    colors: "mud brown, iron gray, soot black, tarnished bronze green, wet wool gray, dried blood rust, forest green, twilight blue-gray, ash gray",
+    atmosphere: "harsh daily survival, constant damp and cold, iron technology spreading, tribal tensions, people worn down by labor, smoke-filled air, dim firelight",
+    landscape: "muddy village streets, dark forest edge, overcast sky, rain-soaked earth, iron-smelting fires glowing in the dusk, defensive earthworks, sparse vegetation",
+    style: "dark documentary photography, desaturated earth tones, gritty unvarnished realism, atmospheric smoke and rain, weathered textures, no romanticization, raw historical documentation"
   },
   "0": {
-    scene: "Augustan Rome at the dawn of the Pax Romana, Mediterranean world unified under Roman rule, Greek scholarly culture flourishing",
-    architecture: "Augustan rebuilding of Rome: marble temples with Corinthian columns (Temple of Mars Ultor), triumphal arches (Arch of Augustus), imperial forums with basilicas, Roman aqueducts (Aquae Marcia), thermae bath complexes, Roman villas with mosaic floors, Greek Hellenistic temples in Asia Minor, Egyptian-style sanctuaries",
-    clothing: "Roman senatorial togas with wide purple latus clavus stripes, equestrian narrow purple stripes, imperial purple-dyed togas, Greek himations and chitons, Roman military lorica segmentata armor, Roman women's stola and palla with jewelry, freedman dress conventions",
-    colors: "Roman marble whites and creams, imperial Tyrian purple, Mediterranean azure and cerulean, terracotta roof reds, gold leaf highlights, Punic crimson, Egyptian gold",
-    atmosphere: "Pax Romana prosperity, Mediterranean trade dominance, Roman civic grandeur, Hellenistic scholarly culture, imperial religious syncretism, gladiatorial spectacles",
-    landscape: "Roman road networks stretching between provinces, Mediterranean harbors with grain ships, Roman provincial cities with forums and baths, Greek island sanctuaries, Egyptian Nile delta trade routes, Alpine passes connecting provinces",
-    style: "Roman imperial painting tradition, Hellenistic realism, archaeological accuracy of Roman architecture and urban planning, classical perspective, marble and gold textures"
+    scene: "Rome at dawn — dusty streets with people hauling water jars, slaves dragging marble blocks, soldiers in worn armor marching through mud, the city sprawling under a hazy sky",
+    architecture: "marble temples still being carved with visible tool marks, half-finished aqueducts with wooden scaffolding, crowded insulae apartment blocks leaning and crumbling, muddy roads with cart tracks, workshops with soot-stained walls",
+    clothing: "worn wool tunics stained with dust and sweat, leather sandals cracked and patched, soldiers' armor dented and scratched, togas faded and dirty from wear, slaves in rough hemp garments",
+    colors: "dusty ochre, marble white with tool marks, mud brown, soot black, worn terracotta, faded red, iron gray, hazy blue sky, sweat-stained linen",
+    atmosphere: "harsh labor under the sun, dust and heat, inequality between rich and poor, city sprawling and chaotic, smell of sweat and dung, constant construction and decay",
+    landscape: "dusty Roman roads with cart tracks, half-finished monuments, crowded tenement districts, marble quarries with workers, Tiber river muddy and polluted, hazy sunlight through dust",
+    style: "dark historical documentary photography, desaturated earth tones, gritty unvarnished realism, atmospheric dust and heat, weathered stone textures, no romanticization, raw urban documentation"
   },
   "200": {
     scene: "Height of the Roman Empire under Antonine dynasty, Mediterranean trade at maximum, Roman urbanization peak",
@@ -1189,51 +1220,82 @@ function getEraLabelForYear(year) {
 }
 
 function initMap() {
-// --- Map setup ---
-const svg = d3.select("#map");
-const width = 800, height = 700;
+  try {
+    if (!europeData || !europeData.features) {
+      console.error('initMap called but europeData not available');
+      return;
+    }
 
-const projection = d3.geoMercator()
-  .center([25, 53])
-  .scale(480)
-  .translate([width / 2, height / 2]);
+    // --- Map setup ---
+    const svg = d3.select("#map");
+    const width = 800, height = 700;
 
-const path = d3.geoPath().projection(projection);
+    const projection = d3.geoMercator()
+      .center([25, 53])
+      .scale(480)
+      .translate([width / 2, height / 2]);
 
-svg.selectAll("path.land")
-  .data(europeData.features)
-  .join("path")
-  .attr("class", "land")
-  .attr("d", path);
+    const path = d3.geoPath().projection(projection);
 
-const countryGroups = svg.selectAll("g.country-group")
-  .data(countries)
-  .join("g")
-  .attr("class", "country-group")
-  .attr("transform", d => {
-    const [x, y] = projection([d.lon, d.lat]);
-    return `translate(${x}, ${y})`;
-  })
-  .style("cursor", "pointer")
-  .on("click", (event, d) => openModal(d))
-  .on("mouseover", () => {})
+    svg.selectAll("path.land")
+      .data(europeData.features)
+      .join("path")
+      .attr("class", "land")
+      .attr("d", path);
 
-countryGroups.append("circle")
-  .attr("class", "country-dot")
-  .attr("r", 5);
+    const countryGroups = svg.selectAll("g.country-group")
+      .data(countries)
+      .join("g")
+      .attr("class", "country-group")
+      .attr("transform", d => {
+        const [x, y] = projection([d.lon, d.lat]);
+        return `translate(${x}, ${y})`;
+      })
+      .style("cursor", "pointer")
+      .on("click", (event, d) => openModal(d))
+      .on("mouseover", () => {})
+      .attr("role", "button")
+      .attr("tabindex", "0")
+      .attr("aria-label", d => `View ${d.name} through time`);
 
-countryGroups.append("text")
-  .attr("class", "country-label")
-  .attr("x", 9)
-  .attr("y", 4)
-  .text(d => d.name);
+    countryGroups.append("circle")
+      .attr("class", "country-dot")
+      .attr("r", 5);
 
-} // end initMap
+    countryGroups.append("text")
+      .attr("class", "country-label")
+      .attr("x", 9)
+      .attr("y", 4)
+      .text(d => d.name);
+
+  } catch (err) {
+    console.error('Error initializing map:', err);
+    const mapWrap = document.querySelector('.map-wrap');
+    if (mapWrap) {
+      mapWrap.innerHTML = '<p style="text-align:center;padding:40px;color:#8A7457;font-family:sans-serif;">Failed to initialize map. Please refresh the page.</p>';
+    }
+  }
+}
 
 // --- Slider / year display ---
 const slider = document.getElementById("yearSlider");
 const yearNumber = document.getElementById("yearNumber");
 const eraLabel = document.getElementById("eraLabel");
+
+if (!slider) {
+  console.error('Year slider element not found');
+} else {
+  // Add bounds checking
+  const minYear = -3000;
+  const maxYear = 2026;
+  
+  slider.addEventListener("input", (e) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value >= minYear && value <= maxYear) {
+      debouncedSliderUpdate(value);
+    }
+  });
+}
 
 function updateYearDisplay(year) {
   yearNumber.textContent = formatYear(year);
@@ -1241,9 +1303,17 @@ function updateYearDisplay(year) {
   updateActiveEraButton(year);
 }
 
-slider.addEventListener("input", (e) => {
-  updateYearDisplay(parseInt(e.target.value));
-});
+// Debounce for performance
+let sliderDebounceTimer = null;
+
+function debouncedSliderUpdate(value) {
+  if (sliderDebounceTimer) {
+    clearTimeout(sliderDebounceTimer);
+  }
+  sliderDebounceTimer = setTimeout(() => {
+    updateYearDisplay(value);
+  }, 50);
+}
 
 // --- Era preset buttons ---
 const eraPresets = document.getElementById("eraPresets");
@@ -1369,93 +1439,101 @@ const eraStyles = {
 };
 
 function getPromptForEra(countryName, year, eraLabel) {
-  const style = eraStyles[eraLabel] || eraStyles["Modern era"];
-  const modifier = yearModifiers[String(year)];
-  const countryRef = countryArch[countryName];
-  
-  // Check for country-specific year modifiers (highest priority)
-  const countryYearData = countryYearModifiers?.[countryName]?.[String(year)];
-  // Check for country-specific era modifiers (second priority)
-  const countryEraData = countryYearModifiers?.[countryName]?.[eraLabel];
-  
-  // Priority: country+year > country+era > year > country > era
-  let sceneDetail, architectureDetail, clothingDetail, colorDetail, atmosphereDetail, landscapeDetail, styleDetail;
-  
-  if (countryYearData) {
-    // Country-specific year data — most specific, use entirely
-    sceneDetail = `scene: ${countryYearData.scene}`;
-    architectureDetail = `architecture: ${countryYearData.architecture}`;
-    clothingDetail = `people wearing ${countryYearData.people}`;
-    colorDetail = `rendered in ${countryYearData.colors}`;
-    atmosphereDetail = `atmosphere: ${countryYearData.atmosphere}`;
-    landscapeDetail = `landscape: ${countryYearData.landscape}`;
-    styleDetail = `in ${countryYearData.style || 'historically accurate photography'}`;
-  } else if (countryEraData) {
-    // Country-specific era data overrides generic era style
-    sceneDetail = `featuring ${countryRef?.architecture || 'historically accurate European architecture'}`;
-    architectureDetail = `architecture: ${countryEraData.architecture}`;
-    clothingDetail = `people wearing ${countryEraData.people}`;
-    colorDetail = `rendered in ${countryEraData.colors || style.colors}`;
-    atmosphereDetail = `atmosphere: ${countryEraData.atmosphere || style.atmosphere}`;
-    landscapeDetail = `landscape: ${countryEraData.landscape}`;
-    styleDetail = `in ${countryEraData.style || style.style}`;
-  } else if (modifier && countryRef && typeof countryRef === 'object') {
-    // Year modifier exists but enhance with country-specific details
-    const arch = countryRef.architecture || "";
-    const colors = countryRef.colors || "";
-    const atmos = countryRef.atmosphere || "";
-    const land = countryRef.landscape || "";
-    const vstyle = countryRef.visualStyle || "";
+  try {
+    const style = eraStyles[eraLabel] || eraStyles["Modern era"];
+    const modifier = yearModifiers[String(year)];
+    const countryRef = countryArch[countryName];
     
-    // Blend year scene with country landscape
-    const blendedScene = modifier.scene.includes(',') 
-      ? `${modifier.scene}, ${land}` 
-      : `${modifier.scene}, featuring ${land}`;
+    // Check for country-specific year modifiers (highest priority)
+    const countryYearData = countryYearModifiers?.[countryName]?.[String(year)];
+    // Check for country-specific era modifiers (second priority)
+    const countryEraData = countryYearModifiers?.[countryName]?.[eraLabel];
     
-    sceneDetail = `scene: ${blendedScene}`;
-    architectureDetail = `architecture: ${modifier.architecture}, ${arch.split(',').slice(0, 2).join(',').trim()}`;
-    clothingDetail = `people wearing ${modifier.clothing}`;
-    colorDetail = `rendered in ${modifier.colors}, ${colors}`;
-    atmosphereDetail = `atmosphere: ${modifier.atmosphere}, ${atmos}`;
-    landscapeDetail = `landscape: ${land}, ${modifier.landscape}`;
-    styleDetail = `in ${vstyle}, ${modifier.style}`;
-  } else if (modifier) {
-    sceneDetail = `scene: ${modifier.scene}`;
-    architectureDetail = `architecture: ${modifier.architecture}`;
-    clothingDetail = `people wearing ${modifier.clothing}`;
-    colorDetail = `rendered in ${modifier.colors}`;
-    atmosphereDetail = `atmosphere: ${modifier.atmosphere}`;
-    landscapeDetail = `landscape: ${modifier.landscape}`;
-    styleDetail = `in ${modifier.style}`;
-  } else if (countryRef && typeof countryRef === 'object') {
-    // Use country-specific visual data for distinctive prompts
-    const arch = countryRef.architecture || "";
-    const colors = countryRef.colors || "";
-    const atmos = countryRef.atmosphere || "";
-    const land = countryRef.landscape || "";
-    const vstyle = countryRef.visualStyle || "";
+    // Priority: country+year > country+era > year > country > era
+    let sceneDetail, architectureDetail, clothingDetail, colorDetail, atmosphereDetail, landscapeDetail, styleDetail;
     
-    sceneDetail = `featuring ${arch}`;
-    architectureDetail = `with ${arch.split(',').slice(0, 3).join(',').trim()}`;
-    clothingDetail = `people in period-appropriate attire`;
-    colorDetail = `rendered in ${colors}`;
-    atmosphereDetail = `atmosphere: ${atmos}`;
-    landscapeDetail = `set against ${land}`;
-    styleDetail = `in ${vstyle}`;
-  } else {
-    sceneDetail = `featuring historically accurate European architecture`;
-    architectureDetail = `with ${style.architecture}`;
-    clothingDetail = `people wearing ${style.clothing}`;
-    colorDetail = `rendered in ${style.colors}`;
-    atmosphereDetail = `atmosphere: ${style.atmosphere}`;
-    landscapeDetail = `set against ${style.landscape}`;
-    styleDetail = `in ${style.style}`;
+    if (countryYearData) {
+      // Country-specific year data — most specific, use entirely
+      sceneDetail = `scene: ${countryYearData.scene}`;
+      architectureDetail = `architecture: ${countryYearData.architecture}`;
+      clothingDetail = `people wearing ${countryYearData.people}`;
+      colorDetail = `rendered in ${countryYearData.colors}`;
+      atmosphereDetail = `atmosphere: ${countryYearData.atmosphere}`;
+      landscapeDetail = `landscape: ${countryYearData.landscape}`;
+      styleDetail = `in ${countryYearData.style || 'historically accurate photography'}`;
+    } else if (countryEraData) {
+      // Country-specific era data overrides generic era style
+      sceneDetail = `featuring ${countryRef?.architecture || 'historically accurate European architecture'}`;
+      architectureDetail = `architecture: ${countryEraData.architecture}`;
+      clothingDetail = `people wearing ${countryEraData.people}`;
+      colorDetail = `rendered in ${countryEraData.colors || style.colors}`;
+      atmosphereDetail = `atmosphere: ${countryEraData.atmosphere || style.atmosphere}`;
+      landscapeDetail = `landscape: ${countryEraData.landscape}`;
+      styleDetail = `in ${countryEraData.style || style.style}`;
+    } else if (modifier && countryRef && typeof countryRef === 'object') {
+      // Year modifier exists but enhance with country-specific details
+      const arch = countryRef.architecture || "";
+      const colors = countryRef.colors || "";
+      const atmos = countryRef.atmosphere || "";
+      const land = countryRef.landscape || "";
+      const vstyle = countryRef.visualStyle || "";
+      
+      // Blend year scene with country landscape
+      const blendedScene = modifier.scene.includes(',') 
+        ? `${modifier.scene}, ${land}` 
+        : `${modifier.scene}, featuring ${land}`;
+      
+      sceneDetail = `scene: ${blendedScene}`;
+      architectureDetail = `architecture: ${modifier.architecture}, ${arch.split(',').slice(0, 2).join(',').trim()}`;
+      clothingDetail = `people wearing ${modifier.clothing}`;
+      colorDetail = `rendered in ${modifier.colors}, ${colors}`;
+      atmosphereDetail = `atmosphere: ${modifier.atmosphere}, ${atmos}`;
+      landscapeDetail = `landscape: ${land}, ${modifier.landscape}`;
+      styleDetail = `in ${vstyle}, ${modifier.style}`;
+    } else if (modifier) {
+      sceneDetail = `scene: ${modifier.scene}`;
+      architectureDetail = `architecture: ${modifier.architecture}`;
+      clothingDetail = `people wearing ${modifier.clothing}`;
+      colorDetail = `rendered in ${modifier.colors}`;
+      atmosphereDetail = `atmosphere: ${modifier.atmosphere}`;
+      landscapeDetail = `landscape: ${modifier.landscape}`;
+      styleDetail = `in ${modifier.style}`;
+    } else if (countryRef && typeof countryRef === 'object') {
+      // Use country-specific visual data for distinctive prompts
+      const arch = countryRef.architecture || "";
+      const colors = countryRef.colors || "";
+      const atmos = countryRef.atmosphere || "";
+      const land = countryRef.landscape || "";
+      const vstyle = countryRef.visualStyle || "";
+      
+      sceneDetail = `featuring ${arch}`;
+      architectureDetail = `with ${arch.split(',').slice(0, 3).join(',').trim()}`;
+      clothingDetail = `people in period-appropriate attire`;
+      colorDetail = `rendered in ${colors}`;
+      atmosphereDetail = `atmosphere: ${atmos}`;
+      landscapeDetail = `set against ${land}`;
+      styleDetail = `in ${vstyle}`;
+    } else {
+      sceneDetail = `featuring historically accurate European architecture`;
+      architectureDetail = `with ${style.architecture}`;
+      clothingDetail = `people wearing ${style.clothing}`;
+      colorDetail = `rendered in ${style.colors}`;
+      atmosphereDetail = `atmosphere: ${style.atmosphere}`;
+      landscapeDetail = `set against ${style.landscape}`;
+      styleDetail = `in ${style.style}`;
+    }
+    
+    const yearStr = formatYear(year);
+    // Sanitize country name to prevent prompt injection
+    const safeCountryName = countryName.replace(/[<>{}]/g, '');
+    const basePrompt = `Historical realistic scene of ${safeCountryName}`;
+    
+    return `${basePrompt}, year ${yearStr}, ${eraLabel} period, ${sceneDetail}, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, historically accurate, detailed, cinematic composition`;
+  } catch (err) {
+    console.error('Error generating prompt:', err);
+    // Return safe fallback prompt
+    return `Historical realistic scene of ${countryName}, ${eraLabel} period, historically accurate architecture and clothing, detailed, cinematic composition`;
   }
-  
-  const yearStr = formatYear(year);
-  const basePrompt = `Historical realistic scene of ${countryName}`;
-  
-  return `${basePrompt}, year ${yearStr}, ${eraLabel} period, ${sceneDetail}, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, historically accurate, detailed, cinematic composition`;
 }
 
 // --- Modal ---
@@ -1466,51 +1544,139 @@ const modalYear = document.getElementById("modalYear");
 const modalDesc = document.getElementById("modalDesc");
 const modalImage = document.getElementById("modalImage");
 
+// State management for image loading
+let currentLoadingState = {
+  country: null,
+  year: null,
+  imageUrl: null,
+  imgElement: null,
+  abortController: null
+};
+
+function clearLoadingState() {
+  if (currentLoadingState.abortController) {
+    currentLoadingState.abortController.abort();
+    currentLoadingState.abortController = null;
+  }
+  currentLoadingState.country = null;
+  currentLoadingState.year = null;
+  currentLoadingState.imageUrl = null;
+  currentLoadingState.imgElement = null;
+}
+
+function isSameRequest(country, year) {
+  return currentLoadingState.country === country.name && 
+         currentLoadingState.year === year;
+}
+
 async function openModal(country) {
-  const year = parseInt(slider.value);
+  if (!mapInitialized) {
+    console.warn('Map not initialized yet');
+    return;
+  }
+
+  const year = parseInt(slider.value, 10);
+  if (isNaN(year)) {
+    console.error('Invalid year value');
+    return;
+  }
+
+  // Check if same request is already loading
+  if (isSameRequest(country, year)) {
+    return;
+  }
+
+  // Cancel previous loading state
+  clearLoadingState();
+
   const eraLabelText = getEraLabelForYear(year);
   const eraKey = getEraLabel(year);
-  modalCity.textContent = country.name;
+  
+  // Sanitize country name for display
+  const safeCountryName = country.name.replace(/[<>]/g, '');
+  modalCity.textContent = safeCountryName;
   modalYear.textContent = formatYear(year) + " — " + eraLabelText;
-  modalDesc.textContent = `This is where an AI-generated image would show what ${country.name} looked like around ${formatYear(year)}.`;
+  modalDesc.textContent = `This is where an AI-generated image would show what ${safeCountryName} looked like around ${formatYear(year)}.`;
 
   const prompt = getPromptForEra(country.name, year, eraKey);
   // Fixed seed per location+year for browser cache reuse
   let seed = 0;
   for (let i = 0; i < country.name.length; i++) seed = ((seed << 5) - seed) + country.name.charCodeAt(i);
   seed = (seed + year * 31) & 0x7fffffff;
-  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&nologo=true&seed=${seed}`;
+  
+  // Build URL with proper encoding and timeout
+  const controller = new AbortController();
+  currentLoadingState.abortController = controller;
+  currentLoadingState.country = country.name;
+  currentLoadingState.year = year;
+  
+  const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&nologo=true&seed=${seed}&tf=ebs`;
+  currentLoadingState.imageUrl = imageUrl;
 
   modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
   const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.referrerPolicy = 'no-referrer';
+  
+  const loadTimeout = setTimeout(() => {
+    if (currentLoadingState.imgElement === img) {
+      img.onerror && img.onerror();
+    }
+  }, 30000); // 30 second timeout
+
   img.onload = () => {
+    clearTimeout(loadTimeout);
+    if (currentLoadingState.imgElement !== img) {
+      return; // Request changed, ignore this load
+    }
+    clearLoadingState();
     modalImage.innerHTML = '';
     img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
     modalImage.appendChild(img);
   };
+  
   img.onerror = () => {
+    clearTimeout(loadTimeout);
+    clearLoadingState();
     modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
   };
+  
   img.src = imageUrl;
 
   overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden", "false");
 
   // mark active dot
   d3.selectAll(".country-group").classed("active", d => d.name === country.name);
 }
 
 function closeModal() {
+  clearLoadingState();
   overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden", "true");
   d3.selectAll(".country-group").classed("active", false);
+  // Return focus to trigger element
+  const activeElement = document.activeElement;
+  if (activeElement && activeElement !== document.body) {
+    activeElement.focus();
+  }
 }
 
 modalClose.addEventListener("click", closeModal);
+
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) closeModal();
 });
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
+  if (e.key === "Escape") {
+    if (imageFullscreen.classList.contains("open")) {
+      closeFullscreen();
+    } else if (overlay.classList.contains("open")) {
+      closeModal();
+    }
+  }
 });
 
 // --- Image zoom / fullscreen ---
@@ -1535,16 +1701,22 @@ function updateZoom(newZoom) {
 
 function zoomImage() {
   const img = modalImage.querySelector("img");
-  if (img) {
+  if (img && img.src) {
     fullscreenImg.src = img.src;
     imageFullscreen.classList.add("open");
+    imageFullscreen.setAttribute("aria-hidden", "false");
     updateZoom(1);
   }
 }
 
 function closeFullscreen() {
   imageFullscreen.classList.remove("open");
+  imageFullscreen.setAttribute("aria-hidden", "true");
   updateZoom(1);
+  // Return focus to zoom button
+  if (zoomBtn) {
+    zoomBtn.focus();
+  }
 }
 
 zoomBtn.addEventListener("click", (e) => {
