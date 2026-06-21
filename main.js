@@ -1671,8 +1671,9 @@ async function openModal(country) {
     .catch(err => {
       clearTimeout(loadTimeout);
       clearLoadingState();
-      // Show beautiful placeholder instead of empty error
+      // Show beautiful placeholder with retry button
       const safeName = country.name.replace(/[<>]/g, '');
+      const retryId = `retry-${Date.now()}`;
       const svgPlaceholder = `
         <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
           <defs>
@@ -1691,14 +1692,21 @@ async function openModal(country) {
           <!-- Sun/moon -->
           <circle cx="320" cy="80" r="25" fill="#E8D8B8" opacity="0.6"/>
           <!-- Text -->
-          <text x="200" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#8A7457" opacity="0.7">
+          <text x="200" y="240" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#8A7457" opacity="0.7">
             Historical illustration of ${safeName}
           </text>
-          <text x="200" y="280" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A89880" opacity="0.5">
+          <text x="200" y="260" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A89880" opacity="0.5">
             AI image generation unavailable
           </text>
+          <!-- Retry button -->
+          <g onclick="retryImageGeneration('${retryId}', '${safeName}', ${year})" style="cursor:pointer">
+            <rect x="160" y="270" width="80" height="24" rx="12" fill="#8A7457" opacity="0.8"/>
+            <text x="200" y="286" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F5F0E8">Retry</text>
+          </g>
         </svg>`;
       modalImage.innerHTML = svgPlaceholder;
+      // Store retry handler globally
+      window[`retry-${retryId}`] = () => retryImageGeneration(retryId, safeName, year);
     });
 
   overlay.classList.add("open");
@@ -1721,6 +1729,20 @@ function closeModal() {
 }
 
 modalClose.addEventListener("click", closeModal);
+
+// --- Image retry handler ---
+function retryImageGeneration(retryId, countryName, year) {
+  // Remove the retry button
+  const retryEl = window[`retry-${retryId}`];
+  if (retryEl) delete window[`retry-${retryId}`];
+  
+  // Find the country object
+  const country = countries.find(c => c.name === countryName);
+  if (!country) return;
+  
+  // Re-open the modal with the same country/year
+  openModal(country);
+}
 
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) closeModal();
