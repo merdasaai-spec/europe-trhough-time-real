@@ -1671,10 +1671,34 @@ async function openModal(country) {
     .catch(err => {
       clearTimeout(loadTimeout);
       clearLoadingState();
-      const msg = err.name === 'AbortError'
-        ? 'Image generation timed out — click again to retry'
-        : 'Failed to load image — click again to retry';
-      modalImage.innerHTML = `<span style="padding:20px;display:block;text-align:center;color:#8A7457;">${msg}</span>`;
+      // Show beautiful placeholder instead of empty error
+      const safeName = country.name.replace(/[<>]/g, '');
+      const svgPlaceholder = `
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5F0E8"/>
+              <stop offset="100%" stop-color="#E8DFD0"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#bg)"/>
+          <!-- Stylized landscape silhouette -->
+          <path d="M0,200 Q50,150 100,180 Q150,210 200,170 Q250,130 300,160 Q350,190 400,170 L400,300 L0,300Z" fill="#D4C5A9" opacity="0.5"/>
+          <path d="M0,220 Q80,180 160,200 Q240,220 320,190 Q360,175 400,195 L400,300 L0,300Z" fill="#C4B599" opacity="0.4"/>
+          <!-- Mountains -->
+          <path d="M120,180 L150,120 L180,180" fill="none" stroke="#A89880" stroke-width="2" opacity="0.3"/>
+          <path d="M250,160 L275,100 L300,160" fill="none" stroke="#A89880" stroke-width="2" opacity="0.3"/>
+          <!-- Sun/moon -->
+          <circle cx="320" cy="80" r="25" fill="#E8D8B8" opacity="0.6"/>
+          <!-- Text -->
+          <text x="200" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#8A7457" opacity="0.7">
+            Historical illustration of ${safeName}
+          </text>
+          <text x="200" y="280" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A89880" opacity="0.5">
+            AI image generation unavailable
+          </text>
+        </svg>`;
+      modalImage.innerHTML = svgPlaceholder;
     });
 
   overlay.classList.add("open");
