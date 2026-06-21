@@ -75,16 +75,16 @@ const countries = [
 ];
 
 const eras = [
-  { label: "Stone Age",      year: -3000, range: [-3000, -1200] },
-  { label: "Bronze Age",     year: -1500, range: [-1200, -800]  },
-  { label: "Iron Age",       year: -600,  range: [-800, -27]    },
-  { label: "Antiquity",      year: -27,   range: [-27, 476]     },
-  { label: "Middle Ages",    year: 900,   range: [476, 1450]    },
-  { label: "Renaissance",    year: 1500,  range: [1450, 1650]   },
-  { label: "Enlightenment",  year: 1750,  range: [1650, 1800]   },
-  { label: "Industrial Age", year: 1850,  range: [1800, 1914]   },
-  { label: "Modern era",     year: 1950,  range: [1914, 2010]   },
-  { label: "Present day",    year: 2026,  range: [2010, 2026]   }
+  { label: "Stone Age",      year: -2100, range: [-3000, -1200] },
+  { label: "Bronze Age",     year: -1000, range: [-1200, -800]  },
+  { label: "Iron Age",       year: -413,  range: [-800, -27]    },
+  { label: "Antiquity",      year: 224,   range: [-27, 476]     },
+  { label: "Middle Ages",    year: 963,   range: [476, 1450]    },
+  { label: "Renaissance",    year: 1550,  range: [1450, 1650]   },
+  { label: "Enlightenment",  year: 1725,  range: [1650, 1800]   },
+  { label: "Industrial Age", year: 1857,  range: [1800, 1914]   },
+  { label: "Modern era",     year: 1962,  range: [1914, 2010]   },
+  { label: "Present day",    year: 2018,  range: [2010, 2026]   }
 ];
 
 function getEraLabel(year) {
@@ -1629,85 +1629,20 @@ async function openModal(country) {
   for (let i = 0; i < country.name.length; i++) seed = ((seed << 5) - seed) + country.name.charCodeAt(i);
   seed = (seed + year * 31) & 0x7fffffff;
   
-  // Build URL with proper encoding and timeout
-  const controller = new AbortController();
-  currentLoadingState.abortController = controller;
-  currentLoadingState.country = country.name;
-  currentLoadingState.year = year;
-  
   const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&nologo=true&seed=${seed}&tf=ebs`;
-  currentLoadingState.imageUrl = imageUrl;
-
+  
   modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
-
-  const loadTimeout = setTimeout(() => controller.abort(), 60000); // 60s hard timeout
-
-  fetch(imageUrl, { signal: controller.signal })
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return response.blob();
-    })
-    .then(blob => {
-      clearTimeout(loadTimeout);
-      if (currentLoadingState.imgElement) {
-        URL.revokeObjectURL(currentLoadingState.imgElement.src);
-      }
-      const url = URL.createObjectURL(blob);
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.referrerPolicy = 'no-referrer';
-      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-      img.onload = () => {
-        currentLoadingState.imgElement = img;
-        modalImage.innerHTML = '';
-        modalImage.appendChild(img);
-      };
-      img.onerror = () => {
-        clearLoadingState();
-        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
-      };
-      img.src = url;
-    })
-    .catch(err => {
-      clearTimeout(loadTimeout);
-      clearLoadingState();
-      // Show beautiful placeholder with retry button
-      const safeName = country.name.replace(/[<>]/g, '');
-      const retryId = `retry-${Date.now()}`;
-      const svgPlaceholder = `
-        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <defs>
-            <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#F5F0E8"/>
-              <stop offset="100%" stop-color="#E8DFD0"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="300" fill="url(#bg)"/>
-          <!-- Stylized landscape silhouette -->
-          <path d="M0,200 Q50,150 100,180 Q150,210 200,170 Q250,130 300,160 Q350,190 400,170 L400,300 L0,300Z" fill="#D4C5A9" opacity="0.5"/>
-          <path d="M0,220 Q80,180 160,200 Q240,220 320,190 Q360,175 400,195 L400,300 L0,300Z" fill="#C4B599" opacity="0.4"/>
-          <!-- Mountains -->
-          <path d="M120,180 L150,120 L180,180" fill="none" stroke="#A89880" stroke-width="2" opacity="0.3"/>
-          <path d="M250,160 L275,100 L300,160" fill="none" stroke="#A89880" stroke-width="2" opacity="0.3"/>
-          <!-- Sun/moon -->
-          <circle cx="320" cy="80" r="25" fill="#E8D8B8" opacity="0.6"/>
-          <!-- Text -->
-          <text x="200" y="240" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#8A7457" opacity="0.7">
-            Historical illustration of ${safeName}
-          </text>
-          <text x="200" y="260" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A89880" opacity="0.5">
-            AI image generation unavailable
-          </text>
-          <!-- Retry button -->
-          <g onclick="retryImageGeneration('${retryId}', '${safeName}', ${year})" style="cursor:pointer">
-            <rect x="160" y="270" width="80" height="24" rx="12" fill="#8A7457" opacity="0.8"/>
-            <text x="200" y="286" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#F5F0E8">Retry</text>
-          </g>
-        </svg>`;
-      modalImage.innerHTML = svgPlaceholder;
-      // Store retry handler globally
-      window[`retry-${retryId}`] = () => retryImageGeneration(retryId, safeName, year);
-    });
+  
+  const img = new Image();
+  img.onload = () => {
+    modalImage.innerHTML = '';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    modalImage.appendChild(img);
+  };
+  img.onerror = () => {
+    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
+  };
+  img.src = imageUrl;
 
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
