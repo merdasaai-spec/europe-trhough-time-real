@@ -1551,9 +1551,22 @@ function getPromptForEra(countryName, year, eraLabel) {
     const yearStr = formatYear(year);
     // Sanitize country name to prevent prompt injection
     const safeCountryName = countryName.replace(/[<>{}]/g, '');
-    const basePrompt = `Historical realistic scene of ${safeCountryName}`;
     
-    return `${basePrompt}, year ${yearStr}, ${eraLabel} period, ${sceneDetail}, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, historically accurate, detailed, cinematic composition`;
+    // Voor prehistorische periodes (3000 BCE - 0): gebruik primitieve/prehistorische prompt
+    const isPrehistoric = year < 0 || (year >= 0 && year <= 100 && eraLabel === 'Iron Age');
+    
+    let basePrompt;
+    let styleSuffix;
+    
+    if (isPrehistoric) {
+      basePrompt = `Primitive prehistoric scene of early ${safeCountryName} inhabitants`;
+      styleSuffix = `no modern elements, no civilization, no advanced technology, raw prehistoric life, primitive survival, stone age tools, cave paintings aesthetic, pre-civilization, ancient primal atmosphere, archaeological accuracy of prehistoric Europe, natural lighting, earth pigments style, no romanticization, authentic prehistoric realism`;
+    } else {
+      basePrompt = `Historical realistic scene of ${safeCountryName}`;
+      styleSuffix = `historically accurate, detailed, cinematic composition`;
+    }
+    
+    return `${basePrompt}, year ${yearStr}, ${eraLabel} period, ${sceneDetail}, ${architectureDetail}, ${clothingDetail}, ${colorDetail}, ${atmosphereDetail}, ${landscapeDetail}, ${styleDetail}, ${styleSuffix}`;
   } catch (err) {
     console.error('Error generating prompt:', err);
     // Return safe fallback prompt
