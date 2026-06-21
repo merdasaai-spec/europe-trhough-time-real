@@ -75,20 +75,22 @@ const countries = [
 ];
 
 const eras = [
-  { label: "Stone Age",      year: -3000, range: [-3000, -1200] },
-  { label: "Bronze Age",     year: -1500, range: [-1200, -800]  },
-  { label: "Iron Age",       year: -600,  range: [-800, -27]    },
-  { label: "Antiquity",      year: -27,   range: [-27, 476]     },
-  { label: "Middle Ages",    year: 900,   range: [476, 1450]    },
-  { label: "Renaissance",    year: 1500,  range: [1450, 1650]   },
-  { label: "Enlightenment",  year: 1750,  range: [1650, 1800]   },
-  { label: "Industrial Age", year: 1850,  range: [1800, 1914]   },
-  { label: "Modern era",     year: 1950,  range: [1914, 2010]   },
-  { label: "Present day",    year: 2026,  range: [2010, 2026]   }
+  { label: "Stone Age",      year: -3000, range: [-3000, -3300] },
+  { label: "Bronze Age",     year: -2250, range: [-3300, -1200] },
+  { label: "Iron Age",       year: -600,  range: [-1200, -27]   },
+  { label: "Antiquity",      year: 225,   range: [-27, 476]     },
+  { label: "Middle Ages",    year: 963,   range: [476, 1450]    },
+  { label: "Renaissance",    year: 1550,  range: [1450, 1650]   },
+  { label: "Enlightenment",  year: 1725,  range: [1650, 1800]   },
+  { label: "Industrial Age", year: 1857,  range: [1800, 1914]   },
+  { label: "Modern era",     year: 1962,  range: [1914, 2010]   },
+  { label: "Present day",    year: 2020,  range: [2010, 2026]   }
 ];
 
 function getEraLabel(year) {
-  for (const era of eras) {
+  // Check ranges in reverse so later eras win at boundary points
+  for (let i = eras.length - 1; i >= 0; i--) {
+    const era = eras[i];
     if (year >= era.range[0] && year <= era.range[1]) return era.label;
   }
   return "";
@@ -1221,13 +1223,21 @@ function getEraLabelForYear(year) {
 
 function initMap() {
   try {
+    if (typeof d3 === 'undefined') {
+      throw new Error('D3.js library not loaded — check CDN connection');
+    }
+
     if (!europeData || !europeData.features) {
-      console.error('initMap called but europeData not available');
-      return;
+      throw new Error('Map data not available or missing features array');
+    }
+
+    const svgEl = document.getElementById('map');
+    if (!svgEl) {
+      throw new Error('Map SVG element not found in DOM');
     }
 
     // --- Map setup ---
-    const svg = d3.select("#map");
+    const svg = d3.select(svgEl);
     const width = 800, height = 700;
 
     const projection = d3.geoMercator()
@@ -1268,11 +1278,15 @@ function initMap() {
       .attr("y", 4)
       .text(d => d.name);
 
+    console.log('Map initialized successfully with', europeData.features.length, 'features');
+
   } catch (err) {
     console.error('Error initializing map:', err);
     const mapWrap = document.querySelector('.map-wrap');
     if (mapWrap) {
-      mapWrap.innerHTML = '<p style="text-align:center;padding:40px;color:#8A7457;font-family:sans-serif;">Failed to initialize map. Please refresh the page.</p>';
+      mapWrap.innerHTML = `<p style="text-align:center;padding:40px;color:#8A7457;font-family:sans-serif;font-size:14px;">
+        <strong>Map error:</strong><br>${err.message}<br><br>Please refresh the page.
+      </p>`;
     }
   }
 }
