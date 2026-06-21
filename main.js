@@ -75,24 +75,27 @@ const countries = [
 ];
 
 const eras = [
-  { label: "Stone Age",      year: -3150, range: [-3300, -3000] },
-  { label: "Bronze Age",     year: -2250, range: [-3300, -1200] },
-  { label: "Iron Age",       year: -600,  range: [-1200, -27]   },
-  { label: "Antiquity",      year: 225,   range: [-27, 476]     },
-  { label: "Middle Ages",    year: 963,   range: [476, 1450]    },
-  { label: "Renaissance",    year: 1550,  range: [1450, 1650]   },
-  { label: "Enlightenment",  year: 1725,  range: [1650, 1800]   },
-  { label: "Industrial Age", year: 1857,  range: [1800, 1914]   },
-  { label: "Modern era",     year: 1962,  range: [1914, 2010]   },
-  { label: "Present day",    year: 2020,  range: [2010, 2026]   }
+  { label: "Stone Age",      year: -3000, range: [-3000, -1200] },
+  { label: "Bronze Age",     year: -1500, range: [-1200, -800]  },
+  { label: "Iron Age",       year: -600,  range: [-800, -27]    },
+  { label: "Antiquity",      year: -27,   range: [-27, 476]     },
+  { label: "Middle Ages",    year: 900,   range: [476, 1450]    },
+  { label: "Renaissance",    year: 1500,  range: [1450, 1650]   },
+  { label: "Enlightenment",  year: 1750,  range: [1650, 1800]   },
+  { label: "Industrial Age", year: 1850,  range: [1800, 1914]   },
+  { label: "Modern era",     year: 1950,  range: [1914, 2010]   },
+  { label: "Present day",    year: 2026,  range: [2010, 2026]   }
 ];
 
 function getEraLabel(year) {
-  // Check ranges in reverse so later eras win at boundary points
-  for (let i = eras.length - 1; i >= 0; i--) {
+  // Use < (not <=) for upper bound so boundary points belong to the NEXT era — no overlap
+  for (let i = 0; i < eras.length; i++) {
     const era = eras[i];
-    if (year >= era.range[0] && year <= era.range[1]) return era.label;
+    if (year >= era.range[0] && year < era.range[1]) return era.label;
   }
+  // Last era uses <= for the final boundary
+  const last = eras[eras.length - 1];
+  if (year >= last.range[0] && year <= last.range[1]) return last.label;
   return "";
 }
 
@@ -1359,12 +1362,20 @@ function updateActiveEraButton(year) {
   });
   // Only highlight if reasonably close to a preset's era range
   for (const era of eras) {
-    if (year >= era.range[0] && year <= era.range[1]) {
+    if (year >= era.range[0] && year < era.range[1]) {
       buttons.forEach(btn => {
         if (btn.textContent === era.label) btn.classList.add("active");
       });
       return;
     }
+  }
+  // Last era uses <= for the final boundary
+  const last = eras[eras.length - 1];
+  if (year >= last.range[0] && year <= last.range[1]) {
+    buttons.forEach(btn => {
+      if (btn.textContent === last.label) btn.classList.add("active");
+    });
+    return;
   }
 }
 
