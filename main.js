@@ -75,7 +75,7 @@ const countries = [
 ];
 
 const eras = [
-  { label: "Stone Age",      year: -3000, range: [-3000, -3300] },
+  { label: "Stone Age",      year: -3150, range: [-3300, -3000] },
   { label: "Bronze Age",     year: -2250, range: [-3300, -1200] },
   { label: "Iron Age",       year: -600,  range: [-1200, -27]   },
   { label: "Antiquity",      year: 225,   range: [-27, 476]     },
