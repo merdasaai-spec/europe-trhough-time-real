@@ -1640,34 +1640,42 @@ async function openModal(country) {
 
   modalImage.innerHTML = '<div class="spinner"></div><p style="position:absolute;bottom:16px;width:100%;text-align:center;font-size:12px;color:#8A7457;margin:0;">Generating historical image...</p>';
 
-  const img = new Image();
-  img.crossOrigin = 'anonymous';
-  img.referrerPolicy = 'no-referrer';
-  
-  const loadTimeout = setTimeout(() => {
-    if (currentLoadingState.imgElement === img) {
-      img.onerror && img.onerror();
-    }
-  }, 30000); // 30 second timeout
+  const loadTimeout = setTimeout(() => controller.abort(), 60000); // 60s hard timeout
 
-  img.onload = () => {
-    clearTimeout(loadTimeout);
-    if (currentLoadingState.imgElement !== img) {
-      return; // Request changed, ignore this load
-    }
-    clearLoadingState();
-    modalImage.innerHTML = '';
-    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-    modalImage.appendChild(img);
-  };
-  
-  img.onerror = () => {
-    clearTimeout(loadTimeout);
-    clearLoadingState();
-    modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
-  };
-  
-  img.src = imageUrl;
+  fetch(imageUrl, { signal: controller.signal })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.blob();
+    })
+    .then(blob => {
+      clearTimeout(loadTimeout);
+      if (currentLoadingState.imgElement) {
+        URL.revokeObjectURL(currentLoadingState.imgElement.src);
+      }
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.referrerPolicy = 'no-referrer';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      img.onload = () => {
+        currentLoadingState.imgElement = img;
+        modalImage.innerHTML = '';
+        modalImage.appendChild(img);
+      };
+      img.onerror = () => {
+        clearLoadingState();
+        modalImage.innerHTML = '<span style="padding:20px;display:block;text-align:center;color:#8A7457;">Failed to load image — click again to retry</span>';
+      };
+      img.src = url;
+    })
+    .catch(err => {
+      clearTimeout(loadTimeout);
+      clearLoadingState();
+      const msg = err.name === 'AbortError'
+        ? 'Image generation timed out — click again to retry'
+        : 'Failed to load image — click again to retry';
+      modalImage.innerHTML = `<span style="padding:20px;display:block;text-align:center;color:#8A7457;">${msg}</span>`;
+    });
 
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
